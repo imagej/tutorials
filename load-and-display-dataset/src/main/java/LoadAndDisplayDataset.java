@@ -19,14 +19,14 @@ import javax.swing.JFileChooser;
 public class LoadAndDisplayDataset {
 
 	public static void main(final String... args) throws Exception {
-    // create the ImageJ application context with all available services
+		// create the ImageJ application context with all available services
 		final ImageJ context = ImageJ.createContext();
 
-    // ask the user for a file to open
-    final JFileChooser chooser = new JFileChooser();
-    final int returnVal = chooser.showOpenDialog(null);
-    if (returnVal != JFileChooser.APPROVE_OPTION) return;
-    final File file = chooser.getSelectedFile();
+		// ask the user for a file to open
+		final JFileChooser chooser = new JFileChooser();
+		final int returnVal = chooser.showOpenDialog(null);
+		if (returnVal != JFileChooser.APPROVE_OPTION) return;
+		final File file = chooser.getSelectedFile();
 
 		// load the dataset
 		final IOService ioService = context.getService(IOService.class);
