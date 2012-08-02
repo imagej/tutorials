@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.scijava</groupId>
+		<artifactId>pom-scijava</artifactId>
+		<version>1.17</version>
+	</parent>
+
+	<groupId>imagej-tutorials</groupId>
+	<artifactId>pom-imagej-tutorials</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>ImageJ Tutorials</name>
+	<description>A collection of tutorials for ImageJ.</description>
+	<url>http://developer.imagej.net/</url>
+
+	<modules>
+		<module>load-and-display-dataset</module>
+	</modules>
+
+	<licenses>
+		<license>
+			<name>CC0 1.0 Universal License</name>
+			<url>http://creativecommons.org/publicdomain/zero/1.0/</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>ImageJDev.org</name>
+		<url>http://developer.imagej.net/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>ctrueden</id>
+			<name>Curtis Rueden</name>
+			<email>ctrueden@wisc.edu</email>
+			<url>http://loci.wisc.edu/people/curtis-rueden</url>
+			<organization>UW-Madison LOCI</organization>
+			<organizationUrl>http://loci.wisc.edu/</organizationUrl>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>-6</timezone>
+		</developer>
+	</developers>
+
+	<issueManagement>
+		<system>Trac</system>
+		<url>http://trac.imagej.net/</url>
+	</issueManagement>
+
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>http://jenkins.imagej.net/</url>
+	</ciManagement>
+
+	<mailingLists>
+		<mailingList>
+			<name>ImageJ</name>
+			<subscribe>http://imagej.nih.gov/ij/list.html</subscribe>
+			<unsubscribe>http://imagej.nih.gov/ij/list.html</unsubscribe>
+			<post>imagej@list.nih.gov</post>
+			<archive>http://list.nih.gov/archives/imagej.html</archive>
+		</mailingList>
+		<mailingList>
+			<name>ImageJ-devel</name>
+			<subscribe>http://imagej.net/mailman/listinfo/imagej-devel</subscribe>
+			<unsubscribe>http://imagej.net/mailman/listinfo/imagej-devel</unsubscribe>
+			<post>imagej-devel@imagej.net</post>
+			<archive>http://imagej.net/pipermail/imagej-devel/</archive>
+		</mailingList>
+	</mailingLists>
+
+	<scm>
+		<connection>scm:git:git://github.com/imagej/imagej-tutorials.git</connection>
+		<developerConnection>scm:git:git@github.com:imagej/imagej-tutorials.git</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/imagej/imagej-tutorials</url>
+	</scm>
+
+	<!-- NB: for project parent -->
+	<repositories>
+		<repository>
+			<id>imagej.releases</id>
+			<url>http://maven.imagej.net/content/repositories/releases</url>
+		</repository>
+		<repository>
+			<id>imagej.snapshots</id>
+			<url>http://maven.imagej.net/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
+
+</project>
