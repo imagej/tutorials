@@ -16,7 +16,7 @@ import imagej.platform.PlatformService;
 import java.net.URL;
 
 /** An introduction to the ImageJ API. */
-public class IntroToImageJ {
+public class IntroToImageJAPI {
 
 	public static void main(final String... args) throws Exception {
 		// The first step when working with ImageJ is to create an *ImageJ
