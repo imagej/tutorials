@@ -30,7 +30,7 @@ public class IntroToImageJAPI {
 		// ImageJ 1.x has a similar concept with the ij.ImageJ class, which is
 		// created using "new ImageJ()" and cached statically as a singleton.
 		// This allows the ImageJ instance to be recovered later by calling
-		// ImageJ.getInstance(), and simplifies the API in some ways.
+		// IJ.getInstance(), and simplifies the API in some ways.
 		// However, the assumption that there will only ever be one ImageJ per JVM
 		// limits its flexibility, and the fact that ij.ImageJ extends
 		// java.awt.Frame makes ImageJ 1.x difficult to use headless or with
