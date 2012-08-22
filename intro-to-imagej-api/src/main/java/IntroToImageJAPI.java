@@ -8,9 +8,9 @@
 
 import imagej.ImageJ;
 import imagej.event.StatusService;
-import imagej.ext.menu.MenuService;
 import imagej.ext.plugin.PluginService;
 import imagej.log.LogService;
+import imagej.menu.MenuService;
 import imagej.platform.PlatformService;
 
 import java.net.URL;

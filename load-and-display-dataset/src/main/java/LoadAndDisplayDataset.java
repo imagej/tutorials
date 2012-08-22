@@ -8,7 +8,7 @@
 
 import imagej.ImageJ;
 import imagej.data.Dataset;
-import imagej.ext.display.DisplayService;
+import imagej.display.DisplayService;
 import imagej.io.IOService;
 
 import java.io.File;
