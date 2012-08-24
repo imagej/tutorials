@@ -21,6 +21,7 @@
 	<url>http://developer.imagej.net/</url>
 
 	<modules>
+		<module>add-two-datasets</module>
 		<module>intro-to-imagej-api</module>
 		<module>load-and-display-dataset</module>
 	</modules>
