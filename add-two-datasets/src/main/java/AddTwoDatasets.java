@@ -50,9 +50,8 @@ public class AddTwoDatasets {
 	}
 
 	/**
-	 * Adds two datasets using a loop with an ImgLib
-	 * {@link net.imglib2.RandomAccess}. This is a very powerful approach but
-	 * requires a verbose loop.
+	 * Adds two datasets using a loop with an ImgLib cursor. This is a very
+	 * powerful approach but requires a verbose loop.
 	 */
 	@SuppressWarnings({ "rawtypes" })
 	private static Dataset addRandomAccess(final DatasetService datasetService,
