@@ -42,6 +42,11 @@ public class AddTwoDatasets {
 		final Dataset dataset1 = load(ioService);
 		final Dataset dataset2 = load(ioService);
 
+		if (dataset1.numDimensions() != dataset2.numDimensions()) {
+			System.out.println("Input datasets must have the same number of dimensions.");
+			return;
+		}
+		
 		// add them together
 		final DatasetService datasetService =
 			context.getService(DatasetService.class);
@@ -99,13 +104,13 @@ public class AddTwoDatasets {
 	@SuppressWarnings("unchecked")
 	private static
 		<U extends RealType<U>,V extends RealType<V>,W extends RealType<W> & NativeType<W>>
-	Dataset addOpsSerial(DatasetService dss, final Dataset d1, final Dataset d2, W outType) {
-		Dataset output = create(dss, d1, d2, outType);
-		Img<U> img1 = (Img<U>) d1.getImgPlus();
-		Img<V> img2 = (Img<V>) d2.getImgPlus();
-		Img<W> outputImg = (Img<W>) output.getImgPlus();
-		BinaryOperation<U,V,W> addOp = new RealAdd<U, V, W>();
-		ImgCombine<U,V,W> combiner = new ImgCombine<U,V,W>(addOp);
+	Dataset addOpsSerial(DatasetService dss, Dataset d1, Dataset d2, W outType) {
+		final Dataset output = create(dss, d1, d2, outType);
+		final Img<U> img1 = (Img<U>) d1.getImgPlus();
+		final Img<V> img2 = (Img<V>) d2.getImgPlus();
+		final Img<W> outputImg = (Img<W>) output.getImgPlus();
+		final BinaryOperation<U,V,W> addOp = new RealAdd<U, V, W>();
+		final ImgCombine<U,V,W> combiner = new ImgCombine<U,V,W>(addOp);
 		combiner.compute(img1, img2, outputImg);
 		return output;
 	}
@@ -118,12 +123,12 @@ public class AddTwoDatasets {
 	@SuppressWarnings("unchecked")
 	private static
 		<U extends RealType<U>,V extends RealType<V>,W extends RealType<W> & NativeType<W>>
-	Dataset addOpsParallel(DatasetService dss, final Dataset d1, final Dataset d2, W outType) {
-		Dataset output = create(dss, d1, d2, outType);
-		Img<U> img1 = (Img<U>) d1.getImgPlus();
-		Img<V> img2 = (Img<V>) d2.getImgPlus();
-		Img<W> outputImg = (Img<W>) output.getImgPlus();
-		BinaryOperation<U,V,W> addOp = new RealAdd<U, V, W>();
+	Dataset addOpsParallel(DatasetService dss, Dataset d1, Dataset d2, W outType) {
+		final Dataset output = create(dss, d1, d2, outType);
+		final Img<U> img1 = (Img<U>) d1.getImgPlus();
+		final Img<V> img2 = (Img<V>) d2.getImgPlus();
+		final Img<W> outputImg = (Img<W>) output.getImgPlus();
+		final BinaryOperation<U,V,W> addOp = new RealAdd<U, V, W>();
 		ImageCombiner.applyOp(addOp, img1, img2, outputImg);
 		return output;
 	}
