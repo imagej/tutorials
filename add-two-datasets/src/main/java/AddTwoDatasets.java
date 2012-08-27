@@ -109,7 +109,7 @@ public class AddTwoDatasets {
 		final Img<U> img1 = (Img<U>) d1.getImgPlus();
 		final Img<V> img2 = (Img<V>) d2.getImgPlus();
 		final Img<W> outputImg = (Img<W>) output.getImgPlus();
-		final BinaryOperation<U,V,W> addOp = new RealAdd<U, V, W>();
+		final BinaryOperation<U,V,W> addOp = new RealAdd<U,V,W>();
 		final ImgCombine<U,V,W> combiner = new ImgCombine<U,V,W>(addOp);
 		combiner.compute(img1, img2, outputImg);
 		return output;
@@ -128,7 +128,7 @@ public class AddTwoDatasets {
 		final Img<U> img1 = (Img<U>) d1.getImgPlus();
 		final Img<V> img2 = (Img<V>) d2.getImgPlus();
 		final Img<W> outputImg = (Img<W>) output.getImgPlus();
-		final BinaryOperation<U,V,W> addOp = new RealAdd<U, V, W>();
+		final BinaryOperation<U,V,W> addOp = new RealAdd<U,V,W>();
 		ImageCombiner.applyOp(addOp, img1, img2, outputImg);
 		return output;
 	}
