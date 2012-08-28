@@ -11,6 +11,7 @@ import imagej.data.Dataset;
 import imagej.data.DatasetService;
 import imagej.display.DisplayService;
 import imagej.io.IOService;
+import imagej.ui.UIService;
 
 import java.io.File;
 
@@ -36,6 +37,7 @@ public class AddTwoDatasets {
 	public static void main(final String... args) throws Exception {
 		// create the ImageJ application context with all available services
 		final ImageJ context = ImageJ.createContext();
+		context.getService(UIService.class).createUI(); 
 
 		// load two datasets
 		final IOService ioService = context.getService(IOService.class);
@@ -101,16 +103,15 @@ public class AddTwoDatasets {
 	 * approach that does not require a loop. This version is designed for small
 	 * processing jobs and is not automatically parallelized.
 	 */
-	@SuppressWarnings("unchecked")
-	private static
-		<U extends RealType<U>,V extends RealType<V>,W extends RealType<W> & NativeType<W>>
-	Dataset addOpsSerial(DatasetService dss, Dataset d1, Dataset d2, W outType) {
+	@SuppressWarnings({"rawtypes","unchecked"})
+	private static <T extends RealType<T> & NativeType<T>>
+	Dataset addOpsSerial(DatasetService dss, Dataset d1, Dataset d2, T outType) {
 		final Dataset output = create(dss, d1, d2, outType);
-		final Img<U> img1 = (Img<U>) d1.getImgPlus();
-		final Img<V> img2 = (Img<V>) d2.getImgPlus();
-		final Img<W> outputImg = (Img<W>) output.getImgPlus();
-		final BinaryOperation<U,V,W> addOp = new RealAdd<U,V,W>();
-		final ImgCombine<U,V,W> combiner = new ImgCombine<U,V,W>(addOp);
+		final Img img1 = d1.getImgPlus();
+		final Img img2 = d2.getImgPlus();
+		final Img outputImg = output.getImgPlus();
+		final BinaryOperation addOp = new RealAdd();
+		final ImgCombine combiner = new ImgCombine(addOp);
 		combiner.compute(img1, img2, outputImg);
 		return output;
 	}
@@ -120,15 +121,14 @@ public class AddTwoDatasets {
 	 * approach that does not require a loop. This version is automatically
 	 * parallelized!
 	 */
-	@SuppressWarnings("unchecked")
-	private static
-		<U extends RealType<U>,V extends RealType<V>,W extends RealType<W> & NativeType<W>>
-	Dataset addOpsParallel(DatasetService dss, Dataset d1, Dataset d2, W outType) {
+	@SuppressWarnings({"rawtypes","unchecked"})
+	private static <T extends RealType<T> & NativeType<T>>
+	Dataset addOpsParallel(DatasetService dss, Dataset d1, Dataset d2, T outType) {
 		final Dataset output = create(dss, d1, d2, outType);
-		final Img<U> img1 = (Img<U>) d1.getImgPlus();
-		final Img<V> img2 = (Img<V>) d2.getImgPlus();
-		final Img<W> outputImg = (Img<W>) output.getImgPlus();
-		final BinaryOperation<U,V,W> addOp = new RealAdd<U,V,W>();
+		final Img img1 = d1.getImgPlus();
+		final Img img2 = d2.getImgPlus();
+		final Img outputImg = output.getImgPlus();
+		final BinaryOperation addOp = new RealAdd();
 		ImageCombiner.applyOp(addOp, img1, img2, outputImg);
 		return output;
 	}
