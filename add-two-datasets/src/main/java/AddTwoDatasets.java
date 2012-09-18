@@ -37,7 +37,9 @@ public class AddTwoDatasets {
 	public static void main(final String... args) throws Exception {
 		// create the ImageJ application context with all available services
 		final ImageJ context = ImageJ.createContext();
-		context.getService(UIService.class).createUI(); 
+
+		UIService uiService = context.getService(UIService.class);
+		uiService.createUI(); 
 
 		// load two datasets
 		final IOService ioService = context.getService(IOService.class);
@@ -45,7 +47,8 @@ public class AddTwoDatasets {
 		final Dataset dataset2 = load(ioService);
 
 		if (dataset1.numDimensions() != dataset2.numDimensions()) {
-			System.out.println("Input datasets must have the same number of dimensions.");
+			uiService.showDialog(
+				"Input datasets must have the same number of dimensions.");
 			return;
 		}
 		
@@ -123,7 +126,7 @@ public class AddTwoDatasets {
 	 */
 	@SuppressWarnings({"rawtypes","unchecked"})
 	private static <T extends RealType<T> & NativeType<T>>
-	Dataset addOpsParallel(DatasetService dss, Dataset d1, Dataset d2, T outType) {
+	Dataset addOpsParallel(DatasetService dss, Dataset d1, Dataset d2, T outType){
 		final Dataset output = create(dss, d1, d2, outType);
 		final Img img1 = d1.getImgPlus();
 		final Img img2 = d2.getImgPlus();
