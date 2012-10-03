@@ -22,6 +22,7 @@
 
 	<modules>
 		<module>add-two-datasets</module>
+		<module>custom-preprocessor-plugin</module>
 		<module>intro-to-imagej-api</module>
 		<module>load-and-display-dataset</module>
 	</modules>
