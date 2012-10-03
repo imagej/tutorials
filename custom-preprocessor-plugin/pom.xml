@@ -38,7 +38,6 @@
 			<groupId>net.imagej</groupId>
 			<artifactId>ij-app</artifactId>
 			<version>${imagej.version}</version>
-			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 
