@@ -25,4 +25,11 @@ all copyright and related or neighboring rights to this tutorial code.
 See the [CC0 1.0 Universal license][1] for details.
 
 
+SEE ALSO
+--------
+
+The [ImgLib2 Examples][2], an excellent image processing tutorial.
+
+
 [1]: http://creativecommons.org/publicdomain/zero/1.0/
+[2]: http://fiji.sc/ImgLib2_Examples
