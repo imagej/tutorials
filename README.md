@@ -11,9 +11,9 @@ You can import these projects into your favorite IDE:
   * IDEA: File > Open Project... (select pom.xml)
 
 Or build and run from the command line:
-  mvn
-  cd load-and-display-dataset
-  mvn exec:java -Dexec.mainClass=LoadAndDisplayDataset
+    mvn
+    cd load-and-display-dataset
+    mvn exec:java -Dexec.mainClass=LoadAndDisplayDataset
 
 
 LICENSING
@@ -22,5 +22,7 @@ LICENSING
 To the extent possible under law, the ImageJ developers have waived
 all copyright and related or neighboring rights to this tutorial code.
 
-See the CC0 1.0 Universal license for details:
-    http://creativecommons.org/publicdomain/zero/1.0/
+See the [CC0 1.0 Universal license][1] for details.
+
+
+[1]: http://creativecommons.org/publicdomain/zero/1.0/
