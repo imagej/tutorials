@@ -1,4 +1,4 @@
-This project contains example code for working with ImageJ2.
+This project contains example code for working with [ImageJ2][1].
 
 
 GETTING STARTED
@@ -23,14 +23,15 @@ LICENSING
 To the extent possible under law, the ImageJ developers have waived
 all copyright and related or neighboring rights to this tutorial code.
 
-See the [CC0 1.0 Universal license][1] for details.
+See the [CC0 1.0 Universal license][2] for details.
 
 
 SEE ALSO
 --------
 
-The [ImgLib2 Examples][2], an excellent image processing tutorial.
+The [ImgLib2 Examples][3], an excellent image processing tutorial.
 
 
-[1]: http://creativecommons.org/publicdomain/zero/1.0/
-[2]: http://fiji.sc/ImgLib2_Examples
+[1]: http://developer.imagej.net/
+[2]: http://creativecommons.org/publicdomain/zero/1.0/
+[3]: http://fiji.sc/ImgLib2_Examples
