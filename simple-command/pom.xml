@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.scijava</groupId>
+		<artifactId>pom-scijava</artifactId>
+		<version>1.17</version>
+	</parent>
+
+	<groupId>imagej-tutorials</groupId>
+	<artifactId>simple-command</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<name>A Simple ImageJ Command</name>
+	<description>This example demonstrates how to create a command which generates a simple image.</description>
+
+	<dependencies>
+		<!-- ij-core is needed to use ImageJ. -->
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>ij-core</artifactId>
+			<version>${imagej.version}</version>
+		</dependency>
+
+		<!-- ij-data is needed to work with image data. -->
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>ij-data</artifactId>
+			<version>${imagej.version}</version>
+		</dependency>
+
+		<!-- ij-app lets us launch the complete ImageJ application. -->
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>ij-app</artifactId>
+			<version>${imagej.version}</version>
+		</dependency>
+	</dependencies>
+
+	<!-- NB: for project parent -->
+	<repositories>
+		<repository>
+			<id>imagej.releases</id>
+			<url>http://maven.imagej.net/content/repositories/releases</url>
+		</repository>
+		<repository>
+			<id>imagej.snapshots</id>
+			<url>http://maven.imagej.net/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
+
+</project>

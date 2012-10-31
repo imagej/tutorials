@@ -25,6 +25,7 @@
 		<module>custom-preprocessor-plugin</module>
 		<module>intro-to-imagej-api</module>
 		<module>load-and-display-dataset</module>
+		<module>simple-command</module>
 	</modules>
 
 	<licenses>
