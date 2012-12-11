@@ -20,7 +20,7 @@ public class LoadAndDisplayDataset {
 
 	public static void main(final String... args) throws Exception {
 		// create the ImageJ application context with all available services
-		final ImageJ context = ImageJ.createContext();
+		final ImageJ context = new ImageJ();
 
 		// ask the user for a file to open
 		final JFileChooser chooser = new JFileChooser();

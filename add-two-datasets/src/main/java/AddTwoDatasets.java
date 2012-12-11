@@ -36,7 +36,7 @@ public class AddTwoDatasets {
 
 	public static void main(final String... args) throws Exception {
 		// create the ImageJ application context with all available services
-		final ImageJ context = ImageJ.createContext();
+		final ImageJ context = new ImageJ();
 
 		UIService uiService = context.getService(UIService.class);
 		uiService.createUI(); 
