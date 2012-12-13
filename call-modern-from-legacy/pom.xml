@@ -40,6 +40,13 @@
 			<version>${imagej.version}</version>
 		</dependency>
 
+		<!-- ij-ui is needed to work with user interfaces. -->
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>ij-ui</artifactId>
+			<version>${imagej.version}</version>
+		</dependency>
+
 		<!-- We need to add a user interface for anything to be displayed! -->
 		<dependency>
 			<groupId>net.imagej</groupId>
