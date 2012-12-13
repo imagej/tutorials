@@ -39,7 +39,7 @@ public class AddTwoDatasets {
 		final ImageJ context = new ImageJ();
 
 		UIService uiService = context.getService(UIService.class);
-		uiService.createUI(); 
+		uiService.showUI();
 
 		// load two datasets
 		final IOService ioService = context.getService(IOService.class);
@@ -51,7 +51,7 @@ public class AddTwoDatasets {
 				"Input datasets must have the same number of dimensions.");
 			return;
 		}
-		
+
 		// add them together
 		final DatasetService datasetService =
 			context.getService(DatasetService.class);
