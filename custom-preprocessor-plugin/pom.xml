@@ -9,6 +9,7 @@
 		<groupId>org.scijava</groupId>
 		<artifactId>pom-scijava</artifactId>
 		<version>1.17</version>
+		<relativePath/>
 	</parent>
 
 	<groupId>imagej-tutorials</groupId>
