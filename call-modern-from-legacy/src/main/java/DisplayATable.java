@@ -20,6 +20,9 @@ public class DisplayATable implements PlugIn {
 
 	@Override
 	public void run(final String arg) {
+		// set the context class loader so that the ImageJ context finds the plugin classes
+		Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+
 		// ask user for number of rows & columns
 		final GenericDialog gd = new GenericDialog("Display a Table");
 		gd.addNumericField("Rows", 50, 0);
