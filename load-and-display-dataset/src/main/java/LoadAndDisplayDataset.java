@@ -8,8 +8,8 @@
 
 import imagej.ImageJ;
 import imagej.data.Dataset;
-import imagej.display.DisplayService;
 import imagej.io.IOService;
+import imagej.ui.UIService;
 
 import java.io.File;
 
@@ -33,9 +33,8 @@ public class LoadAndDisplayDataset {
 		final Dataset dataset = ioService.loadDataset(file.getAbsolutePath());
 
 		// display the dataset
-		final DisplayService displayService =
-			context.getService(DisplayService.class);
-		displayService.createDisplay(file.getName(), dataset);
+		final UIService uiService = context.getService(UIService.class);
+		uiService.show(dataset);
 	}
 
 }
