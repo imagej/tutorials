@@ -20,40 +20,10 @@
 	<description>This example shows how to call modern functionality from a legacy ImageJ1 plugin.</description>
 
 	<dependencies>
-		<!-- ij is needed for legacy ImageJ1. -->
 		<dependency>
 			<groupId>net.imagej</groupId>
-			<artifactId>ij</artifactId>
-			<version>${imagej1.version}</version>
-		</dependency>
-
-		<!-- ij-core is needed to use ImageJ. -->
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>ij-core</artifactId>
+			<artifactId>ij-app</artifactId>
 			<version>${imagej.version}</version>
-		</dependency>
-
-		<!-- ij-data is needed to work with Tables. -->
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>ij-data</artifactId>
-			<version>${imagej.version}</version>
-		</dependency>
-
-		<!-- ij-ui is needed to work with user interfaces. -->
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>ij-ui</artifactId>
-			<version>${imagej.version}</version>
-		</dependency>
-
-		<!-- We need to add a user interface for anything to be displayed! -->
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>ij-ui-swing</artifactId>
-			<version>${imagej.version}</version>
-			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 

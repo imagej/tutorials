@@ -20,22 +20,11 @@
 	<description>This example provides an introduction to the ImageJ API.</description>
 
 	<dependencies>
-		<!-- ij-core is needed to use ImageJ. -->
 		<dependency>
 			<groupId>net.imagej</groupId>
-			<artifactId>ij-core</artifactId>
+			<artifactId>ij-app</artifactId>
 			<version>${imagej.version}</version>
 		</dependency>
-
-		<!-- ij-platforms is needed for platform-specific services to work
-		     optimally. -->
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>ij-platforms</artifactId>
-			<version>${imagej.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-
 	</dependencies>
 
 	<!-- NB: for project parent -->

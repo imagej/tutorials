@@ -8,8 +8,6 @@
 
 import imagej.ImageJ;
 import imagej.data.Dataset;
-import imagej.io.IOService;
-import imagej.ui.UIService;
 
 import java.io.File;
 
@@ -20,7 +18,7 @@ public class LoadAndDisplayDataset {
 
 	public static void main(final String... args) throws Exception {
 		// create the ImageJ application context with all available services
-		final ImageJ context = new ImageJ();
+		final ImageJ ij = new ImageJ();
 
 		// ask the user for a file to open
 		final JFileChooser chooser = new JFileChooser();
@@ -29,12 +27,10 @@ public class LoadAndDisplayDataset {
 		final File file = chooser.getSelectedFile();
 
 		// load the dataset
-		final IOService ioService = context.getService(IOService.class);
-		final Dataset dataset = ioService.loadDataset(file.getAbsolutePath());
+		final Dataset dataset = ij.io().loadDataset(file.getAbsolutePath());
 
 		// display the dataset
-		final UIService uiService = context.getService(UIService.class);
-		uiService.show(dataset);
+		ij.ui().show(dataset);
 	}
 
 }

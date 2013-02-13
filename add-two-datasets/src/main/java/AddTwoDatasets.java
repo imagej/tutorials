@@ -8,10 +8,6 @@
 
 import imagej.ImageJ;
 import imagej.data.Dataset;
-import imagej.data.DatasetService;
-import imagej.display.DisplayService;
-import imagej.io.IOService;
-import imagej.ui.UIService;
 
 import java.io.File;
 
@@ -36,39 +32,33 @@ public class AddTwoDatasets {
 
 	public static void main(final String... args) throws Exception {
 		// create the ImageJ application context with all available services
-		final ImageJ context = new ImageJ();
+		final ImageJ ij = new ImageJ();
 
-		UIService uiService = context.getService(UIService.class);
-		uiService.showUI();
+		ij.ui().showUI();
 
 		// load two datasets
-		final IOService ioService = context.getService(IOService.class);
-		final Dataset dataset1 = load(ioService);
-		final Dataset dataset2 = load(ioService);
+		final Dataset dataset1 = load(ij);
+		final Dataset dataset2 = load(ij);
 
 		if (dataset1.numDimensions() != dataset2.numDimensions()) {
-			uiService.showDialog(
+			ij.ui().showDialog(
 				"Input datasets must have the same number of dimensions.");
 			return;
 		}
 
 		// add them together
-		final DatasetService datasetService =
-			context.getService(DatasetService.class);
-		final Dataset result1 = addRandomAccess(datasetService, dataset1, dataset2);
+		final Dataset result1 = addRandomAccess(ij, dataset1, dataset2);
 		final Dataset result2 =
-				addOpsSerial(datasetService, dataset1, dataset2, new FloatType());
+			addOpsSerial(ij, dataset1, dataset2, new FloatType());
 		final Dataset result3 =
-				addOpsParallel(datasetService, dataset1, dataset2, new FloatType());
+			addOpsParallel(ij, dataset1, dataset2, new FloatType());
 
 		// display the results
-		final DisplayService displayService =
-			context.getService(DisplayService.class);
-		displayService.createDisplay(dataset1.getName(), dataset1);
-		displayService.createDisplay(dataset2.getName(), dataset2);
-		displayService.createDisplay("Result: random access", result1);
-		displayService.createDisplay("Result: serial OPS", result2);
-		displayService.createDisplay("Result: parallel OPS", result3);
+		ij.display().createDisplay(dataset1.getName(), dataset1);
+		ij.display().createDisplay(dataset2.getName(), dataset2);
+		ij.display().createDisplay("Result: random access", result1);
+		ij.display().createDisplay("Result: serial OPS", result2);
+		ij.display().createDisplay("Result: parallel OPS", result3);
 	}
 
 	/**
@@ -76,14 +66,16 @@ public class AddTwoDatasets {
 	 * powerful approach but requires a verbose loop.
 	 */
 	@SuppressWarnings({ "rawtypes" })
-	private static Dataset addRandomAccess(final DatasetService datasetService,
-		final Dataset d1, final Dataset d2)
+	private static Dataset addRandomAccess(final ImageJ ij, final Dataset d1,
+		final Dataset d2)
 	{
-		final Dataset result = create(datasetService, d1, d2, new FloatType());
+		final Dataset result = create(ij, d1, d2, new FloatType());
 
 		// sum data into result dataset
-		final RandomAccess<? extends RealType> ra1 = d1.getImgPlus().randomAccess();
-		final RandomAccess<? extends RealType> ra2 = d2.getImgPlus().randomAccess();
+		final RandomAccess<? extends RealType> ra1 =
+			d1.getImgPlus().randomAccess();
+		final RandomAccess<? extends RealType> ra2 =
+			d2.getImgPlus().randomAccess();
 		final Cursor<? extends RealType> cursor =
 			result.getImgPlus().localizingCursor();
 		final long[] pos1 = new long[d1.numDimensions()];
@@ -106,10 +98,11 @@ public class AddTwoDatasets {
 	 * approach that does not require a loop. This version is designed for small
 	 * processing jobs and is not automatically parallelized.
 	 */
-	@SuppressWarnings({"rawtypes","unchecked"})
-	private static <T extends RealType<T> & NativeType<T>>
-	Dataset addOpsSerial(DatasetService dss, Dataset d1, Dataset d2, T outType) {
-		final Dataset output = create(dss, d1, d2, outType);
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private static <T extends RealType<T> & NativeType<T>> Dataset addOpsSerial(
+		final ImageJ ij, final Dataset d1, final Dataset d2, final T outType)
+	{
+		final Dataset output = create(ij, d1, d2, outType);
 		final Img img1 = d1.getImgPlus();
 		final Img img2 = d2.getImgPlus();
 		final Img outputImg = output.getImgPlus();
@@ -124,10 +117,12 @@ public class AddTwoDatasets {
 	 * approach that does not require a loop. This version is automatically
 	 * parallelized!
 	 */
-	@SuppressWarnings({"rawtypes","unchecked"})
-	private static <T extends RealType<T> & NativeType<T>>
-	Dataset addOpsParallel(DatasetService dss, Dataset d1, Dataset d2, T outType){
-		final Dataset output = create(dss, d1, d2, outType);
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private static <T extends RealType<T> & NativeType<T>> Dataset
+		addOpsParallel(final ImageJ ij, final Dataset d1, final Dataset d2,
+			final T outType)
+	{
+		final Dataset output = create(ij, d1, d2, outType);
 		final Img img1 = d1.getImgPlus();
 		final Img img2 = d2.getImgPlus();
 		final Img outputImg = output.getImgPlus();
@@ -137,7 +132,7 @@ public class AddTwoDatasets {
 	}
 
 	/** Loads a dataset selected by the user from a dialog box. */
-	private static Dataset load(final IOService ioService) throws ImgIOException,
+	private static Dataset load(final ImageJ ij) throws ImgIOException,
 		IncompatibleTypeException
 	{
 		// ask the user for a file to open
@@ -147,16 +142,15 @@ public class AddTwoDatasets {
 		final File file = chooser.getSelectedFile();
 
 		// load the dataset
-		return ioService.loadDataset(file.getAbsolutePath());
+		return ij.io().loadDataset(file.getAbsolutePath());
 	}
 
 	/**
 	 * Creates a dataset with bounds constrained by the minimum of the two input
 	 * datasets.
 	 */
-	private static <T extends RealType<T> & NativeType<T>>
-	Dataset create(final DatasetService datasetService,
-		final Dataset d1, final Dataset d2, final T type)
+	private static <T extends RealType<T> & NativeType<T>> Dataset create(
+		final ImageJ ij, final Dataset d1, final Dataset d2, final T type)
 	{
 		final int dimCount = Math.min(d1.numDimensions(), d2.numDimensions());
 		final long[] dims = new long[dimCount];
@@ -165,7 +159,7 @@ public class AddTwoDatasets {
 			dims[i] = Math.min(d1.dimension(i), d2.dimension(i));
 			axes[i] = d1.numDimensions() > i ? d1.axis(i) : d2.axis(i);
 		}
-		return datasetService.create(type, dims, "result", axes);
+		return ij.dataset().create(type, dims, "result", axes);
 	}
 
 }

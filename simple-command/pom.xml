@@ -20,21 +20,6 @@
 	<description>This example demonstrates how to create a command which generates a simple image.</description>
 
 	<dependencies>
-		<!-- ij-core is needed to use ImageJ. -->
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>ij-core</artifactId>
-			<version>${imagej.version}</version>
-		</dependency>
-
-		<!-- ij-data is needed to work with image data. -->
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>ij-data</artifactId>
-			<version>${imagej.version}</version>
-		</dependency>
-
-		<!-- ij-app lets us launch the complete ImageJ application. -->
 		<dependency>
 			<groupId>net.imagej</groupId>
 			<artifactId>ij-app</artifactId>

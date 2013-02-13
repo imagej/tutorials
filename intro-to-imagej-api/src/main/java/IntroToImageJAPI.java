@@ -7,11 +7,6 @@
  */
 
 import imagej.ImageJ;
-import imagej.event.StatusService;
-import imagej.log.LogService;
-import imagej.menu.MenuService;
-import imagej.platform.PlatformService;
-import imagej.plugin.PluginService;
 
 import java.net.URL;
 
@@ -22,7 +17,7 @@ public class IntroToImageJAPI {
 		// The first step when working with ImageJ is to create an *ImageJ
 		// application context*. This is an instance of the class imagej.ImageJ,
 		// and is created as follows:
-		final ImageJ context = new ImageJ();
+		final ImageJ ij = new ImageJ();
 		// This context provides access to ImageJ operations and data structures.
 
 		// ------------------------------------------------------------------------
@@ -49,31 +44,24 @@ public class IntroToImageJAPI {
 		// Here are some examples of the API in action:
 
 		// The plugin service manages the available ImageJ plugins.
-		final PluginService pluginService =
-			context.getService(PluginService.class);
-		final int pluginCount = pluginService.getIndex().size();
+		final int pluginCount = ij.plugin().getIndex().size();
 		System.out.println("There are " + pluginCount + " plugins available.");
 		// See the intro-to-plugins tutorial for more information on plugins.
 
 		// The log service is used for logging messages.
-		final LogService log = context.getService(LogService.class);
-		log.warn("Death Star approaching!");
+		ij.log().warn("Death Star approaching!");
 
 		// The status service is used to report the current status of operations.
-		final StatusService statusService = context.getService(StatusService.class);
-		statusService.showStatus("It's nine o'clock and all is well.");
+		ij.status().showStatus("It's nine o'clock and all is well.");
 
 		// The menu service organizes a menu hierarchy for ImageJ commands.
-		final MenuService menuService = context.getService(MenuService.class);
-		final int menuItemCount = menuService.getMenu().size();
+		final int menuItemCount = ij.menu().getMenu().size();
 		System.out.println("There are " + menuItemCount + " menu items total.");
 		// See the intro-to-menus tutorial for more information on menus.
 
 		// The platform service handles platform-specific functionality.
-		final PlatformService platformService =
-			context.getService(PlatformService.class);
 		// E.g., it can open a URL in the default web browser for your system:
-		platformService.open(new URL("http://imagej.net/"));
+		ij.platform().open(new URL("http://imagej.net/"));
 		// See the intro-to-platforms tutorial for more information on platforms.
 
 		// To learn more about the services API, see the intro-to-services tutorial.

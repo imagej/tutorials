@@ -8,7 +8,6 @@
 
 import imagej.ImageJ;
 import imagej.command.Command;
-import imagej.command.CommandService;
 import imagej.data.Dataset;
 import imagej.data.DatasetService;
 import imagej.module.ItemIO;
@@ -61,12 +60,10 @@ public class GradientImage implements Command {
 	/** Tests our command. */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
-		final ImageJ context = imagej.Main.launch(args);
+		final ImageJ ij = imagej.Main.launch(args);
 
 		// Launch the "Gradient Image" command right away.
-		final CommandService commandService =
-			context.getService(CommandService.class);
-		commandService.run(GradientImage.class);
+		ij.command().run(GradientImage.class);
 	}
 
 }

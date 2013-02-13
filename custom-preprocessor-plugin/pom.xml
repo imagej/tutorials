@@ -20,21 +20,6 @@
 	<description>This example shows how to write your own preprocessor plugin that augments every command execution.</description>
 
 	<dependencies>
-		<!-- ij-core is needed to use ImageJ. -->
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>ij-core</artifactId>
-			<version>${imagej.version}</version>
-		</dependency>
-
-		<!-- ij-ui is needed to access the UIService. -->
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>ij-ui</artifactId>
-			<version>${imagej.version}</version>
-		</dependency>
-
-		<!-- ij-app lets us launch the complete ImageJ application. -->
 		<dependency>
 			<groupId>net.imagej</groupId>
 			<artifactId>ij-app</artifactId>

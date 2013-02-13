@@ -37,7 +37,7 @@ public class DisplayATable implements PlugIn {
 
 	private void displayTable(final int rowCount, final int colCount) {
 		// create an ImageJ application context with the necessary services
-		final ImageJ context = new ImageJ(DisplayService.class, UIService.class);
+		final ImageJ ij = new ImageJ(DisplayService.class, UIService.class);
 
 		// create a spreadsheet
 		final GenericTable spreadsheet =
@@ -52,9 +52,7 @@ public class DisplayATable implements PlugIn {
 		}
 
 		// display the spreadsheet
-		final UIService uiService = context.getService(UIService.class);
-		uiService.show("Spreadsheet", spreadsheet);
-
+		ij.ui().show("Spreadsheet", spreadsheet);
 	}
 
 	/** Tests the plugin. */
