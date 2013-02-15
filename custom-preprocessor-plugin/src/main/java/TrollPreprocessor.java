@@ -6,9 +6,10 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
+import org.scijava.plugin.Plugin;
+
 import imagej.module.Module;
 import imagej.plugin.AbstractPreprocessorPlugin;
-import imagej.plugin.Plugin;
 import imagej.plugin.PreprocessorPlugin;
 import imagej.ui.DialogPrompt.MessageType;
 import imagej.ui.DialogPrompt.OptionType;

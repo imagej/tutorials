@@ -10,12 +10,13 @@ import imagej.ImageJ;
 import imagej.command.Command;
 import imagej.data.Dataset;
 import imagej.data.DatasetService;
-import imagej.module.ItemIO;
-import imagej.plugin.Parameter;
-import imagej.plugin.Plugin;
 import net.imglib2.meta.Axes;
 import net.imglib2.meta.AxisType;
 import net.imglib2.type.numeric.integer.UnsignedByteType;
+
+import org.scijava.ItemIO;
+import org.scijava.plugin.Parameter;
+import org.scijava.plugin.Plugin;
 
 /** A command that generates a diagonal gradient image of user-given size. */
 @Plugin(menuPath = "File>New>Gradient Image")
