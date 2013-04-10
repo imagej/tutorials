@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.scijava</groupId>
+		<artifactId>pom-scijava</artifactId>
+		<version>1.34</version>
+		<relativePath/>
+	</parent>
+
+	<groupId>imagej-tutorials</groupId>
+	<artifactId>working-with-modules</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<name>Working with Modules</name>
+	<description>This example demonstrates how to work with ImageJ modules, which are executable bits of code. A "command" is an ImageJ module, but not all modules are necessarily ImageJ commands. So the best way to access all the modular functionality ImageJ has to offer is to use the ModuleService.</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>ij-app</artifactId>
+			<version>${imagej.version}</version>
+		</dependency>
+	</dependencies>
+
+	<!-- NB: for project parent -->
+	<repositories>
+		<repository>
+			<id>imagej.releases</id>
+			<url>http://maven.imagej.net/content/repositories/releases</url>
+		</repository>
+		<repository>
+			<id>imagej.snapshots</id>
+			<url>http://maven.imagej.net/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
+
+</project>

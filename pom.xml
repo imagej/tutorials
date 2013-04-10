@@ -28,6 +28,7 @@
 		<module>load-and-display-dataset</module>
 		<module>simple-command</module>
 		<module>widget-demo</module>
+		<module>working-with-modules</module>
 	</modules>
 
 	<licenses>
