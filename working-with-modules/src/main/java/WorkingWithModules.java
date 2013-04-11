@@ -26,6 +26,28 @@ public class WorkingWithModules {
 	public static void main(final String... args) {
 		final ImageJ ij = new ImageJ();
 
+		// First of all, what is the difference between a "module" and a "command"?
+		// - A "module" is Java code which implements the interfaces in the
+		//   imagej.module package (Module, ModuleInfo, ModuleItem).
+		// - A "command" is a particular type of ImageJ plugin (implementing
+		//   imagej.command.Command) which is executable (i.e., also implements the
+		//   Runnable interface).
+		//
+		// Not all modules are commands. The plugin service will automatically
+		// discover all available commands, whereas non-command modules are not
+		// necessarily discoverable automatically (though some might be; and it is
+		// possible to register modules with the module service manually as well).
+		//
+		// Any command can be expressed as a module (via the
+		// imagej.command.CommandModule adapter class). However, not all modules
+		// are commands. There are two services for working with modules and
+		// commands respectively. As a rule of thumb, the module service is more
+		// "low-level" while the command service is more "high-level".
+		//
+		// If you want to expose ImageJ functionality from your software, your best
+		// bet is to work with modules rather than commands, since as stated above,
+		// not all modules are commands.
+
 		// You can ask ImageJ's module service for a list of available modules.
 
 		final List<ModuleInfo> modules = ij.module().getModules();
