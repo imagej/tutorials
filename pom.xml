@@ -23,6 +23,7 @@
 	<modules>
 		<module>add-two-datasets</module>
 		<module>call-modern-from-legacy</module>
+		<module>create-a-new-plugin-type</module>
 		<module>custom-preprocessor-plugin</module>
 		<module>intro-to-imagej-api</module>
 		<module>load-and-display-dataset</module>
