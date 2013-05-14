@@ -11,7 +11,7 @@ import imagej.core.commands.calculator.ImageCalculator;
 import imagej.core.commands.display.interactive.Threshold;
 import imagej.data.operator.CalculatorOp;
 import imagej.data.operator.CalculatorService;
-import imagej.data.threshold.AutoThresholdMethod;
+import imagej.data.threshold.ThresholdMethod;
 import imagej.data.threshold.ThresholdService;
 
 import java.util.Set;
@@ -45,7 +45,7 @@ import org.scijava.plugin.SortablePlugin;
  * command, and corresponding {@link CalculatorService} with the API providing
  * the actual calculation routines.</li>
  * <li>The {@link imagej.data.threshold} package provides a
- * {@link AutoThresholdMethod} defining a method for automatically thresholding
+ * {@link ThresholdMethod} defining a method for automatically thresholding
  * an image, used by the interactive {@link Threshold} command, and
  * corresponding {@link ThresholdService} with the API providing the actual
  * auto-thresholding routines.</li>

@@ -6,32 +6,29 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
+import imagej.plugin.AbstractPTService;
+
 import java.util.HashMap;
 import java.util.Set;
 
-import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 import org.scijava.plugin.PluginInfo;
-import org.scijava.plugin.PluginService;
-import org.scijava.service.AbstractService;
 import org.scijava.service.Service;
 
 /** Service which manages available {@link Animal}s. */
 @Plugin(type = Service.class)
-public class AnimalService extends AbstractService {
+public class AnimalService extends AbstractPTService<Animal> {
 
 	// When creating a new type of plugin (such as Animal), it is very nice to
 	// have a corresponding service that provides operations relevant to your
 	// new plugin type.
 
-	// This service will have a dependency on the plugin service, because it
-	// conveniently handles discovery of all available plugins for you.
-	// You can easily ask the plugin service for all plugins of any given type,
-	// such as your new type. You can also use the plugin service to instantiate
-	// any given plugin.
+	// This service is a PTService (extending AbstractPTService<Animal>), so that
+	// discovery of all available plugins is automatically handled for you.
 
-	@Parameter
-	public PluginService pluginService;
+	// You can easily get the list of available plugins by calling getPlugins(),
+	// or use the plugin service (available via getPluginService()) to
+	// instantiate any given plugin.
 
 	/** Map of each animal name to its corresponding plugin metadata. */
 	private HashMap<String, PluginInfo<Animal>> animals =
@@ -51,13 +48,11 @@ public class AnimalService extends AbstractService {
 		final PluginInfo<Animal> info = animals.get(name);
 
 		if (info == null) {
-			// No animal by that name, so we return null. If you dislike
-			// nulls, you could instead throw IllegalArgumentException.
-			return null;
+			throw new IllegalArgumentException("No animal of that name");
 		}
 
 		// Next, we use the plugin service to create an animal of that kind.
-		final Animal animal = pluginService.createInstance(info);
+		final Animal animal = getPluginService().createInstance(info);
 
 		return animal;
 	}
@@ -65,13 +60,11 @@ public class AnimalService extends AbstractService {
 	@Override
 	public void initialize() {
 		// This Service method is called when the animal service is first created.
-		// It asks the plugin service for the list of available animals, and
-		// adds them to its own animal map, which is indexed by animal name.
+		// It loops over the list of available animals, adding them to its own
+		// animal map, which is indexed by animal name.
 
-		// We loop over each animal plugin known to the plugin service.
-		for (final PluginInfo<Animal> info :
-			pluginService.getPluginsOfType(Animal.class))
-		{
+		// We loop over all available animal plugins.
+		for (final PluginInfo<Animal> info : getPlugins()) {
 			String name = info.getName();
 			if (name == null || name.isEmpty()) {
 				// The animal's @Plugin annotation does not specify a name,
@@ -81,6 +74,11 @@ public class AnimalService extends AbstractService {
 			// Add the plugin to the list of known animals.
 			animals.put(name, info);
 		}
+	}
+
+	@Override
+	public Class<Animal> getPluginType() {
+		return Animal.class;
 	}
 
 }
