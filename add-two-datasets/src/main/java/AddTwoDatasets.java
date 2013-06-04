@@ -8,6 +8,7 @@
 
 import imagej.ImageJ;
 import imagej.data.Dataset;
+import io.scif.io.img.ImgIOException;
 
 import java.io.File;
 
@@ -17,7 +18,6 @@ import net.imglib2.Cursor;
 import net.imglib2.RandomAccess;
 import net.imglib2.exception.IncompatibleTypeException;
 import net.imglib2.img.Img;
-import net.imglib2.io.ImgIOException;
 import net.imglib2.meta.AxisType;
 import net.imglib2.ops.img.ImageCombiner;
 import net.imglib2.ops.operation.BinaryOperation;
