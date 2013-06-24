@@ -1,3 +1,4 @@
+import imagej.ImageJ;
 import imagej.command.Command;
 import imagej.ui.UIService;
 
@@ -12,5 +13,10 @@ public class HelloWorldPlugin implements Command {
     @Override
     public void run() {
             uiService.showDialog("Hello, World!");
+    }
+
+    public static void main(final String... args) {
+    	final ImageJ ij = new ImageJ();
+    	ij.command().run(HelloWorldPlugin.class);
     }
 }
