@@ -4,7 +4,7 @@ import imagej.ui.UIService;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
-@Plugin(type=Command.class)
+@Plugin(type=Command.class, menuPath = "Help>Hello, World!")
 public class HelloWorldPlugin implements Command {
     @Parameter
     private UIService uiService;
