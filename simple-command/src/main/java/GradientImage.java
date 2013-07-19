@@ -18,7 +18,13 @@ import org.scijava.ItemIO;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
-/** A command that generates a diagonal gradient image of user-given size. */
+/**
+ * A command that generates a diagonal gradient image of user-given size.
+ * <p>
+ * For an even simpler command, see {@link HelloWorldPlugin} in this same
+ * package!
+ * </p>
+ */
 @Plugin(type = Command.class, menuPath = "File>New>Gradient Image")
 public class GradientImage implements Command {
 
