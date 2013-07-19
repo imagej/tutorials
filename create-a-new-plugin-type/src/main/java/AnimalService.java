@@ -6,11 +6,10 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.plugin.AbstractPTService;
-
 import java.util.HashMap;
 import java.util.Set;
 
+import org.scijava.plugin.AbstractPTService;
 import org.scijava.plugin.Plugin;
 import org.scijava.plugin.PluginInfo;
 import org.scijava.service.Service;

@@ -8,15 +8,14 @@
 
 import imagej.ImageJ;
 import imagej.data.Dataset;
-import io.scif.io.img.ImgIOException;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 
 import net.imglib2.Cursor;
 import net.imglib2.RandomAccess;
-import net.imglib2.exception.IncompatibleTypeException;
 import net.imglib2.img.Img;
 import net.imglib2.meta.AxisType;
 import net.imglib2.ops.img.ImageCombiner;
@@ -132,9 +131,7 @@ public class AddTwoDatasets {
 	}
 
 	/** Loads a dataset selected by the user from a dialog box. */
-	private static Dataset load(final ImageJ ij) throws ImgIOException,
-		IncompatibleTypeException
-	{
+	private static Dataset load(final ImageJ ij) throws IOException {
 		// ask the user for a file to open
 		final JFileChooser chooser = new JFileChooser();
 		final int returnVal = chooser.showOpenDialog(null);
@@ -142,7 +139,7 @@ public class AddTwoDatasets {
 		final File file = chooser.getSelectedFile();
 
 		// load the dataset
-		return ij.io().loadDataset(file.getAbsolutePath());
+		return ij.dataset().open(file.getAbsolutePath());
 	}
 
 	/**

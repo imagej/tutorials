@@ -27,7 +27,7 @@ public class LoadAndDisplayDataset {
 		final File file = chooser.getSelectedFile();
 
 		// load the dataset
-		final Dataset dataset = ij.io().loadDataset(file.getAbsolutePath());
+		final Dataset dataset = ij.dataset().open(file.getAbsolutePath());
 
 		// display the dataset
 		ij.ui().show(dataset);
