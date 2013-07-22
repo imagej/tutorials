@@ -8,6 +8,7 @@
 
 import imagej.ImageJ;
 import imagej.command.CommandService;
+import imagej.command.ContextCommand;
 import imagej.core.commands.io.OpenFile;
 import imagej.data.Dataset;
 import imagej.module.Module;
@@ -28,12 +29,58 @@ import java.util.concurrent.Future;
  * </ol>
  * <p>
  * The first two approaches can be used to invoke any command, but the compiler
- * cannot guarantee the correctness of the input types. Conversely, the third
- * approach is fully compile-time safe, but not all commands support it.
+ * cannot guarantee the correctness of the input types. That is, passing any
+ * {@code Object} is possible for both parameter names and values, which
+ * increases the chance of coding errors.
+ * </p>
+ * <p>
+ * To address this issue, you can provide public API methods inside the command
+ * itself. If written correctly, an ImageJ command can be instantiated,
+ * populated and run as a "plain old java object" (POJO) rather than needing to
+ * use the command service as above. This provides stronger type guarantees
+ * (i.e., compile-time safety), rather than everything being resolved
+ * dynamically at runtime. The easiest way to make a command usable in this
+ * manner is to extend the {@link ContextCommand} base class and include getter
+ * and setter methods for its parameters.
+ * </p>
+ * <p>
+ * Here is a point-by-point comparison of the two approaches:
+ * <table>
+ * <tr>
+ * <th>&nbsp;</th>
+ * <th>CommandService</th>
+ * <th>Java API</th>
+ * </tr>
+ * <tr>
+ * <td>Publishes events</td>
+ * <td>Yes</td>
+ * <td>No</td>
+ * </tr>
+ * <tr>
+ * <td>Performs pre- and post-processing</td>
+ * <td>Yes</td>
+ * <td>No</td>
+ * </tr>
+ * <tr>
+ * <td>Executes in a separate thread</td>
+ * <td>Yes</td>
+ * <td>No</td>
+ * </tr>
+ * <tr>
+ * <td>Compile-time safe</td>
+ * <td>No</td>
+ * <td>Yes</td>
+ * </tr>
+ * <tr>
+ * <td>Works with any command</td>
+ * <td>Yes</td>
+ * <td>No</td>
+ * </tr>
+ * </table>
  * </p>
  * 
- * @author Grant Harris
  * @author Curtis Rueden
+ * @author Grant Harris
  */
 public class ExecuteCommands {
 
@@ -96,6 +143,12 @@ public class ExecuteCommands {
 	 * the command is done, and no events are published with respect to the
 	 * execution, making this approach convenient for nesting command executions.
 	 * </p>
+	 * <p>
+	 * Note that with this method, casting is not necessary, nor is it possible to
+	 * accidentally pass in parameters of the wrong type. The only catch is that
+	 * anyone wishing to call the code must inject the ImageJ application context
+	 * first by calling the {@code setContext} method.
+	 * </p>
 	 */
 	public static Dataset invokeFromJava(final ImageJ ij) {
 		// construct a new instance of the command
@@ -104,6 +157,7 @@ public class ExecuteCommands {
 		// assign input parameter values
 		openFile.setInputFile(new File("sample-image.fake"));
 		// execute the command in the same thread, blocking until complete
+		// (or you could run it in a separate thread using the ThreadService)
 		openFile.run();
 		// return the desired output parameter value
 		return (Dataset) openFile.getData();
