@@ -54,15 +54,6 @@ public class ExecuteCommands {
 		logDatasetInfo(ij, "datasetFromJava", datasetFromJava);
 	}
 
-	private static void logDatasetInfo(final ImageJ ij, final String prefix,
-		final Dataset dataset)
-	{
-		ij.log().info(
-			prefix + ": (" + "type = " +
-				dataset.getType().getClass().getSimpleName() + ", x = " +
-				dataset.dimension(0) + ", y = " + dataset.dimension(1));
-	}
-
 	/**
 	 * Invokes the {@code OpenFile} command using the {@link CommandService} with
 	 * a list of arguments. This approach is very flexible and compact, but the
@@ -116,6 +107,15 @@ public class ExecuteCommands {
 		openFile.run();
 		// return the desired output parameter value
 		return (Dataset) openFile.getData();
+	}
+
+	private static void logDatasetInfo(final ImageJ ij, final String prefix,
+		final Dataset dataset)
+	{
+		final String t = dataset.getType().getClass().getSimpleName();
+		final long x = dataset.dimension(0);
+		final long y = dataset.dimension(1);
+		ij.log().info(prefix + ": (" + "type = " + t + ", x = " + x + ", y = " + y);
 	}
 
 }
