@@ -44,7 +44,8 @@ public class WidgetDemo implements Command, Previewable {
 	private static final String MISC_LABEL = "-- Miscellaneous --";
 
 	// The following service parameters are populated automatically
-	// before the command is executed by the ServicePreprocessor.
+	// by the service framework before the command is executed.
+	//
 	// The LogService is used for writing messages to a log, while
 	// the StatusService is used to control the ImageJ status bar.
 
@@ -58,7 +59,7 @@ public class WidgetDemo implements Command, Previewable {
 	// InputHarvester preprocessing step, which prompts the user with a dialog
 	// box full of widgets. The values chosen there will be automatically
 	// assigned to the fields here.
-
+	//
 	// Parameters with "MESSAGE" visibility are displayed as labels.
 
 	@Parameter(visibility = ItemVisibility.MESSAGE)
