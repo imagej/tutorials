@@ -17,7 +17,7 @@
 	<version>1.0.0-SNAPSHOT</version>
 
 	<name>A Simple ImageJ Command</name>
-	<description>This example demonstrates how to create a command which generates a simple image.</description>
+	<description>This example provides an introduction to writing ImageJ commands.</description>
 
 	<dependencies>
 		<dependency>
