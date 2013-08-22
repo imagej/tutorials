@@ -8,8 +8,8 @@
 
 import imagej.ImageJ;
 import imagej.command.Command;
-import imagej.ui.UIService;
 
+import org.scijava.ItemIO;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
@@ -25,29 +25,32 @@ import org.scijava.plugin.Plugin;
  * what the {@code menuPath} parameter of the {@code @Plugin} annotation does.
  * </p>
  * <p>
- * Each input to the command needs to be specified as a field with the
- * {@code @Parameter} annotation. This plugin does not have any outputs; outputs
- * would also be specified as fields, but with a
+ * Each input to the command is specified as a field with the {@code @Parameter}
+ * annotation. Each output is specified the same way, but with a
  * {@code @Parameter(type = ItemIO.OUTPUT)} annotation.
  * </p>
  * 
  * @author Johannes Schindelin
+ * @author Curtis Rueden
  */
 @Plugin(type = Command.class, menuPath = "Help>Hello, World!")
-public class HelloWorldPlugin implements Command {
+public class HelloWorld implements Command {
 
-	@Parameter
-	private UIService uiService;
+	@Parameter(label = "What is your name?")
+	private String name = "J. Doe";
+
+	@Parameter(type = ItemIO.OUTPUT)
+	private String greeting;
 
 	/**
-	 * Shows the well-known "Hello, World!" message in a dialog. The {@code run()}
-	 * method of every {@link Command} is the entry point for ImageJ: this is what
-	 * will be called when the user clicks the menu entry, after the inputs are
-	 * populated.
+	 * Produces an output with the well-known "Hello, World!" message. The
+	 * {@code run()} method of every {@link Command} is the entry point for
+	 * ImageJ: this is what will be called when the user clicks the menu entry,
+	 * after the inputs are populated.
 	 */
 	@Override
 	public void run() {
-		uiService.showDialog("Hello, World!");
+		greeting = "Hello, " + name + "!";
 	}
 
 	/**
@@ -70,7 +73,7 @@ public class HelloWorldPlugin implements Command {
 	 */
 	public static void main(final String... args) {
 		final ImageJ ij = new ImageJ();
-		ij.command().run(HelloWorldPlugin.class);
+		ij.command().run(HelloWorld.class);
 	}
 
 }
