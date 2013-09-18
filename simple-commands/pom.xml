@@ -13,10 +13,10 @@
 	</parent>
 
 	<groupId>imagej-tutorials</groupId>
-	<artifactId>simple-command</artifactId>
+	<artifactId>simple-commands</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<name>A Simple ImageJ Command</name>
+	<name>Simple ImageJ Commands</name>
 	<description>This example provides an introduction to writing ImageJ commands.</description>
 
 	<dependencies>
