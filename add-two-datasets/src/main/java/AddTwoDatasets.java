@@ -154,7 +154,7 @@ public class AddTwoDatasets {
 		final AxisType[] axes = new AxisType[dimCount];
 		for (int i = 0; i < dimCount; i++) {
 			dims[i] = Math.min(d1.dimension(i), d2.dimension(i));
-			axes[i] = d1.numDimensions() > i ? d1.axis(i) : d2.axis(i);
+			axes[i] = d1.numDimensions() > i ? d1.axis(i).type() : d2.axis(i).type();
 		}
 		return ij.dataset().create(type, dims, "result", axes);
 	}

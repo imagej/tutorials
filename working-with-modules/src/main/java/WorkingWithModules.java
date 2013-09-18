@@ -12,7 +12,6 @@ import imagej.module.ModuleInfo;
 import imagej.module.ModuleItem;
 import imagej.module.ModulePreprocessor;
 import imagej.plugin.InitPreprocessor;
-import imagej.plugin.ServicePreprocessor;
 import imagej.plugin.ValidityPreprocessor;
 
 import java.util.ArrayList;
@@ -79,12 +78,12 @@ public class WorkingWithModules {
 		// 2) The "high-level" way: use the command service.
 		//
 		// The difference is that when run through the command service, the module
-		// will be preprocessed with all available module preprocessors before
+		// will be preprocessed with all available preprocessing plugins before
 		// being executed, and then after execution will be postprocessed with all
 		// available postprocessing plugins.
 		//
-		// In particular, the command service will "fill in" many parameter values
-		// for you, such as service parameters.
+		// In particular, using the command service will "fill in" many parameter
+		// values for you, such as single dataset parameters.
 		//
 		// See the "custom-preprocessor-plugin" tutorial for details on how to
 		// customize such preprocessing.
@@ -124,11 +123,6 @@ public class WorkingWithModules {
 		final ValidityPreprocessor validPre = new ValidityPreprocessor();
 		validPre.setContext(ij.getContext());
 		pre.add(validPre);
-
-		// The service preprocessor auto-populates Service parameters.
-		final ServicePreprocessor servicePre = new ServicePreprocessor();
-		servicePre.setContext(ij.getContext());
-		pre.add(servicePre);
 
 		// The init preprocessor calls the module's initializer callbacks.
 		final InitPreprocessor initPre = new InitPreprocessor();
