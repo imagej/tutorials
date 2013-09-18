@@ -21,7 +21,7 @@ import org.scijava.plugin.Plugin;
 /**
  * A command that generates a diagonal gradient image of user-given size.
  * <p>
- * For an even simpler command, see {@link HelloWorldPlugin} in this same
+ * For an even simpler command, see {@link HelloWorld} in this same
  * package!
  * </p>
  */
