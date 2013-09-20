@@ -20,7 +20,8 @@ import org.scijava.plugin.Plugin;
  * For an even simpler command, see {@link HelloWorld} in this same package!
  * </p>
  */
-@Plugin(type = Command.class, menuPath = "Analyze>Compute Statistics")
+@Plugin(type = Command.class, headless = true,
+	menuPath = "Analyze>Compute Statistics")
 public class ComputeStats implements Command {
 
 	@Parameter

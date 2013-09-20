@@ -29,7 +29,8 @@ import org.scijava.plugin.Plugin;
  * 
  * @author Curtis Rueden
  */
-@Plugin(type = Command.class, menuPath = "Plugins>ImageJ Tutorials>Widget Demo")
+@Plugin(type = Command.class, headless = true,
+	menuPath = "Plugins>ImageJ Tutorials>Widget Demo")
 public class WidgetDemo implements Command, Previewable {
 
 	// These constants are for use with the labels below. You don't have

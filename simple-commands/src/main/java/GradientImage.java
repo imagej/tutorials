@@ -25,7 +25,8 @@ import org.scijava.plugin.Plugin;
  * package!
  * </p>
  */
-@Plugin(type = Command.class, menuPath = "File>New>Gradient Image")
+@Plugin(type = Command.class, headless = true,
+	menuPath = "File>New>Gradient Image")
 public class GradientImage implements Command {
 
 	@Parameter

@@ -33,7 +33,7 @@ import org.scijava.plugin.Plugin;
  * @author Johannes Schindelin
  * @author Curtis Rueden
  */
-@Plugin(type = Command.class, menuPath = "Help>Hello, World!")
+@Plugin(type = Command.class, headless = true, menuPath = "Help>Hello, World!")
 public class HelloWorld implements Command {
 
 	@Parameter(label = "What is your name?")
