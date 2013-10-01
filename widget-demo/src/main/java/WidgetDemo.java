@@ -16,6 +16,7 @@ import imagej.widget.NumberWidget;
 import java.io.File;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Date;
 
 import org.scijava.ItemIO;
 import org.scijava.ItemVisibility;
@@ -163,6 +164,9 @@ public class WidgetDemo implements Command, Previewable {
 	private File file;
 
 	@Parameter
+	private Date date;
+
+	@Parameter
 	private ColorRGB color;
 
 	// This section demonstrates how to use alternative widget styles to
@@ -279,6 +283,7 @@ public class WidgetDemo implements Command, Previewable {
 
 		append(sb, OBJECT_LABEL);
 		append(sb, "\tFile = " + file);
+		append(sb, "\tDate = " + date);
 		append(sb, "\tcolor = " + color);
 
 		append(sb, "");
