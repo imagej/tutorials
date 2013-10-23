@@ -176,17 +176,26 @@ public class WidgetDemo implements Command, Previewable {
 	@Parameter(visibility = ItemVisibility.MESSAGE)
 	private final String labelStyle = STYLE_LABEL;
 
-	@Parameter(label = "number (spinner)",
+	@Parameter(label = "integer (spinner)",
 		style = NumberWidget.SPINNER_STYLE, min = "0", max = "1000")
-	private int spinnerNumber;
+	private int spinnerInteger;
 
-	@Parameter(label = "number (slider)", style = NumberWidget.SLIDER_STYLE,
+	@Parameter(label = "integer (slider)", style = NumberWidget.SLIDER_STYLE,
 		min = "0", max = "1000", stepSize = "50")
-	private int sliderNumber;
+	private int sliderInteger;
 
-	@Parameter(label = "number (scroll bar)",
+	@Parameter(label = "integer (scroll bar)",
 		style = NumberWidget.SCROLL_BAR_STYLE, min = "0", max = "1000")
-	private int scrollBarNumber;
+	private int scrollBarInteger;
+
+	@Parameter(label = "double (slider)", style = NumberWidget.SLIDER_STYLE,
+		min = "0.2", max = "1000.7", stepSize = "12.34")
+	private double sliderDouble;
+
+	@Parameter(label = "double (scroll bar)",
+		style = NumberWidget.SCROLL_BAR_STYLE, min = "0.2", max = "1000.7",
+		stepSize = "12.34")
+	private double scrollBarDouble;
 
 	@Parameter(label = "radio buttons (horizontal)",
 		style = ChoiceWidget.RADIO_BUTTON_HORIZONTAL_STYLE, choices = { "Yes",
@@ -283,9 +292,11 @@ public class WidgetDemo implements Command, Previewable {
 
 		append(sb, "");
 		append(sb, STYLE_LABEL);
-		append(sb, "\tnumber (spinner) = " + spinnerNumber);
-		append(sb, "\tnumber (slider) = " + sliderNumber);
-		append(sb, "\tnumber (scroll bar) = " + scrollBarNumber);
+		append(sb, "\tinteger (spinner) = " + spinnerInteger);
+		append(sb, "\tinteger (slider) = " + sliderInteger);
+		append(sb, "\tinteger (scroll bar) = " + scrollBarInteger);
+		append(sb, "\tdouble (slider) = " + sliderDouble);
+		append(sb, "\tdouble (scroll bar) = " + scrollBarDouble);
 		append(sb, "\tradio buttons (horizontal) = " + choiceRadioH);
 		append(sb, "\tradio buttons (vertical) = " + choiceRadioV);
 
