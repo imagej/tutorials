@@ -6,9 +6,23 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.ImageJ;
 import imagej.command.Command;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ServiceLoader;
+
+import org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher;
+import org.eclipse.equinox.app.IApplicationContext;
+import org.eclipse.osgi.baseadaptor.BaseAdaptor;
+import org.eclipse.osgi.framework.log.FrameworkLog;
+import org.eclipse.osgi.service.runnable.ApplicationLauncher;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
+import org.osgi.framework.launch.Framework;
+import org.osgi.framework.launch.FrameworkFactory;
 import org.scijava.ItemIO;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
@@ -70,10 +84,66 @@ public class HelloWorld implements Command {
 	 * </p>
 	 * 
 	 * @param args unused
+	 * @throws Exception
 	 */
-	public static void main(final String... args) {
-		final ImageJ ij = new ImageJ();
-		ij.command().run(HelloWorld.class);
-	}
+	public static void main(final String... args) throws Exception {
+//		final ImageJ ij = new ImageJ();
+//		ij.command().run(HelloWorld.class);
+		final String applicationId = "org.knime.product.KNIME_BATCH_APPLICATION";
+		final String[] commandLineArguments = {
+			"-help"
+//			"-workflowDir=\"workspace/Knime_project\""
+		};
 
+		FrameworkFactory frameworkFactory = ServiceLoader.load(FrameworkFactory.class).iterator().next();
+		Map<String, String> config = new HashMap<String, String>();
+		config.put(IApplicationContext.APPLICATION_ARGS, "-consoleLog");
+		config.put("eclipse.application.launchDefault", "true");
+		config.put("eclipse.application", applicationId);
+		config.put("eclipse.application.default", "true");
+//    config.put("osgi.console", "");
+//    config.put("osgi.bundles.defaultStartLevel", "4");
+//    config.put("osgi.configuration.area", "./configuration");
+
+		Framework framework = frameworkFactory.newFramework(config);
+		framework.start();
+		final BundleContext context = framework.getBundleContext();
+
+		// install all bundles
+		new File(System.getProperty("user.home") + "/Desktop/eclipse_knime_2.8.2/plugins").listFiles(new FileFilter() {
+
+			@Override
+			public boolean accept(File file) {
+				String name = file.getName();
+				if (file.isDirectory()) {
+					if ("configuration".equals(name)) {
+						return false;
+					}
+				} else if (!name.endsWith(".jar")) {
+					return false;
+				}
+				if (name.startsWith("org.eclipse.osgi_")) {
+					return false;
+				}
+				String url = file.toURI().toString();
+				try {
+					context.installBundle(url);
+				}
+				catch (BundleException e) {
+					e.printStackTrace();
+				}
+				return true;
+			}
+
+		});
+
+		// Start the application
+		FrameworkLog log = new BaseAdaptor(new String[0]).getFrameworkLog();
+		EclipseAppLauncher appLauncher = new EclipseAppLauncher(context, false, true, log);
+		context.registerService(ApplicationLauncher.class.getName(), appLauncher, null);
+		appLauncher.start(commandLineArguments);
+
+    System.err.println("headless: " + System.getProperty("java.awt.headless"));
+    framework.waitForStop(0);
+	}
 }
