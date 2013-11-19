@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>net.imagej</groupId>
+	<artifactId>simple-osgi-plugin</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<name>A simple example OSGi plugin</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse</groupId>
+			<artifactId>osgi</artifactId>
+			<version>3.5.0.v20090520</version>
+		</dependency>
+	</dependencies>
+
+        <build>
+                <plugins>
+			<plugin>
+                                <artifactId>maven-jar-plugin</artifactId>
+                                <configuration>
+					<archive>
+						<manifest>
+							<packageName>net.imagej.osgi</packageName>
+						</manifest>
+						<manifestEntries>
+							<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+							<Bundle-SymbolicName>com.theserverside.tutorial.osgi.TutorialBundle</Bundle-SymbolicName>
+							<Bundle-Version>1</Bundle-Version>
+							<Bundle-Activator>tutorial.TutorialActivator</Bundle-Activator>
+							<Import-Package>org.osgi.framework;version="1.3.0"</Import-Package>
+							<Bundle-ClassPath>.</Bundle-ClassPath>
+                                                </manifestEntries>
+                                        </archive>
+                                </configuration>
+                        </plugin>
+		</plugins>
+	</build>
+
+</project>
