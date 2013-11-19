@@ -161,6 +161,7 @@ public class HelloWorld implements Command {
 		bundle.update();
 		bundle.start();
 		ServiceReference reference = context.getServiceReference("baselib.BaseService");
+		@SuppressWarnings("unchecked")
 		Map<Object, Object> map = (Map<Object, Object>) context.getService(reference);
 		map.put("Hello", "World!");
 
