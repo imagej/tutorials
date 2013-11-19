@@ -25,7 +25,6 @@ import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
-import org.osgi.util.tracker.ServiceTracker;
 import org.scijava.ItemIO;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
@@ -161,9 +160,8 @@ public class HelloWorld implements Command {
 		Bundle bundle = context.installBundle(simplePluginURL);
 		bundle.update();
 		bundle.start();
-		ServiceReference<Map<Object, Object>> reference = (ServiceReference<Map<Object, Object>>)
-				context.getServiceReference("baselib.BaseService");
-		Map<Object, Object> map = context.getService(reference);
+		ServiceReference reference = context.getServiceReference("baselib.BaseService");
+		Map<Object, Object> map = (Map<Object, Object>) context.getService(reference);
 		map.put("Hello", "World!");
 
 		framework.stop();
