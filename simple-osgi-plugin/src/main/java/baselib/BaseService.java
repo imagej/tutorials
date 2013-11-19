@@ -2,10 +2,10 @@ package baselib;
 
 import java.util.logging.Logger;
 
-public class BaseService {
+public class BaseService implements Runnable {
 	Logger log=Logger.getLogger(this.getClass().getName());
 
-	public void sayHello() {
+	public void run() {
 		log.info("Hello, world!");
 	}
 }

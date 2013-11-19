@@ -10,7 +10,9 @@ public class TutorialActivator implements BundleActivator {
 
 	public void start(BundleContext bc) {
 		log.info("started");
-		new BaseService().sayHello();
+		BaseService service = new BaseService();
+		bc.registerService(BaseService.class.getName(), service, null);
+		service.run();
 	}
 
 	public void stop(BundleContext bc) {
