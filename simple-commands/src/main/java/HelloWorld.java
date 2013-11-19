@@ -19,10 +19,13 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.osgi.baseadaptor.BaseAdaptor;
 import org.eclipse.osgi.framework.log.FrameworkLog;
 import org.eclipse.osgi.service.runnable.ApplicationLauncher;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
+import org.osgi.util.tracker.ServiceTracker;
 import org.scijava.ItemIO;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
@@ -153,6 +156,13 @@ public class HelloWorld implements Command {
 			appLauncher.start(commandLineArguments);
 			System.err.println("headless: " + System.getProperty("java.awt.headless"));
 		}
+
+		String simplePluginURL = new File("../simple-osgi-plugin/target/simple-osgi-plugin-1.0.0-SNAPSHOT.jar").toURI().toString();
+		Bundle bundle = context.installBundle(simplePluginURL);
+		bundle.start();
+		ServiceReference<Runnable> reference = (ServiceReference<Runnable>) context.getServiceReference("baselib.BaseService");
+		Runnable runnable = context.getService(reference);
+		runnable.run();
 
 		framework.stop();
     framework.waitForStop(0);
