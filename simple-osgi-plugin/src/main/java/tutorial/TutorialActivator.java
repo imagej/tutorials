@@ -12,7 +12,7 @@ public class TutorialActivator implements BundleActivator {
 		log.info("started");
 		BaseService service = new BaseService();
 		bc.registerService(BaseService.class.getName(), service, null);
-		service.run();
+		service.put("start", "up");
 	}
 
 	public void stop(BundleContext bc) {
