@@ -159,10 +159,12 @@ public class HelloWorld implements Command {
 
 		String simplePluginURL = new File("../simple-osgi-plugin/target/simple-osgi-plugin-1.0.0-SNAPSHOT.jar").toURI().toString();
 		Bundle bundle = context.installBundle(simplePluginURL);
+		bundle.update();
 		bundle.start();
-		ServiceReference<Runnable> reference = (ServiceReference<Runnable>) context.getServiceReference("baselib.BaseService");
-		Runnable runnable = context.getService(reference);
-		runnable.run();
+		ServiceReference<Map<Object, Object>> reference = (ServiceReference<Map<Object, Object>>)
+				context.getServiceReference("baselib.BaseService");
+		Map<Object, Object> map = context.getService(reference);
+		map.put("Hello", "World!");
 
 		framework.stop();
     framework.waitForStop(0);
