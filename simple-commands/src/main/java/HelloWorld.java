@@ -87,30 +87,38 @@ public class HelloWorld implements Command {
 	 * @throws Exception
 	 */
 	public static void main(final String... args) throws Exception {
-//		final ImageJ ij = new ImageJ();
-//		ij.command().run(HelloWorld.class);
-		final String applicationId = "org.knime.product.KNIME_BATCH_APPLICATION";
-		final String[] commandLineArguments = {
-			"-help"
-//			"-workflowDir=\"workspace/Knime_project\""
-		};
+		String knimePath = System.getProperty("knime.home");
+		if (knimePath == null) {
+			knimePath = System.getProperty("user.home") + "/Desktop/eclipse_knime_2.8.2";
+			if (!new File(knimePath).exists()) {
+				knimePath = "C:/knime_2.8.2";
+				if (!new File(knimePath).exists()) {
+					throw new RuntimeException("Cannot find KNIME!");
+				}
+			}
+		}
+
+		String applicationId = args.length > 0 ? args[0] : null; // "org.knime.product.KNIME_BATCH_APPLICATION";
+		String[] commandLineArguments = { "-help" };
 
 		FrameworkFactory frameworkFactory = ServiceLoader.load(FrameworkFactory.class).iterator().next();
 		Map<String, String> config = new HashMap<String, String>();
 		config.put(IApplicationContext.APPLICATION_ARGS, "-consoleLog");
-		config.put("eclipse.application.launchDefault", "true");
-		config.put("eclipse.application", applicationId);
-		config.put("eclipse.application.default", "true");
-//    config.put("osgi.console", "");
-//    config.put("osgi.bundles.defaultStartLevel", "4");
-//    config.put("osgi.configuration.area", "./configuration");
+		config.put("osgi.console", "");
+		config.put("osgi.configuration.area", knimePath + "/configuration");
+		if (applicationId != null) {
+			config.put("eclipse.application.launchDefault", "true");
+			config.put("eclipse.application", applicationId);
+			config.put("eclipse.application.default", "true");
+		}
 
 		Framework framework = frameworkFactory.newFramework(config);
 		framework.start();
 		final BundleContext context = framework.getBundleContext();
 
+		// TODO: refactor; verify that it is actually needed
 		// install all bundles
-		new File(System.getProperty("user.home") + "/Desktop/eclipse_knime_2.8.2/plugins").listFiles(new FileFilter() {
+		new File(knimePath + "/plugins").listFiles(new FileFilter() {
 
 			@Override
 			public boolean accept(File file) {
@@ -138,12 +146,15 @@ public class HelloWorld implements Command {
 		});
 
 		// Start the application
-		FrameworkLog log = new BaseAdaptor(new String[0]).getFrameworkLog();
-		EclipseAppLauncher appLauncher = new EclipseAppLauncher(context, false, true, log);
-		context.registerService(ApplicationLauncher.class.getName(), appLauncher, null);
-		appLauncher.start(commandLineArguments);
+		if (applicationId != null) {
+			FrameworkLog log = new BaseAdaptor(new String[0]).getFrameworkLog();
+			EclipseAppLauncher appLauncher = new EclipseAppLauncher(context, false, true, log);
+			context.registerService(ApplicationLauncher.class.getName(), appLauncher, null);
+			appLauncher.start(commandLineArguments);
+			System.err.println("headless: " + System.getProperty("java.awt.headless"));
+		}
 
-    System.err.println("headless: " + System.getProperty("java.awt.headless"));
+		framework.stop();
     framework.waitForStop(0);
 	}
 }
