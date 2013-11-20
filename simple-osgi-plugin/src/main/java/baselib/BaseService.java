@@ -29,6 +29,12 @@ public class BaseService implements Map<Object, Object> {
 	}
 
 	public Object put(Object key, Object value) {
+		try {
+			Class c = Class.forName("HelloWorld");
+			System.err.println("c: " + c + " in " + c.getClassLoader());
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
 		log.info("Putting '" + key + "' => '" + value + "'");
 		return value;
 	}
