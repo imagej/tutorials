@@ -10,6 +10,9 @@ import imagej.command.Command;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileNotFoundException;
+import java.net.URL;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
@@ -17,6 +20,11 @@ import java.util.ServiceLoader;
 import org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.osgi.baseadaptor.BaseAdaptor;
+import org.eclipse.osgi.baseadaptor.HookConfigurator;
+import org.eclipse.osgi.baseadaptor.HookRegistry;
+import org.eclipse.osgi.framework.adaptor.BundleClassLoader;
+import org.eclipse.osgi.framework.adaptor.BundleData;
+import org.eclipse.osgi.framework.adaptor.ClassLoaderDelegateHook;
 import org.eclipse.osgi.framework.log.FrameworkLog;
 import org.eclipse.osgi.service.runnable.ApplicationLauncher;
 import org.osgi.framework.Bundle;
@@ -107,6 +115,8 @@ public class HelloWorld implements Command {
 		Map<String, String> config = new HashMap<String, String>();
 		config.put(IApplicationContext.APPLICATION_ARGS, "-consoleLog");
 		config.put("osgi.console", "");
+		config.put("eclipse.consoleLog", "true");
+		config.put("osgi.hook.configurators.include", "HelloWorld$A123");
 		config.put("osgi.configuration.area", knimePath + "/configuration");
 		if (applicationId != null) {
 			config.put("eclipse.application.launchDefault", "true");
@@ -167,5 +177,61 @@ public class HelloWorld implements Command {
 
 		framework.stop();
     framework.waitForStop(0);
+	}
+
+	public static class A123 implements HookConfigurator, ClassLoaderDelegateHook {
+
+		@Override
+		public void addHooks(HookRegistry registry) {
+			registry.addClassLoaderDelegateHook(this);
+			//registry.addClassLoadingHook(this);
+		}
+
+		@Override
+		public Class<?> preFindClass(String name, BundleClassLoader classLoader, BundleData data) throws ClassNotFoundException {
+			try {
+				Class<?> c = Class.forName(name);
+				System.err.println("Reused " + name);
+				return c;
+			} catch (Throwable t) {
+				System.err.println("Not loading " + name + " here");
+				return null;
+			}
+		}
+
+		@Override
+		public Class<?> postFindClass(String name, BundleClassLoader classLoader, BundleData data) throws ClassNotFoundException {
+			return null;
+		}
+
+		@Override
+		public URL preFindResource(String name, BundleClassLoader classLoader, BundleData data) throws FileNotFoundException {
+			return null; // TODO!
+		}
+
+		@Override
+		public URL postFindResource(String name, BundleClassLoader classLoader, BundleData data) throws FileNotFoundException {
+			return null;
+		}
+
+		@Override
+		public Enumeration<URL> preFindResources(String name, BundleClassLoader classLoader, BundleData data) throws FileNotFoundException {
+			return null; // TODO!
+		}
+
+		@Override
+		public Enumeration<URL> postFindResources(String name, BundleClassLoader classLoader, BundleData data) throws FileNotFoundException {
+			return null;
+		}
+
+		@Override
+		public String preFindLibrary(String name, BundleClassLoader classLoader, BundleData data) throws FileNotFoundException {
+			return null;
+		}
+
+		@Override
+		public String postFindLibrary(String name, BundleClassLoader classLoader, BundleData data) {
+			return null;
+		}
 	}
 }
