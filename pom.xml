@@ -93,8 +93,8 @@
 	</mailingLists>
 
 	<scm>
-		<connection>scm:git:git://github.com/imagej/imagej-tutorials.git</connection>
-		<developerConnection>scm:git:git@github.com:imagej/imagej-tutorials.git</developerConnection>
+		<connection>scm:git:git://github.com/imagej/imagej-tutorials</connection>
+		<developerConnection>scm:git:git@github.com:imagej/imagej-tutorials</developerConnection>
 		<tag>HEAD</tag>
 		<url>https://github.com/imagej/imagej-tutorials</url>
 	</scm>
