@@ -7,12 +7,12 @@
  */
 
 import imagej.ImageJ;
-import imagej.core.commands.app.AboutImageJ;
 import imagej.module.ModuleInfo;
 import imagej.module.ModuleItem;
-import imagej.module.ModulePreprocessor;
-import imagej.plugin.InitPreprocessor;
-import imagej.plugin.ValidityPreprocessor;
+import imagej.module.process.InitPreprocessor;
+import imagej.module.process.ModulePreprocessor;
+import imagej.module.process.ValidityPreprocessor;
+import imagej.plugins.commands.app.AboutImageJ;
 
 import java.util.ArrayList;
 import java.util.HashMap;

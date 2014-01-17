@@ -8,8 +8,8 @@
 	<parent>
 		<groupId>org.scijava</groupId>
 		<artifactId>pom-scijava</artifactId>
-		<version>1.93</version>
-		<relativePath/>
+		<version>1.126</version>
+		<relativePath />
 	</parent>
 
 	<groupId>imagej-tutorials</groupId>
@@ -28,7 +28,7 @@
 	</dependencies>
 
 	<repositories>
-		<!-- NB: for project parent, in case of partial checkout -->
+		<!-- NB: for project parent -->
 		<repository>
 			<id>imagej.public</id>
 			<url>http://maven.imagej.net/content/groups/public</url>

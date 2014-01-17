@@ -7,12 +7,12 @@
  */
 
 import imagej.ImageJ;
-import imagej.core.commands.calculator.ImageCalculator;
-import imagej.core.commands.display.interactive.Threshold;
 import imagej.data.operator.CalculatorOp;
 import imagej.data.operator.CalculatorService;
 import imagej.data.threshold.ThresholdMethod;
 import imagej.data.threshold.ThresholdService;
+import imagej.plugins.commands.calculator.ImageCalculator;
+import imagej.plugins.commands.display.interactive.Threshold;
 
 import java.util.Set;
 

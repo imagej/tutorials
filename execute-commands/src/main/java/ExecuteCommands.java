@@ -9,9 +9,9 @@
 import imagej.ImageJ;
 import imagej.command.CommandService;
 import imagej.command.ContextCommand;
-import imagej.core.commands.io.OpenFile;
 import imagej.data.Dataset;
 import imagej.module.Module;
+import imagej.plugins.commands.io.OpenFile;
 
 import java.io.File;
 import java.util.HashMap;

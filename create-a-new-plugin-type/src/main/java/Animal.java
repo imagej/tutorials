@@ -6,7 +6,7 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.plugin.ImageJPlugin;
+import imagej.ImageJPlugin;
 
 import org.scijava.plugin.Plugin;
 

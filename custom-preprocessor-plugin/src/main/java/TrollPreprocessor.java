@@ -6,16 +6,16 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import org.scijava.plugin.Plugin;
-
 import imagej.module.Module;
-import imagej.plugin.AbstractPreprocessorPlugin;
-import imagej.plugin.PreprocessorPlugin;
+import imagej.module.process.AbstractPreprocessorPlugin;
+import imagej.module.process.PreprocessorPlugin;
 import imagej.ui.DialogPrompt.MessageType;
 import imagej.ui.DialogPrompt.OptionType;
 import imagej.ui.DialogPrompt.Result;
 import imagej.ui.UIService;
 import imagej.util.MersenneTwisterFast;
+
+import org.scijava.plugin.Plugin;
 
 /**
  * A custom preprocessor plugin that augments every command execution.
