@@ -65,8 +65,8 @@
 	</developers>
 
 	<issueManagement>
-		<system>Trac</system>
-		<url>http://trac.imagej.net/</url>
+		<system>GitHub Issues</system>
+		<url>http://github.com/imagej/imagej-tutorials/issues</url>
 	</issueManagement>
 
 	<ciManagement>
