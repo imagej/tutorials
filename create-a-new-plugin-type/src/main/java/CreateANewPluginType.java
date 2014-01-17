@@ -21,7 +21,7 @@ import org.scijava.Contextual;
 import org.scijava.Prioritized;
 import org.scijava.plugin.Plugin;
 import org.scijava.plugin.PluginService;
-import org.scijava.plugin.SortablePlugin;
+import org.scijava.plugin.AbstractRichPlugin;
 
 /**
  * Demonstrates how to create your own new type of plugin.
@@ -45,10 +45,10 @@ import org.scijava.plugin.SortablePlugin;
  * command, and corresponding {@link CalculatorService} with the API providing
  * the actual calculation routines.</li>
  * <li>The {@link imagej.data.threshold} package provides a
- * {@link ThresholdMethod} defining a method for automatically thresholding
- * an image, used by the interactive {@link Threshold} command, and
- * corresponding {@link ThresholdService} with the API providing the actual
- * auto-thresholding routines.</li>
+ * {@link ThresholdMethod} defining a method for automatically thresholding an
+ * image, used by the interactive {@link Threshold} command, and corresponding
+ * {@link ThresholdService} with the API providing the actual auto-thresholding
+ * routines.</li>
  * </ul>
  * <p>
  * The biggest advantage of structuring things in this way is
@@ -74,14 +74,15 @@ import org.scijava.plugin.SortablePlugin;
  * <li>Most ImageJ plugin types extend the core {@link Contextual} and
  * {@link Prioritized} interfaces (in practice, this is easily accomplished by
  * providing e.g. an {@code AbstractAnimal} class that extends
- * {@link SortablePlugin}). The advantage of extending the {@link Prioritized}
- * interface is that the {@link PluginService} will return your available
- * plugins in prioritized order; i.e., sorted by the {@link Plugin#priority()}
- * attribute. For some kinds of plugins, prioritization can be very helpful. The
- * advantage of extending the {@link Contextual} interface is that plugin
- * instances will then have a handle on their {@link Context}, and hence have
- * access to services. In particular, it can be nice e.g. for an {@link Animal}
- * to be able to make calls to the {@link AnimalService} in various situations.
+ * {@link AbstractRichPlugin}). The advantage of extending the
+ * {@link Prioritized} interface is that the {@link PluginService} will return
+ * your available plugins in prioritized order; i.e., sorted by the
+ * {@link Plugin#priority()} attribute. For some kinds of plugins,
+ * prioritization can be very helpful. The advantage of extending the
+ * {@link Contextual} interface is that plugin instances will then have a handle
+ * on their {@link Context}, and hence have access to services. In particular,
+ * it can be nice e.g. for an {@link Animal} to be able to make calls to the
+ * {@link AnimalService} in various situations.
  * </ol>
  */
 public class CreateANewPluginType {
