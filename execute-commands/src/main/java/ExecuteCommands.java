@@ -11,6 +11,7 @@ import imagej.command.CommandModule;
 import imagej.command.CommandService;
 import imagej.command.ContextCommand;
 import imagej.data.Dataset;
+import imagej.data.DatasetService;
 import imagej.module.Module;
 import imagej.plugins.commands.io.OpenFile;
 
@@ -21,18 +22,18 @@ import java.util.concurrent.Future;
 
 /**
  * An illustration of how to execute commands using the ImageJ API. The source
- * code demonstrates three different ways of invoking a command
- * programmatically:
+ * code demonstrates four different ways of invoking a command programmatically:
  * <ol>
  * <li>Using {@link CommandService} with a list of arguments</li>
  * <li>Using {@link CommandService} with arguments in a {@link Map}</li>
  * <li>Calling a command's Java API directly</li>
+ * <li>Calling the underlying service method (if there is one)</li>
  * </ol>
  * <p>
- * The first two approaches can be used to invoke any command, but the compiler
- * cannot guarantee the correctness of the input types. That is, passing any
- * {@code Object} is possible for both parameter names and values, which
- * increases the chance of coding errors.
+ * The {@link CommandService} approaches can be used to invoke any command, but
+ * the compiler cannot guarantee the correctness of the input types. That is,
+ * passing any {@code Object} is possible for both parameter names and values,
+ * which increases the chance of coding errors.
  * </p>
  * <p>
  * To address this issue, you can provide public API methods inside the command
@@ -45,37 +46,64 @@ import java.util.concurrent.Future;
  * and setter methods for its parameters.
  * </p>
  * <p>
- * Here is a point-by-point comparison of the two approaches:
+ * A fourth approach is to code the meat of your command as a method in a
+ * service. For example, the {@link OpenFile} command ultimately delegates to
+ * the {@link DatasetService#open(String)} method to open a {@link Dataset}, so
+ * it is easiest to simply call that service method directly.
+ * </p>
+ * <p>
+ * As a rule of thumb, a great pattern to follow is:
+ * </p>
+ * <ol>
+ * <li>Create a service which provides the Java API you wish to make available
+ * to others.</li>
+ * <li>Write commands whose implementations are very simple because they just
+ * invoke service methods to accomplish their goals.</li>
+ * </ol>
+ * <p>
+ * Here is a point-by-point comparison of the approaches:
  * <table>
  * <tr>
  * <th>&nbsp;</th>
  * <th>CommandService</th>
  * <th>Java API</th>
+ * <th>Service call</th>
  * </tr>
  * <tr>
  * <td>Publishes events</td>
  * <td>Yes</td>
  * <td>No</td>
+ * <td>No</td>
  * </tr>
  * <tr>
- * <td>Performs pre- and post-processing</td>
+ * <td>Can perform pre- and post-processing</td>
  * <td>Yes</td>
+ * <td>No</td>
  * <td>No</td>
  * </tr>
  * <tr>
  * <td>Executes in a separate thread</td>
  * <td>Yes</td>
  * <td>No</td>
+ * <td>No</td>
  * </tr>
  * <tr>
  * <td>Compile-time safe</td>
  * <td>No</td>
+ * <td>Yes</td>
  * <td>Yes</td>
  * </tr>
  * <tr>
  * <td>Works with any command</td>
  * <td>Yes</td>
  * <td>No</td>
+ * <td>No</td>
+ * </tr>
+ * <tr>
+ * <td>Single line of code</td>
+ * <td>Yes</td>
+ * <td>No</td>
+ * <td>Yes</td>
  * </tr>
  * </table>
  * </p>
@@ -100,6 +128,10 @@ public class ExecuteCommands {
 		// execute using the command's Java API
 		final Dataset datasetFromJava = invokeFromJava(ij);
 		logDatasetInfo(ij, "datasetFromJava", datasetFromJava);
+
+		// execute using a service
+		final Dataset datasetFromService = ij.dataset().open("sample-image.fake");
+		logDatasetInfo(ij, "datasetFromService", datasetFromService);
 	}
 
 	/**
