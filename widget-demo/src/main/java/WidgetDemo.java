@@ -364,7 +364,7 @@ public class WidgetDemo implements Command, Previewable {
 		final ImageJ ij = imagej.Main.launch(args);
 
 		// Launch the "Widget Demo" command right away.
-		ij.command().run(WidgetDemo.class);
+		ij.command().run(WidgetDemo.class, true);
 	}
 
 }

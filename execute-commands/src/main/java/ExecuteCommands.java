@@ -7,6 +7,7 @@
  */
 
 import imagej.ImageJ;
+import imagej.command.CommandModule;
 import imagej.command.CommandService;
 import imagej.command.ContextCommand;
 import imagej.data.Dataset;
@@ -108,8 +109,8 @@ public class ExecuteCommands {
 	 */
 	public static Dataset invokeWithArgs(final ImageJ ij) {
 		// execute asynchronously using the command service
-		final Future<Module> future =
-			ij.command().run("imagej.core.commands.io.OpenFile", "inputFile",
+		final Future<CommandModule> future =
+			ij.command().run("imagej.core.commands.io.OpenFile", true, "inputFile",
 				new File("sample-image.fake"));
 		// wait for the execution thread to complete
 		final Module module = ij.module().waitFor(future);
@@ -127,8 +128,8 @@ public class ExecuteCommands {
 		final Map<String, Object> inputMap = new HashMap<String, Object>();
 		inputMap.put("inputFile", new File("sample-image.fake"));
 		// execute asynchronously using the command service
-		final Future<Module> future =
-			ij.command().run("imagej.core.commands.io.OpenFile", inputMap);
+		final Future<CommandModule> future =
+			ij.command().run("imagej.core.commands.io.OpenFile", true, inputMap);
 		// wait for the execution thread to complete
 		final Module module = ij.module().waitFor(future);
 		// return the desired output parameter value

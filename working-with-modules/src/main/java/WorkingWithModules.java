@@ -90,7 +90,7 @@ public class WorkingWithModules {
 
 		// To run the module using the command service:
 		ij.log().info("Running " + myInfo.getTitle());
-		ij.command().run(myInfo);
+		ij.module().run(myInfo, true);
 
 		// It may sometimes be the case that even with preprocessing, your module
 		// still requires additional input values. In such situations, you can pass
@@ -99,10 +99,10 @@ public class WorkingWithModules {
 		myInputs.put("requiredStringInput", "requiredStringValue");
 		myInputs.put("requiredDoubleInput", 5.6);
 		// etc.
-		ij.command().run(myInfo, myInputs);
+		ij.module().run(myInfo, true, myInputs);
 
 		// Or if you prefer, there is a succinct varargs method signature:
-		ij.command().run(myInfo,
+		ij.module().run(myInfo, true,
 			"requiredStringInput", "requiredStringValue",
 			"requiredDoubleInput", 5.6);
 
@@ -111,7 +111,7 @@ public class WorkingWithModules {
 		// postprocessing happens automatically.
 
 		// The invocation is as follows:
-		ij.module().run(myInfo);
+		ij.module().run(myInfo, false);
 
 		// Alternately, if you want to exercise complete manual control over the
 		// pre- and postprocessing, you can also pass an explicit list of module

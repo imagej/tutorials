@@ -71,7 +71,7 @@ public class GradientImage implements Command {
 		final ImageJ ij = imagej.Main.launch(args);
 
 		// Launch the "Gradient Image" command right away.
-		ij.command().run(GradientImage.class);
+		ij.command().run(GradientImage.class, true);
 	}
 
 }

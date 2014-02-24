@@ -73,7 +73,7 @@ public class HelloWorld implements Command {
 	 */
 	public static void main(final String... args) {
 		final ImageJ ij = new ImageJ();
-		ij.command().run(HelloWorld.class);
+		ij.command().run(HelloWorld.class, true);
 	}
 
 }
