@@ -103,14 +103,14 @@ public class ExecuteCommands {
 	}
 
 	/**
-	 * Invokes the {@code OpenFile} command using the {@link CommandService} with
+	 * Invokes the {@link OpenFile} command using the {@link CommandService} with
 	 * a list of arguments. This approach is very flexible and compact, but the
 	 * compiler cannot guarantee the correctness of the input types.
 	 */
 	public static Dataset invokeWithArgs(final ImageJ ij) {
 		// execute asynchronously using the command service
 		final Future<CommandModule> future =
-			ij.command().run("imagej.core.commands.io.OpenFile", true, "inputFile",
+			ij.command().run(OpenFile.class, true, "inputFile",
 				new File("sample-image.fake"));
 		// wait for the execution thread to complete
 		final Module module = ij.module().waitFor(future);
@@ -119,7 +119,7 @@ public class ExecuteCommands {
 	}
 
 	/**
-	 * Invokes the {@code OpenFile} command using the {@link CommandService} with
+	 * Invokes the {@link OpenFile} command using the {@link CommandService} with
 	 * arguments in a {@link Map}. This approach is extremely flexible, but the
 	 * compiler cannot guarantee the correctness of the input types.
 	 */
@@ -129,7 +129,7 @@ public class ExecuteCommands {
 		inputMap.put("inputFile", new File("sample-image.fake"));
 		// execute asynchronously using the command service
 		final Future<CommandModule> future =
-			ij.command().run("imagej.core.commands.io.OpenFile", true, inputMap);
+			ij.command().run(OpenFile.class, true, inputMap);
 		// wait for the execution thread to complete
 		final Module module = ij.module().waitFor(future);
 		// return the desired output parameter value
@@ -137,7 +137,7 @@ public class ExecuteCommands {
 	}
 
 	/**
-	 * Directly invokes the {@code OpenFile} command using its Java API.
+	 * Directly invokes the {@link OpenFile} command using its Java API.
 	 * <p>
 	 * This approach is compile-time safe, but only commands that expose their
 	 * Java API can be invoked in this way. Note that no pre- or postprocessing of
