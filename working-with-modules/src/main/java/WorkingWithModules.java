@@ -73,14 +73,13 @@ public class WorkingWithModules {
 		// We choose a module of interest, for some additional fun!
 		final ModuleInfo myInfo = ij.command().getCommand(AboutImageJ.class);
 
-		// There are two ways to execute a module:
-		// 1) The "low-level" way: use the module service.
-		// 2) The "high-level" way: use the command service.
+		// To execute a module, use the ModuleService#run methods.
+		// To execute a command by name, use the CommandService#run methods.
 		//
-		// The difference is that when run through the command service, the module
-		// will be preprocessed with all available preprocessing plugins before
-		// being executed, and then after execution will be postprocessed with all
-		// available postprocessing plugins.
+		// In either case, take particular note of the "boolean process" flag.
+		// When set, the module will be preprocessed with all available
+		// preprocessing plugins before being executed, and then after execution
+		// will be postprocessed with all available postprocessing plugins.
 		//
 		// In particular, using the command service will "fill in" many parameter
 		// values for you, such as single dataset parameters.
@@ -88,7 +87,7 @@ public class WorkingWithModules {
 		// See the "custom-preprocessor-plugin" tutorial for details on how to
 		// customize such preprocessing.
 
-		// To run the module using the command service:
+		// To run a module with pre- and postprocessing:
 		ij.log().info("Running " + myInfo.getTitle());
 		ij.module().run(myInfo, true);
 
@@ -107,8 +106,8 @@ public class WorkingWithModules {
 			"requiredDoubleInput", 5.6);
 
 		// If you desire more control over pre- and postprocessing, you can instead
-		// invoke the module using the module service. In this case, *no* pre- or
-		// postprocessing happens automatically.
+		// invoke the module with the process flag set to false.
+		// In this case, *no* pre- or postprocessing happens automatically.
 
 		// The invocation is as follows:
 		ij.module().run(myInfo, false);
