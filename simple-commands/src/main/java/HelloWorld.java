@@ -72,7 +72,10 @@ public class HelloWorld implements Command {
 	 * @param args unused
 	 */
 	public static void main(final String... args) {
-		final ImageJ ij = new ImageJ();
+		// Launch ImageJ as usual.
+		final ImageJ ij = imagej.Main.launch(args);
+
+		// Launch our "Hello World" command right away.
 		ij.command().run(HelloWorld.class, true);
 	}
 
