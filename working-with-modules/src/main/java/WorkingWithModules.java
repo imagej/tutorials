@@ -81,8 +81,8 @@ public class WorkingWithModules {
 		// preprocessing plugins before being executed, and then after execution
 		// will be postprocessed with all available postprocessing plugins.
 		//
-		// In particular, using the command service will "fill in" many parameter
-		// values for you, such as single dataset parameters.
+		// In particular, the preprocessors will "fill in" many parameter values
+		// for you, such as single dataset parameters.
 		//
 		// See the "custom-preprocessor-plugin" tutorial for details on how to
 		// customize such preprocessing.
