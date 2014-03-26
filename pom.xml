@@ -33,6 +33,7 @@
 		<module>load-and-display-dataset</module>
 		<module>listen-to-events</module>
 		<module>simple-commands</module>
+		<module>using-ops</module>
 		<module>widget-demo</module>
 		<module>working-with-modules</module>
 	</modules>
