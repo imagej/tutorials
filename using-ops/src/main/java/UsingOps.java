@@ -33,7 +33,7 @@ public class UsingOps {
 		ij.op().add(data.getImgPlus().getImg(), moredata.getImgPlus().getImg());
 		ij.ui().show(data);
 
-		Op addOp = ij.op().op("add", DoubleType.class, DoubleType.class, new DoubleType(5.0));
+		Op addOp = ij.op().op("add", DoubleType.class, new DoubleType(5.0));
 		// execute add op on every image pixel
 		ij.op().map(data.getImgPlus().getImg(), data.getImgPlus().getImg(), addOp);
 		ij.ui().show(data);
