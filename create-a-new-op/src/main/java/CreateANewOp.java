@@ -13,7 +13,7 @@ import org.scijava.ItemIO;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
-/** How to use ImageJ Operations. */
+/** How to use create a new ImageJ OP. */
 public class CreateANewOp {
 
 	public static void main(final String... args) throws Exception {
