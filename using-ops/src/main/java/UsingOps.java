@@ -7,7 +7,6 @@
  */
 
 import imagej.ImageJ;
-import imagej.data.Dataset;
 import imagej.ops.Op;
 import net.imglib2.type.numeric.real.DoubleType;
 
@@ -17,26 +16,37 @@ public class UsingOps {
 	public static void main(final String... args) throws Exception {
 		final ImageJ ij = new ImageJ();
 
+		// learn about an op
+		ij.log().info(ij.op().help("add"));
+
 		// add two numbers
-		Integer seven = (Integer) ij.op().run("add", 2, 5);
-		System.out.println("Expect seven: " + seven);
+		final Object seven = ij.op().add(2, 5);
+		ij.log().info("What is 2 + 5? " + seven);
 
-		Dataset data = ij.dataset().open("testImg&pixelType=double&lengths=512,512.fake");
-		// add number to image
-		ij.op().run("add", data.getImgPlus().getImg(), 13.0);
-		ij.ui().show(data);
+		// create a new blank image
+		final long[] dims = {78, 23};
+		final Object blank = ij.op().create(dims);
 
-		Dataset moredata = ij.dataset().open("testImg2&pixelType=double&lengths=512,512.fake");
-		// add two images
-		ij.op().run("add", data.getImgPlus().getImg(), moredata.getImgPlus().getImg());
-		// built-ins can be called directly
-		ij.op().add(data.getImgPlus().getImg(), moredata.getImgPlus().getImg());
-		ij.ui().show(data);
+		// fill in the image with a sinusoid using a formula
+		final String formula = "10 * (Math.cos(0.3*p[0]) + Math.sin(0.3*p[1]))";
+		final Object sinusoid = ij.op().equation(blank, formula);
 
-		Op addOp = ij.op().op("add", DoubleType.class, new DoubleType(5.0));
-		// execute add op on every image pixel
-		ij.op().map(data.getImgPlus().getImg(), data.getImgPlus().getImg(), addOp);
-		ij.ui().show(data);
+		// add a constant value to an image
+		ij.op().add(sinusoid, 13.0);
+
+		// generate a gradient image using a formula
+		final Object gradient = ij.op().equation(ij.op().create(dims), "p[0]+p[1]");
+
+		// add the two images
+		final Object composite = ij.op().add(sinusoid, gradient);
+
+		// dump the image to the console
+		final Object ascii = ij.op().ascii(composite);
+		ij.log().info("Composite image:\n" + ascii);
+
+		// execute an op on every pixel of an image
+		final Op addOp = ij.op().op("add", DoubleType.class, new DoubleType(5.0));
+		ij.op().map(composite, composite, addOp);
 	}
 
 }
