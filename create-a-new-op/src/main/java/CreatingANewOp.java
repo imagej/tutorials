@@ -7,18 +7,7 @@
  */
 
 import imagej.ImageJ;
-import imagej.module.ModuleInfo;
-import imagej.module.ModuleItem;
-import imagej.module.process.InitPreprocessor;
-import imagej.module.process.ModulePreprocessor;
-import imagej.module.process.ValidityPreprocessor;
 import imagej.ops.Op;
-import imagej.plugins.commands.app.AboutImageJ;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.scijava.ItemIO;
 import org.scijava.plugin.Parameter;
@@ -30,8 +19,11 @@ public class CreatingANewOp {
 	public static void main(final String... args) throws Exception {
 		final ImageJ ij = new ImageJ();
 
-		// run the simple String op
-		ij.log().info("Op said: " + ij.op().run("narf", "Test String"));
+		// Run our op!
+		final Object narf = ij.op().run("narf", "Put some trousers on");
+
+		// And what value did our op return?
+		ij.log().info("The op said: " + narf);
 	}
 
 	@Plugin(type = Op.class, name = "narf")
