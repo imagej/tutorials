@@ -14,7 +14,7 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 /** How to use ImageJ Operations. */
-public class CreatingANewOp {
+public class CreateANewOp {
 
 	public static void main(final String... args) throws Exception {
 		final ImageJ ij = new ImageJ();
