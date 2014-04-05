@@ -16,6 +16,10 @@ public class UsingOps {
 	public static void main(final String... args) throws Exception {
 		final ImageJ ij = new ImageJ();
 
+		// how many ops?
+		final int opCount = ij.command().getCommandsOfType(Op.class).size();
+		ij.log().info("Found " + opCount + " ops");
+
 		// learn about an op
 		ij.log().info(ij.op().help("add"));
 
