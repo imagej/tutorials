@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>org.scijava</groupId>
 		<artifactId>pom-scijava</artifactId>
-		<version>1.135</version>
+		<version>1.155</version>
 		<relativePath />
 	</parent>
 
@@ -26,6 +26,7 @@
 		<module>add-rois</module>
 		<module>add-two-datasets</module>
 		<module>call-modern-from-legacy</module>
+		<module>create-a-new-op</module>
 		<module>create-a-new-plugin-type</module>
 		<module>custom-preprocessor-plugin</module>
 		<module>execute-commands</module>
@@ -33,6 +34,7 @@
 		<module>load-and-display-dataset</module>
 		<module>listen-to-events</module>
 		<module>simple-commands</module>
+		<module>using-ops</module>
 		<module>widget-demo</module>
 		<module>working-with-modules</module>
 	</modules>
