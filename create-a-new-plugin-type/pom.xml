@@ -19,18 +19,18 @@
 	<name>Create a New Plugin Type</name>
 	<description>This example shows how to create your own type of plugin, discover plugins of that type, and work with them.</description>
 
-	<dependencies>
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>imagej</artifactId>
-		</dependency>
-	</dependencies>
-
 	<repositories>
 		<repository>
 			<id>imagej.public</id>
 			<url>http://maven.imagej.net/content/groups/public</url>
 		</repository>
 	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>imagej</artifactId>
+		</dependency>
+	</dependencies>
 
 </project>

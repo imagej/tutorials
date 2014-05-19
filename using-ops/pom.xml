@@ -19,18 +19,18 @@
 	<name>Using ImageJ Operations</name>
 	<description>This example provides an introduction to ImageJ OPS. An op is a reusable algorithm that works on inputs and produces outputs. More information: https://github.com/imagej/imagej-ops</description>
 
-	<dependencies>
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>imagej</artifactId>
-		</dependency>
-	</dependencies>
-
 	<repositories>
 		<repository>
 			<id>imagej.public</id>
 			<url>http://maven.imagej.net/content/groups/public</url>
 		</repository>
 	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>imagej</artifactId>
+		</dependency>
+	</dependencies>
 
 </project>

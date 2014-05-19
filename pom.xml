@@ -21,24 +21,6 @@
 	<description>A collection of tutorials for ImageJ.</description>
 	<url>http://developer.imagej.net/</url>
 	<inceptionYear>2012</inceptionYear>
-
-	<modules>
-		<module>add-rois</module>
-		<module>add-two-datasets</module>
-		<module>call-modern-from-legacy</module>
-		<module>create-a-new-op</module>
-		<module>create-a-new-plugin-type</module>
-		<module>custom-preprocessor-plugin</module>
-		<module>execute-commands</module>
-		<module>intro-to-imagej-api</module>
-		<module>load-and-display-dataset</module>
-		<module>listen-to-events</module>
-		<module>simple-commands</module>
-		<module>using-ops</module>
-		<module>widget-demo</module>
-		<module>working-with-modules</module>
-	</modules>
-
 	<licenses>
 		<license>
 			<name>CC0 1.0 Universal License</name>
@@ -63,15 +45,22 @@
 		</developer>
 	</developers>
 
-	<issueManagement>
-		<system>GitHub Issues</system>
-		<url>http://github.com/imagej/imagej-tutorials/issues</url>
-	</issueManagement>
-
-	<ciManagement>
-		<system>Jenkins</system>
-		<url>http://jenkins.imagej.net/job/ImageJ-tutorials/</url>
-	</ciManagement>
+	<modules>
+		<module>add-rois</module>
+		<module>add-two-datasets</module>
+		<module>call-modern-from-legacy</module>
+		<module>create-a-new-op</module>
+		<module>create-a-new-plugin-type</module>
+		<module>custom-preprocessor-plugin</module>
+		<module>execute-commands</module>
+		<module>intro-to-imagej-api</module>
+		<module>load-and-display-dataset</module>
+		<module>listen-to-events</module>
+		<module>simple-commands</module>
+		<module>using-ops</module>
+		<module>widget-demo</module>
+		<module>working-with-modules</module>
+	</modules>
 
 	<scm>
 		<connection>scm:git:git://github.com/imagej/imagej-tutorials</connection>
@@ -79,6 +68,14 @@
 		<tag>HEAD</tag>
 		<url>https://github.com/imagej/imagej-tutorials</url>
 	</scm>
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>http://github.com/imagej/imagej-tutorials/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>http://jenkins.imagej.net/job/ImageJ-tutorials/</url>
+	</ciManagement>
 
 	<repositories>
 		<repository>

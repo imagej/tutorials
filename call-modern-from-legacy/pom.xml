@@ -19,18 +19,18 @@
 	<name>Call Modern From Legacy</name>
 	<description>This example shows how to call modern functionality from a legacy ImageJ1 plugin.</description>
 
-	<dependencies>
-		<dependency>
-			<groupId>net.imagej</groupId>
-			<artifactId>imagej</artifactId>
-		</dependency>
-	</dependencies>
-
 	<repositories>
 		<repository>
 			<id>imagej.public</id>
 			<url>http://maven.imagej.net/content/groups/public</url>
 		</repository>
 	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>imagej</artifactId>
+		</dependency>
+	</dependencies>
 
 </project>
