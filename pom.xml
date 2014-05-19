@@ -19,7 +19,6 @@
 
 	<name>ImageJ Tutorials</name>
 	<description>A collection of tutorials for ImageJ.</description>
-	<url>http://developer.imagej.net/</url>
 	<inceptionYear>2012</inceptionYear>
 	<licenses>
 		<license>
