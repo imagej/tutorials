@@ -47,11 +47,6 @@
 		</license>
 	</licenses>
 
-	<organization>
-		<name>ImageJDev.org</name>
-		<url>http://developer.imagej.net/</url>
-	</organization>
-
 	<developers>
 		<developer>
 			<id>ctrueden</id>
@@ -77,23 +72,6 @@
 		<system>Jenkins</system>
 		<url>http://jenkins.imagej.net/job/ImageJ-tutorials/</url>
 	</ciManagement>
-
-	<mailingLists>
-		<mailingList>
-			<name>ImageJ</name>
-			<subscribe>http://imagej.net/list.html</subscribe>
-			<unsubscribe>http://imagej.net/list.html</unsubscribe>
-			<post>imagej@list.nih.gov</post>
-			<archive>http://list.nih.gov/archives/imagej.html</archive>
-		</mailingList>
-		<mailingList>
-			<name>ImageJ-devel</name>
-			<subscribe>http://imagej.net/mailman/listinfo/imagej-devel</subscribe>
-			<unsubscribe>http://imagej.net/mailman/listinfo/imagej-devel</unsubscribe>
-			<post>imagej-devel@imagej.net</post>
-			<archive>http://imagej.net/pipermail/imagej-devel/</archive>
-		</mailingList>
-	</mailingLists>
 
 	<scm>
 		<connection>scm:git:git://github.com/imagej/imagej-tutorials</connection>
