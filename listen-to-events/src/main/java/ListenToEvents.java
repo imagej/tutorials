@@ -6,16 +6,16 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.ImageJ;
-import imagej.data.Dataset;
-import imagej.display.event.DisplayEvent;
-import imagej.display.event.input.MsEnteredEvent;
-import imagej.display.event.input.MsEvent;
-import imagej.display.event.window.WinEvent;
+import net.imagej.Dataset;
+import net.imagej.ImageJ;
 import net.imglib2.meta.Axes;
 import net.imglib2.meta.AxisType;
 
 import org.scijava.AbstractContextual;
+import org.scijava.display.event.DisplayEvent;
+import org.scijava.display.event.input.MsEnteredEvent;
+import org.scijava.display.event.input.MsEvent;
+import org.scijava.display.event.window.WinEvent;
 import org.scijava.event.EventHandler;
 import org.scijava.event.SciJavaEvent;
 import org.scijava.service.Service;

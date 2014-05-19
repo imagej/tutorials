@@ -6,19 +6,20 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.ImageJ;
-import imagej.command.CommandModule;
-import imagej.command.CommandService;
-import imagej.command.ContextCommand;
-import imagej.data.Dataset;
-import imagej.data.DatasetService;
-import imagej.module.Module;
-import imagej.plugins.commands.io.OpenFile;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Future;
+
+import net.imagej.Dataset;
+import net.imagej.DatasetService;
+import net.imagej.ImageJ;
+
+import org.scijava.command.CommandModule;
+import org.scijava.command.CommandService;
+import org.scijava.command.ContextCommand;
+import org.scijava.module.Module;
+import org.scijava.plugins.commands.io.OpenFile;
 
 /**
  * An illustration of how to execute commands using the ImageJ API. The source

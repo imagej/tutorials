@@ -6,11 +6,11 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.command.Command;
-import imagej.data.Dataset;
-import imagej.data.measure.StatisticsService;
+import net.imagej.Dataset;
+import net.imagej.measure.StatisticsService;
 
 import org.scijava.ItemIO;
+import org.scijava.command.Command;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 

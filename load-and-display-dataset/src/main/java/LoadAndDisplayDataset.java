@@ -6,12 +6,12 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.ImageJ;
-import imagej.data.Dataset;
-
 import java.io.File;
 
 import javax.swing.JFileChooser;
+
+import net.imagej.Dataset;
+import net.imagej.ImageJ;
 
 /** Loads and displays a dataset using the ImageJ API. */
 public class LoadAndDisplayDataset {

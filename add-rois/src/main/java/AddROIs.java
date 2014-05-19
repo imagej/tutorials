@@ -6,20 +6,20 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.ImageJ;
-import imagej.data.Dataset;
-import imagej.data.display.ImageDisplay;
-import imagej.data.overlay.EllipseOverlay;
-import imagej.data.overlay.LineOverlay;
-import imagej.data.overlay.Overlay;
-import imagej.data.overlay.RectangleOverlay;
-import imagej.util.Colors;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import net.imagej.Dataset;
+import net.imagej.ImageJ;
+import net.imagej.display.ImageDisplay;
+import net.imagej.overlay.EllipseOverlay;
+import net.imagej.overlay.LineOverlay;
+import net.imagej.overlay.Overlay;
+import net.imagej.overlay.RectangleOverlay;
 import net.imglib2.meta.Axes;
 import net.imglib2.meta.AxisType;
+
+import org.scijava.util.Colors;
 
 /**
  * Adds ROIs to a display.

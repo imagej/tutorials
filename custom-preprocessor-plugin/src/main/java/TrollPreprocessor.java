@@ -6,16 +6,15 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.module.Module;
-import imagej.module.process.AbstractPreprocessorPlugin;
-import imagej.module.process.PreprocessorPlugin;
-import imagej.ui.DialogPrompt.MessageType;
-import imagej.ui.DialogPrompt.OptionType;
-import imagej.ui.DialogPrompt.Result;
-import imagej.ui.UIService;
-import imagej.util.MersenneTwisterFast;
-
+import org.scijava.module.Module;
+import org.scijava.module.process.AbstractPreprocessorPlugin;
+import org.scijava.module.process.PreprocessorPlugin;
 import org.scijava.plugin.Plugin;
+import org.scijava.ui.DialogPrompt.MessageType;
+import org.scijava.ui.DialogPrompt.OptionType;
+import org.scijava.ui.DialogPrompt.Result;
+import org.scijava.ui.UIService;
+import org.scijava.util.MersenneTwisterFast;
 
 /**
  * A custom preprocessor plugin that augments every command execution.
@@ -56,10 +55,7 @@ public class TrollPreprocessor extends AbstractPreprocessorPlugin {
 			uiService.showDialog(message, "Troll", messageType, optionType);
 
 		// Cancel the command execution if the user does not agree.
-		canceled = result != Result.YES_OPTION;
-		if (!canceled) return;
-
-		cancelReason = random(PLATITUDES);
+		if (result != Result.YES_OPTION) cancel(random(PLATITUDES));
 	}
 
 	/** Chooses a random item from the given list. */
@@ -70,7 +66,7 @@ public class TrollPreprocessor extends AbstractPreprocessorPlugin {
 	/** Tests the custom preprocessor plugin. */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
-		imagej.Main.main(args);
+		net.imagej.Main.launch(args);
 	}
 
 }

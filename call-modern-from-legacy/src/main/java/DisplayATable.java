@@ -9,11 +9,12 @@
 import ij.IJ;
 import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
-import imagej.ImageJ;
-import imagej.data.table.DefaultGenericTable;
-import imagej.data.table.GenericTable;
-import imagej.display.DisplayService;
-import imagej.ui.UIService;
+import net.imagej.ImageJ;
+import net.imagej.table.DefaultGenericTable;
+import net.imagej.table.GenericTable;
+
+import org.scijava.display.DisplayService;
+import org.scijava.ui.UIService;
 
 /** Demonstrates use of the modern ImageJ API from a legacy ImageJ1 plugin. */
 public class DisplayATable implements PlugIn {

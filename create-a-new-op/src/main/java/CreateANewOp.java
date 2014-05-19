@@ -6,8 +6,8 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.ImageJ;
-import imagej.ops.Op;
+import net.imagej.ImageJ;
+import net.imagej.ops.Op;
 
 import org.scijava.ItemIO;
 import org.scijava.plugin.Parameter;

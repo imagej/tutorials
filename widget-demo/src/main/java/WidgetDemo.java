@@ -6,23 +6,23 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.ImageJ;
-import imagej.command.Command;
-import imagej.command.Previewable;
-import imagej.util.ColorRGB;
-import imagej.widget.ChoiceWidget;
-import imagej.widget.NumberWidget;
-
 import java.io.File;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import net.imagej.ImageJ;
+
 import org.scijava.ItemIO;
 import org.scijava.ItemVisibility;
 import org.scijava.app.StatusService;
+import org.scijava.command.Command;
+import org.scijava.command.Previewable;
 import org.scijava.log.LogService;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
+import org.scijava.util.ColorRGB;
+import org.scijava.widget.ChoiceWidget;
+import org.scijava.widget.NumberWidget;
 
 /**
  * Demonstration of various parameter types and their widgets.
@@ -361,7 +361,7 @@ public class WidgetDemo implements Command, Previewable {
 	/** Launches the widget demo. */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
-		final ImageJ ij = imagej.Main.launch(args);
+		final ImageJ ij = net.imagej.Main.launch(args);
 
 		// Launch the "Widget Demo" command right away.
 		ij.command().run(WidgetDemo.class, true);

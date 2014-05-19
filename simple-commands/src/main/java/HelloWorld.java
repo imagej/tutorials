@@ -6,10 +6,10 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.ImageJ;
-import imagej.command.Command;
+import net.imagej.ImageJ;
 
 import org.scijava.ItemIO;
+import org.scijava.command.Command;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
@@ -73,7 +73,7 @@ public class HelloWorld implements Command {
 	 */
 	public static void main(final String... args) {
 		// Launch ImageJ as usual.
-		final ImageJ ij = imagej.Main.launch(args);
+		final ImageJ ij = net.imagej.Main.launch(args);
 
 		// Launch our "Hello World" command right away.
 		ij.command().run(HelloWorld.class, true);

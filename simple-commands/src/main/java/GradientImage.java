@@ -6,15 +6,15 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.ImageJ;
-import imagej.command.Command;
-import imagej.data.Dataset;
-import imagej.data.DatasetService;
+import net.imagej.Dataset;
+import net.imagej.DatasetService;
+import net.imagej.ImageJ;
 import net.imglib2.meta.Axes;
 import net.imglib2.meta.AxisType;
 import net.imglib2.type.numeric.integer.UnsignedByteType;
 
 import org.scijava.ItemIO;
+import org.scijava.command.Command;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
@@ -68,7 +68,7 @@ public class GradientImage implements Command {
 	/** Tests our command. */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
-		final ImageJ ij = imagej.Main.launch(args);
+		final ImageJ ij = net.imagej.Main.launch(args);
 
 		// Launch the "Gradient Image" command right away.
 		ij.command().run(GradientImage.class, true);

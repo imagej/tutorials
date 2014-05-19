@@ -6,18 +6,19 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.ImageJ;
-import imagej.module.ModuleInfo;
-import imagej.module.ModuleItem;
-import imagej.module.process.InitPreprocessor;
-import imagej.module.process.ModulePreprocessor;
-import imagej.module.process.ValidityPreprocessor;
-import imagej.plugins.commands.app.AboutImageJ;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import net.imagej.ImageJ;
+import net.imagej.plugins.commands.app.AboutImageJ;
+
+import org.scijava.module.ModuleInfo;
+import org.scijava.module.ModuleItem;
+import org.scijava.module.process.InitPreprocessor;
+import org.scijava.module.process.ModulePreprocessor;
+import org.scijava.module.process.ValidityPreprocessor;
 
 /** How to work with ImageJ modules. */
 public class WorkingWithModules {

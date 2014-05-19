@@ -6,9 +6,9 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-import imagej.ImageJ;
-
 import java.net.URL;
+
+import net.imagej.ImageJ;
 
 /** An introduction to the ImageJ API. */
 public class IntroToImageJAPI {
