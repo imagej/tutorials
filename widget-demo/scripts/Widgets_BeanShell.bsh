@@ -25,12 +25,12 @@
 
 sb = new StringBuilder();
 
-sb.append("widget-demo results:\n");
+sb.append("Widgets BeanShell results:\n");
 
 sb.append("\n");
 sb.append("\tboolean = " + pBoolean + "\n");
 sb.append("\tbyte = " + pByte + "\n");
-sb.append("\tchar = " + "'" + pChar + "' [" + Character.getNumericValue(pChar.charAt(0)) + "]\n");
+sb.append("\tchar = " + "'" + pChar + "' [" + (int) pChar.charAt(0) + "]\n");
 sb.append("\tdouble = " + pDouble + "\n");
 sb.append("\tfloat = " + pFloat + "\n");
 sb.append("\tint = " + pInt + "\n");
@@ -40,19 +40,19 @@ sb.append("\tshort = " + pShort + "\n");
 sb.append("\n");
 sb.append("\tBoolean = " + oBoolean + "\n");
 sb.append("\tByte = " + oByte + "\n");
-oCharValue = oChar == null ? "null" : "" + Character.getNumericValue(oCharacter.charAt(0));
-sb.append("\tCharacter = " + "'" + oChar + "' [" + oCharValue + "]\n");
+oCharValue = oCharacter == null ? "null" : "" + (int) oCharacter.charAt(0);
+sb.append("\tCharacter = " + "'" + oCharacter + "' [" + oCharValue + "]\n");
 sb.append("\tDouble = " + oDouble + "\n");
 sb.append("\tFloat = " + oFloat + "\n");
 sb.append("\tInteger = " + oInteger + "\n");
 sb.append("\tLong = " + oLong + "\n");
 sb.append("\tShort = " + oShort + "\n");
 
-sb.append("");
+sb.append("\n");
 sb.append("\tbounded integer = " + boundedInteger + "\n");
 sb.append("\tbounded double = " + boundedDouble + "\n");
 
-sb.append("");
+sb.append("\n");
 sb.append("\tBigInteger = " + bigInteger + "\n");
 sb.append("\tBigDecimal = " + bigDecimal + "\n");
 sb.append("\tString = " + string + "\n");
