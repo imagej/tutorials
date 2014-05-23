@@ -21,6 +21,7 @@ import org.scijava.log.LogService;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 import org.scijava.util.ColorRGB;
+import org.scijava.widget.Button;
 import org.scijava.widget.ChoiceWidget;
 import org.scijava.widget.NumberWidget;
 
@@ -239,6 +240,9 @@ public class WidgetDemo implements Command, Previewable {
 	// to be populated during command execution (i.e., in the run method).
 	// Then, after execution is complete, ImageJ takes care of displaying the
 	// output parameters in the user interface as appropriate.
+
+	@Parameter(label = "Click me!")
+	private Button button;
 
 	@Parameter(label = "Results", type = ItemIO.OUTPUT)
 	private String result;
