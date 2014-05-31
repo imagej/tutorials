@@ -107,6 +107,7 @@
 		<module>intro-to-imagej-api</module>
 		<module>load-and-display-dataset</module>
 		<module>listen-to-events</module>
+		<module>mixed-world-command</module>
 		<module>simple-commands</module>
 		<module>tables</module>
 		<module>using-ops</module>
