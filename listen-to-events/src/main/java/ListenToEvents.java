@@ -11,7 +11,6 @@ import net.imagej.ImageJ;
 import net.imglib2.meta.Axes;
 import net.imglib2.meta.AxisType;
 
-import org.scijava.AbstractContextual;
 import org.scijava.display.event.DisplayEvent;
 import org.scijava.display.event.input.MsEnteredEvent;
 import org.scijava.display.event.input.MsEvent;
@@ -49,11 +48,11 @@ public class ListenToEvents {
 		// Create the ImageJ application context with all available services.
 		final ImageJ ij = new ImageJ();
 
-		// Create an event subscriber and set its ImageJ application context;
-		// this step will automatically subscribe to event notifications for
-		// all methods labeled with the "@EventHandler" annotation.
+		// Create an event subscriber and inject the application context;
+		// this step will automatically subscribe to event notifications
+		// for all methods labeled with the "@EventHandler" annotation.
 		myEventSubscriber = new MyEventSubscriber();
-		myEventSubscriber.setContext(ij.getContext());
+		ij.getContext().inject(myEventSubscriber);
 
 		// NB: If the myEventSubscriber object falls out of scope, it may be
 		// garbage collected, and then your event handling methods will no longer
@@ -71,7 +70,7 @@ public class ListenToEvents {
 	}
 
 	/** A class for subscribing to ImageJ events of interest. */
-	public static class MyEventSubscriber extends AbstractContextual {
+	public static class MyEventSubscriber {
 
 		/** Handles display events. */
 		@EventHandler
