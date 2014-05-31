@@ -72,19 +72,19 @@ public class ListenToEvents {
 	/** A class for subscribing to ImageJ events of interest. */
 	public static class MyEventSubscriber {
 
-		/** Handles display events. */
+		/** Responds to display events. */
 		@EventHandler
 		public void onEvent(final DisplayEvent evt) {
 			System.out.println("[DisplayEvent] " + evt);
 		}
 
-		/** Handles mouse events. */
+		/** Responds to mouse events. */
 		@EventHandler
 		public void onEvent(final MsEvent evt) {
 			System.out.println("[MsEvent] " + evt);
 		}
 
-		/** Handles window events. */
+		/** Responds to window events. */
 		@EventHandler
 		public void onEvent(final WinEvent evt) {
 			System.out.println("[WinEvent] " + evt);
