@@ -17,6 +17,8 @@ import org.scijava.display.event.input.MsEvent;
 import org.scijava.display.event.window.WinEvent;
 import org.scijava.event.EventHandler;
 import org.scijava.event.SciJavaEvent;
+import org.scijava.log.LogService;
+import org.scijava.plugin.Parameter;
 import org.scijava.service.Service;
 
 /**
@@ -72,22 +74,29 @@ public class ListenToEvents {
 	/** A class for subscribing to ImageJ events of interest. */
 	public static class MyEventSubscriber {
 
+		@Parameter
+		private LogService log;
+
 		/** Responds to display events. */
 		@EventHandler
 		public void onEvent(final DisplayEvent evt) {
-			System.out.println("[DisplayEvent] " + evt);
+			logEvent(evt);
 		}
 
 		/** Responds to mouse events. */
 		@EventHandler
 		public void onEvent(final MsEvent evt) {
-			System.out.println("[MsEvent] " + evt);
+			logEvent(evt);
 		}
 
 		/** Responds to window events. */
 		@EventHandler
 		public void onEvent(final WinEvent evt) {
-			System.out.println("[WinEvent] " + evt);
+			logEvent(evt);
+		}
+
+		private void logEvent(final SciJavaEvent evt) {
+			log.info("[" + evt.getClass().getSimpleName() + "] " + evt);
 		}
 
 	}
