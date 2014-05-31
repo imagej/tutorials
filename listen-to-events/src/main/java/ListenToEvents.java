@@ -49,15 +49,6 @@ public class ListenToEvents {
 		// Create the ImageJ application context with all available services.
 		final ImageJ ij = new ImageJ();
 
-		// Create a new dataset.
-		final int w = 512, h = 384;
-		final Dataset dataset =
-			ij.dataset().create(new long[] { w, h }, "Events Demo",
-				new AxisType[] { Axes.X, Axes.Y }, 8, false, false);
-
-		// Display the dataset.
-		ij.ui().show(dataset);
-
 		// Create an event subscriber and set its ImageJ application context;
 		// this step will automatically subscribe to event notifications for
 		// all methods labeled with the "@EventHandler" annotation.
@@ -68,6 +59,15 @@ public class ListenToEvents {
 		// garbage collected, and then your event handling methods will no longer
 		// get called. So it is important to keep a reference to any object which
 		// is subscribing to ImageJ events!
+
+		// Create a new dataset.
+		final int w = 512, h = 384;
+		final Dataset dataset =
+			ij.dataset().create(new long[] { w, h }, "Events Demo",
+				new AxisType[] { Axes.X, Axes.Y }, 8, false, false);
+
+		// Display the dataset.
+		ij.ui().show(dataset);
 	}
 
 	/** A class for subscribing to ImageJ events of interest. */
