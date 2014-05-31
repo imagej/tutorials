@@ -8,6 +8,7 @@
 
 import net.imagej.Dataset;
 import net.imagej.ImageJ;
+import net.imagej.event.DatasetCreatedEvent;
 import net.imglib2.meta.Axes;
 import net.imglib2.meta.AxisType;
 
@@ -76,6 +77,12 @@ public class ListenToEvents {
 
 		@Parameter
 		private LogService log;
+
+		/** Responds to dataset creation events. */
+		@EventHandler
+		public void onEvent(final DatasetCreatedEvent evt) {
+			logEvent(evt);
+		}
 
 		/** Responds to display events. */
 		@EventHandler
