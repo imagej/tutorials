@@ -34,6 +34,9 @@ public class AddROIs {
 		// create the ImageJ application context with all available services
 		final ImageJ ij = new ImageJ();
 
+		// display the "swing" user interface
+		ij.ui().showUI("swing");
+
 		// create a new dataset
 		final int w = 512, h = 384;
 		final Dataset dataset =
