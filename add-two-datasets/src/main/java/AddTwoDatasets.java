@@ -9,8 +9,6 @@
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JFileChooser;
-
 import net.imagej.Dataset;
 import net.imagej.ImageJ;
 import net.imglib2.Cursor;
@@ -24,6 +22,8 @@ import net.imglib2.ops.operation.real.binary.RealAdd;
 import net.imglib2.type.NativeType;
 import net.imglib2.type.numeric.RealType;
 import net.imglib2.type.numeric.real.FloatType;
+
+import org.scijava.widget.FileWidget;
 
 /** Adds two datasets using the ImgLib2 framework. */
 public class AddTwoDatasets {
@@ -132,10 +132,8 @@ public class AddTwoDatasets {
 	/** Loads a dataset selected by the user from a dialog box. */
 	private static Dataset load(final ImageJ ij) throws IOException {
 		// ask the user for a file to open
-		final JFileChooser chooser = new JFileChooser();
-		final int returnVal = chooser.showOpenDialog(null);
-		if (returnVal != JFileChooser.APPROVE_OPTION) return null;
-		final File file = chooser.getSelectedFile();
+		final File file = ij.ui().chooseFile(null, FileWidget.OPEN_STYLE);
+		if (file == null) return null;
 
 		// load the dataset
 		return ij.dataset().open(file.getAbsolutePath());
