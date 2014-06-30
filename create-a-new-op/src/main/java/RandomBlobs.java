@@ -27,6 +27,11 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
+/**
+ * Creates a series of blobs across an outputted ascii space based on input 
+ * parameters specified in the below main method
+ * @author Aparna Pal
+ */
 
 import java.util.ArrayList;
 
@@ -37,6 +42,8 @@ import net.imglib2.RandomAccessibleInterval;
 import net.imglib2.img.array.ArrayImgs;
 import net.imglib2.type.numeric.RealType;
 import net.imglib2.util.IntervalIndexer;
+import net.imglib2.util.Intervals;
+import net.imglib2.Dimensions;
 
 import org.python.google.common.primitives.Longs;
 import org.scijava.ItemIO;
@@ -75,7 +82,7 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 
 	@Override
 	public void run() {
-		// produce a 256x256 float64 array-backed image by default
+		// produce a XxY float64 array-backed image using the input parameters specified in the main method
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final RandomAccessibleInterval<T> newImage = (RandomAccessibleInterval) ArrayImgs
 				.doubles(xDim,yDim);
@@ -87,11 +94,10 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 		final long[] pos = new long[image.numDimensions()];
 		final long[] dims = new long[image.numDimensions()];
 		image.dimensions(dims);
-
-		long total = 1;
-		for (int i = 0; i < dims.length; i++) {
-			total *= dims[i];
-		}
+		
+		
+		long total = Intervals.numElements(image);
+		
 		ArrayList<Long[]> axes = new ArrayList<Long[]>();
 		RandomAccess<T> maybe = image.randomAccess(image);
 		for (int i = 0; i < blobNum; i++) {
@@ -134,7 +140,7 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 					axes[1] = (long)j;
 					if(i < xDim && i > 0 && j < yDim && j > 0)
 					{
-					coordinate.add(axes);
+						coordinate.add(axes);
 					}
 
 				}
