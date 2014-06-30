@@ -48,31 +48,20 @@ import org.scijava.plugin.Plugin;
 public class RandomBlobs<T extends RealType<T>> implements Op {
 	@Parameter(type = ItemIO.OUTPUT)
 	private RandomAccessibleInterval<T> image;
-	private boolean isDone = false;
 	@Parameter
 	private LogService log;
-	private static int xDim = 32;
-	private static int yDim = 32; 
-
-	public static void main(final String... args) throws Exception {
-		final ImageJ ij = new ImageJ();
-
-		// Run our op!
-		final Object blobs = ij.op().run("blobs", 5, 5);
-
-		// And what value did our op return?
-		ij.log().info(blobs);
-
-		Object ascii = ij.op().ascii(blobs);
-		ij.log().info(ascii);
-	}
-
 	@Parameter(type = ItemIO.INPUT)
 	private int blobNum;
 	
 	@Parameter(type = ItemIO.INPUT)
 	private int blobSize;
+	@Parameter(type = ItemIO.INPUT)
+	private static int xDim;
+	@Parameter(type = ItemIO.INPUT)
+	private static int yDim;
 
+
+	
 	@Override
 	public void run() {
 		// produce a 256x256 float64 array-backed image by default
@@ -143,5 +132,16 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 		return coordinate;
 
 	}
+	public static void main(final String... args) throws Exception {
+		final ImageJ ij = new ImageJ();
 
+		// Run our op!
+		final Object blobs = ij.op().run("blobs", 5, 5, 32,32);
+
+		// And what value did our op return?
+		ij.log().info(blobs);
+
+		Object ascii = ij.op().ascii(blobs);
+		ij.log().info(ascii);
+	}
 }
