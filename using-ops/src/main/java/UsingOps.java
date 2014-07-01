@@ -28,7 +28,7 @@ public class UsingOps {
 		ij.log().info("What is 2 + 5? " + seven);
 
 		// create a new blank image
-		final long[] dims = {78, 23};
+		final long[] dims = {150, 100};
 		final Object blank = ij.op().create(dims);
 
 		// fill in the image with a sinusoid using a formula
