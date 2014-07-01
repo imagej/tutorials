@@ -48,6 +48,10 @@ public class UsingOps {
 		final Object ascii = ij.op().ascii(composite);
 		ij.log().info("Composite image:\n" + ascii);
 
+		// show the image in a window
+		ij.ui().showUI();
+		ij.ui().show("composite", composite);
+
 		// execute an op on every pixel of an image
 		final Op addOp = ij.op().op("add", DoubleType.class, new DoubleType(5.0));
 		ij.op().map(composite, composite, addOp);
