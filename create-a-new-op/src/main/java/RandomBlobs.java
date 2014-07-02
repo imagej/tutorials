@@ -28,6 +28,12 @@
  * #L%
  */
 
+/**
+ * Creates a series of blobs across an outputted ascii space based on input 
+ * parameters specified in the below main method
+ * @author Aparna Pal
+ */
+
 import java.util.ArrayList;
 
 import net.imagej.ImageJ;
@@ -53,7 +59,6 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 	private LogService log;
 	@Parameter(type = ItemIO.INPUT)
 	private int blobNum;
-	
 	@Parameter(type = ItemIO.INPUT)
 	private int blobSize;
 	@Parameter(type = ItemIO.INPUT)
@@ -61,39 +66,43 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 	@Parameter(type = ItemIO.INPUT)
 	private int yDim;
 
-
-	
 	@Override
 	public void run() {
-		// produce a XxY float64 array-backed image using the input parameters specified in the main method
+		// produce a XxY float64 array-backed image using the input parameters
+		// specified in the main method
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final RandomAccessibleInterval<T> newImage = (RandomAccessibleInterval) ArrayImgs
-				.doubles(xDim,yDim);
+				.doubles(xDim, yDim);
 		image = newImage;
 
 		final long[] pos = new long[image.numDimensions()];
 		final long[] dims = new long[image.numDimensions()];
 		image.dimensions(dims);
-
-		long total = Intervals.numElements(image);
 		
+		//calculates the number of total intervals within the created image
+		long total = Intervals.numElements(image);
+
 		ArrayList<Long[]> axes = new ArrayList<Long[]>();
 		RandomAccess<T> maybe = image.randomAccess(image);
 		for (int i = 0; i < blobNum; i++) {
-
+			
+			//randomly select a central point within the image
 			long index = (long) (Math.random() * total);
 			IntervalIndexer.indexToPosition(index, dims, pos);
 			maybe.setPosition(pos);
 			maybe.get().setReal(1.0);
+			
+			//creates a neighborhood of radius r around each generated center
 			axes = draw(pos[0], pos[1], blobSize, xDim, yDim);
-			for(int j = 0; j < axes.size(); j++)
-			{
-				Long[] point = axes.get(j); 
-				for(int k = 0; k < pos.length; k++)
-				{
+			
+			for (int j = 0; j < axes.size(); j++) {
+				//Code currently uses objects as the LongArray class as I had 
+				//implemented it made the program very confusing
+				Long[] point = axes.get(j);
+				for (int k = 0; k < pos.length; k++) {
 					pos[k] = (long) point[k];
 				}
-				
+
 				maybe.setPosition(pos);
 				maybe.get().setReal(1.0);
 			}
@@ -102,22 +111,24 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 
 	}
 
-	public static ArrayList<Long[]> draw(long posX, long posY, int radius, int xDim, int yDim) {
+	public static ArrayList<Long[]> draw(long posX, long posY, int radius,
+			int xDim, int yDim) {
 
-		int x = (int)posX;
-		int y = (int)posY;
+		int x = (int) posX;
+		int y = (int) posY;
 
 		ArrayList<Long[]> coordinate = new ArrayList<Long[]>();
-		for (int i = x-radius; i <= x+radius; i++) {
-			for (int j = y-radius; j <= y+radius; j++) {
+		for (int i = x - radius; i <= x + radius; i++) {
+			for (int j = y - radius; j <= y + radius; j++) {
 				double dx = (x - i);
 				double dy = (y - j);
 
 				if (Math.abs(dx * dx + dy * dy) < radius) {
 					Long[] axes = new Long[2];
-					axes[0] = (long)i;
-					axes[1] = (long)j;
+					axes[0] = (long) i;
+					axes[1] = (long) j;
 					
+					//checks to make sure each calculated coordinate is within dimension
 					axes = evaluate(axes, xDim, yDim);
 					coordinate.add(axes);
 
@@ -127,31 +138,29 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 		return coordinate;
 
 	}
-	public static Long[] evaluate (Long[] axes, int xDim, int yDim)
-	{
+
+	public static Long[] evaluate(Long[] axes, int xDim, int yDim) {
 		axes[0] = calculate(axes[0], xDim);
 		axes[1] = calculate(axes[1], yDim);
 
-		
 		return axes;
 	}
-	public static long calculate(long num, int Dim)
-	{
-		if(num > Dim)
-		{
+
+	public static long calculate(long num, int Dim) {
+		//if the passed number is not within the given dimension, it is wrapped 
+		if (num > Dim) {
 			num = num - (Dim + 1);
-		}
-		else if (num < 0)
-		{
+		} else if (num < 0) {
 			num = num + Dim;
 		}
 		return num;
 	}
+
 	public static void main(final String... args) throws Exception {
 		final ImageJ ij = new ImageJ();
 
 		// Run our op!
-		final Object blobs = ij.op().run("blobs", 5, 5, 32,32);
+		final Object blobs = ij.op().run("blobs", 5, 5, 32, 32);
 
 		// And what value did our op return?
 		ij.log().info(blobs);
