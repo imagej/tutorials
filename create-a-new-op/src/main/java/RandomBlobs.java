@@ -37,6 +37,7 @@ import net.imglib2.RandomAccessibleInterval;
 import net.imglib2.img.array.ArrayImgs;
 import net.imglib2.type.numeric.RealType;
 import net.imglib2.util.IntervalIndexer;
+import net.imglib2.util.Intervals;
 
 import org.python.google.common.primitives.Longs;
 import org.scijava.ItemIO;
@@ -56,31 +57,26 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 	@Parameter(type = ItemIO.INPUT)
 	private int blobSize;
 	@Parameter(type = ItemIO.INPUT)
-	private static int xDim;
+	private int xDim;
 	@Parameter(type = ItemIO.INPUT)
-	private static int yDim;
+	private int yDim;
 
 
 	
 	@Override
 	public void run() {
-		// produce a 256x256 float64 array-backed image by default
+		// produce a XxY float64 array-backed image using the input parameters specified in the main method
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final RandomAccessibleInterval<T> newImage = (RandomAccessibleInterval) ArrayImgs
 				.doubles(xDim,yDim);
 		image = newImage;
 
-		int x = 0;
-		int y = 0;
-
 		final long[] pos = new long[image.numDimensions()];
 		final long[] dims = new long[image.numDimensions()];
 		image.dimensions(dims);
 
-		long total = 1;
-		for (int i = 0; i < dims.length; i++) {
-			total *= dims[i];
-		}
+		long total = Intervals.numElements(image);
+		
 		ArrayList<Long[]> axes = new ArrayList<Long[]>();
 		RandomAccess<T> maybe = image.randomAccess(image);
 		for (int i = 0; i < blobNum; i++) {
@@ -89,7 +85,7 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 			IntervalIndexer.indexToPosition(index, dims, pos);
 			maybe.setPosition(pos);
 			maybe.get().setReal(1.0);
-			axes = draw(pos[0], pos[1], blobSize);
+			axes = draw(pos[0], pos[1], blobSize, xDim, yDim);
 			for(int j = 0; j < axes.size(); j++)
 			{
 				Long[] point = axes.get(j); 
@@ -106,14 +102,14 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 
 	}
 
-	public static ArrayList<Long[]> draw(long posX, long posY, int radius) {
+	public static ArrayList<Long[]> draw(long posX, long posY, int radius, int xDim, int yDim) {
 
-		long x = posX;
-		long y = posY;
+		int x = (int)posX;
+		int y = (int)posY;
 
 		ArrayList<Long[]> coordinate = new ArrayList<Long[]>();
-		for (int i = 0; i <= 2 * posX; i++) {
-			for (int j = 0; j <= 2 * posY; j++) {
+		for (int i = x-radius; i <= x+radius; i++) {
+			for (int j = y-radius; j <= y+radius; j++) {
 				double dx = (x - i);
 				double dy = (y - j);
 
@@ -121,16 +117,35 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 					Long[] axes = new Long[2];
 					axes[0] = (long)i;
 					axes[1] = (long)j;
-					if(i < xDim && i > 0 && j < yDim && j > 0)
-					{
+					
+					axes = evaluate(axes, xDim, yDim);
 					coordinate.add(axes);
-					}
 
 				}
 			}
 		}
 		return coordinate;
 
+	}
+	public static Long[] evaluate (Long[] axes, int xDim, int yDim)
+	{
+		axes[0] = calculate(axes[0], xDim);
+		axes[1] = calculate(axes[1], yDim);
+
+		
+		return axes;
+	}
+	public static long calculate(long num, int Dim)
+	{
+		if(num > Dim)
+		{
+			num = num - (Dim + 1);
+		}
+		else if (num < 0)
+		{
+			num = num + Dim;
+		}
+		return num;
 	}
 	public static void main(final String... args) throws Exception {
 		final ImageJ ij = new ImageJ();
