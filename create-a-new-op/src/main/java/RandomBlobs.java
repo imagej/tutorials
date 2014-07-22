@@ -28,6 +28,8 @@
  * #L%
  */
 
+import java.util.Random;
+
 import net.imagej.ImageJ;
 import net.imagej.ops.Op;
 import net.imglib2.RandomAccess;
@@ -69,6 +71,9 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 	@Parameter
 	private int yDim;
 
+	@Parameter(required = false)
+	private long seed = 0xcafebabe;
+
 	@Override
 	public void run() {
 		// produce a XxY float64 array-backed image using the input parameters
@@ -85,9 +90,11 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 
 		final long total = Intervals.numElements(image);
 
+		final Random r = new Random(seed);
+
 		final RandomAccess<T> ra = image.randomAccess(image);
 		for (int i = 0; i < blobNum; i++) {
-			final long index = (long) (Math.random() * total);
+			final long index = (long) (r.nextDouble() * total);
 			IntervalIndexer.indexToPosition(index, dims, blobCenter);
 
 			for (int j = 0; j < total; j++) {
