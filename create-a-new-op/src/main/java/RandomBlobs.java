@@ -43,8 +43,8 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 /**
- * Creates a series of blobs across a new image based on input
- * parameters specified in the below main method.
+ * Creates a series of blobs across a new image based on input parameters
+ * specified in the below main method.
  *
  * @author Aparna Pal
  */
@@ -53,14 +53,19 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 
 	@Parameter(type = ItemIO.OUTPUT)
 	private RandomAccessibleInterval<T> image;
+
 	@Parameter
 	private LogService log;
+
 	@Parameter
 	private int blobNum;
+
 	@Parameter
 	private int blobSize;
+
 	@Parameter
 	private int xDim;
+
 	@Parameter
 	private int yDim;
 
@@ -87,12 +92,12 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 
 			for (int j = 0; j < total; j++) {
 				IntervalIndexer.indexToPosition(j, dims, pos);
-				double dist = distance(pos, blobCenter);
-				if(dist > blobSize) continue;
-				
+				final double dist = distance(pos, blobCenter);
+				if (dist > blobSize) continue;
+
 				ra.setPosition(pos);
-				final double norm = 1.0 - dist/ blobSize;
-				ra.get().setReal(Math.max(ra.get().getRealDouble(),norm));
+				final double norm = 1.0 - dist / blobSize;
+				ra.get().setReal(Math.max(ra.get().getRealDouble(), norm));
 			}
 		}
 	}
@@ -101,7 +106,7 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 		final ImageJ ij = new ImageJ();
 
 		// Run our op
-		final Object blobs = ij.op().run("blobs", 50, 16, 128, 128);
+		final Object blobs = ij.op().run("blobs", 20, 16, 128, 128);
 
 		// And display the result!
 		ij.ui().showUI();
@@ -114,8 +119,8 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 	private double distance(final long[] pos, final long[] center) {
 		long sumDistSquared = 0;
 		for (int d = 0; d < center.length; d++) {
-			long dist = pos[d] - center[d];
-			sumDistSquared += dist*dist;
+			final long dist = pos[d] - center[d];
+			sumDistSquared += dist * dist;
 		}
 		return Math.sqrt(sumDistSquared);
 	}
