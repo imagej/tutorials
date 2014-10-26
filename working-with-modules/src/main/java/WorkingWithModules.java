@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.imagej.ImageJ;
-import net.imagej.plugins.commands.app.AboutImageJ;
+import net.imagej.app.AboutImageJ;
 
 import org.scijava.module.ModuleInfo;
 import org.scijava.module.ModuleItem;
