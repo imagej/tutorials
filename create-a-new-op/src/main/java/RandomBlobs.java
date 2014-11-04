@@ -45,8 +45,7 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 /**
- * Creates a series of blobs across a new image based on input parameters
- * specified in the below main method.
+ * Creates a series of blobs across a new image based on given inputs.
  *
  * @author Aparna Pal
  */
@@ -77,7 +76,6 @@ public class RandomBlobs<T extends RealType<T>> implements Op {
 	@Override
 	public void run() {
 		// produce a XxY float64 array-backed image using the input parameters
-		// specified in the main method
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final RandomAccessibleInterval<T> newImage =
 			(RandomAccessibleInterval) ArrayImgs.doubles(xDim, yDim);
