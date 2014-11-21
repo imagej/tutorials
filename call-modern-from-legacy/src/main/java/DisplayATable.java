@@ -10,11 +10,11 @@ import ij.IJ;
 import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
 import net.imagej.ImageJ;
+import net.imagej.Main;
 import net.imagej.table.DefaultGenericTable;
 import net.imagej.table.GenericTable;
 
-import org.scijava.display.DisplayService;
-import org.scijava.ui.UIService;
+import org.scijava.Context;
 
 /** Demonstrates use of the modern ImageJ API from a legacy ImageJ1 plugin. */
 public class DisplayATable implements PlugIn {
@@ -34,8 +34,9 @@ public class DisplayATable implements PlugIn {
 	}
 
 	private void displayTable(final int rowCount, final int colCount) {
-		// create an ImageJ application context with the necessary services
-		final ImageJ ij = new ImageJ(DisplayService.class, UIService.class);
+		// retrieve the ImageJ application context
+		final Context context = (Context) IJ.runPlugIn("org.scijava.Context", "");
+		final ImageJ ij = new ImageJ(context);
 
 		// create a spreadsheet
 		final GenericTable spreadsheet =
@@ -55,7 +56,7 @@ public class DisplayATable implements PlugIn {
 
 	/** Tests the plugin. */
 	public static void main(final String... args) {
-		new ij.ImageJ();
+		Main.launch(args);
 		IJ.runPlugIn(DisplayATable.class.getName(), "");
 	}
 
