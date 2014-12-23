@@ -19,6 +19,10 @@
 	<name>Simple ImageJ Commands</name>
 	<description>This example provides an introduction to writing ImageJ commands.</description>
 
+	<properties>
+		<main-class>HelloWorld</main-class>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>imagej.public</id>

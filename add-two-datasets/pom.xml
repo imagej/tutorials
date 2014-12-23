@@ -19,6 +19,10 @@
 	<name>Add Two Datasets</name>
 	<description>This example provides a simple example of using the ImgLib OPS framework to add two images together.</description>
 
+	<properties>
+		<main-class>AddTwoDatasets</main-class>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>imagej.public</id>

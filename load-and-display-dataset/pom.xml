@@ -19,6 +19,10 @@
 	<name>Load and Display a Dataset</name>
 	<description>This example shows how to load and display a dataset using the ImageJ API.</description>
 
+	<properties>
+		<main-class>LoadAndDisplayDataset</main-class>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>imagej.public</id>

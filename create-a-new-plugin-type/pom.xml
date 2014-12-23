@@ -19,6 +19,10 @@
 	<name>Create a New Plugin Type</name>
 	<description>This example shows how to create your own type of plugin, discover plugins of that type, and work with them.</description>
 
+	<properties>
+		<main-class>CreateANewPluginType</main-class>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>imagej.public</id>

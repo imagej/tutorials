@@ -19,6 +19,10 @@
 	<name>Adding ImageJ Operations</name>
 	<description>This example demonstrates how to add a new image processing routine to ImageJ OPS. An op is a reusable algorithm that works on inputs and produces outputs. More information: https://github.com/imagej/imagej-ops</description>
 
+	<properties>
+		<main-class>CreateANewOp</main-class>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>imagej.public</id>

@@ -19,6 +19,10 @@
 	<name>Execute Commands</name>
 	<description>This example shows how to execute commands programmatically using the ImageJ API.</description>
 
+	<properties>
+		<main-class>ExecuteCommands</main-class>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>imagej.public</id>

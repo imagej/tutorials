@@ -19,6 +19,10 @@
 	<name>Working with Modules</name>
 	<description>This example demonstrates how to work with ImageJ modules, which are executable bits of code. A "command" is an ImageJ module, but not all modules are necessarily ImageJ commands. So the best way to access all the modular functionality ImageJ has to offer is to use the ModuleService.</description>
 
+	<properties>
+		<main-class>WorkingWithModules</main-class>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>imagej.public</id>

@@ -19,6 +19,10 @@
 	<name>Demonstration of Input Widgets</name>
 	<description>This example demonstrates various input widgets in action.</description>
 
+	<properties>
+		<main-class>WidgetDemo</main-class>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>imagej.public</id>

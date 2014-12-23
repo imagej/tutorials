@@ -19,6 +19,10 @@
 	<name>Add ROIs</name>
 	<description>This example shows how to add regions of interest (ROIs) to a display.</description>
 
+	<properties>
+		<main-class>AddROIs</main-class>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>imagej.public</id>

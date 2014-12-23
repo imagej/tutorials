@@ -19,6 +19,10 @@
 	<name>Intro to ImageJ API</name>
 	<description>This example provides an introduction to the ImageJ API.</description>
 
+	<properties>
+		<main-class>IntroToImageJAPI</main-class>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>imagej.public</id>

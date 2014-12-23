@@ -19,6 +19,10 @@
 	<name>Custom Preprocessor Plugin</name>
 	<description>This example shows how to write your own preprocessor plugin that augments every command execution.</description>
 
+	<properties>
+		<main-class>TrollPreprocessor</main-class>
+	</properties>
+
 	<repositories>
 		<repository>
 			<id>imagej.public</id>
