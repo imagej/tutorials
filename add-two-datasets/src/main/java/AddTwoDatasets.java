@@ -11,10 +11,10 @@ import java.io.IOException;
 
 import net.imagej.Dataset;
 import net.imagej.ImageJ;
+import net.imagej.axis.AxisType;
 import net.imglib2.Cursor;
 import net.imglib2.RandomAccess;
 import net.imglib2.img.Img;
-import net.imglib2.meta.AxisType;
 import net.imglib2.ops.img.ImageCombiner;
 import net.imglib2.ops.operation.BinaryOperation;
 import net.imglib2.ops.operation.img.binary.ImgCombine;

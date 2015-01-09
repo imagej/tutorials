@@ -8,9 +8,9 @@
 
 import net.imagej.Dataset;
 import net.imagej.ImageJ;
+import net.imagej.axis.Axes;
+import net.imagej.axis.AxisType;
 import net.imagej.event.DatasetCreatedEvent;
-import net.imglib2.meta.Axes;
-import net.imglib2.meta.AxisType;
 
 import org.scijava.display.event.DisplayEvent;
 import org.scijava.display.event.input.MsEnteredEvent;

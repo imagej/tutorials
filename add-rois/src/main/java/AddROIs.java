@@ -11,13 +11,13 @@ import java.util.List;
 
 import net.imagej.Dataset;
 import net.imagej.ImageJ;
+import net.imagej.axis.Axes;
+import net.imagej.axis.AxisType;
 import net.imagej.display.ImageDisplay;
 import net.imagej.overlay.EllipseOverlay;
 import net.imagej.overlay.LineOverlay;
 import net.imagej.overlay.Overlay;
 import net.imagej.overlay.RectangleOverlay;
-import net.imglib2.meta.Axes;
-import net.imglib2.meta.AxisType;
 
 import org.scijava.util.Colors;
 
