@@ -49,7 +49,6 @@ public class UsingOps {
 		ij.log().info("Composite image:\n" + ascii);
 
 		// show the image in a window
-		ij.ui().showUI();
 		ij.ui().show("composite", composite);
 
 		// execute an op on every pixel of an image
