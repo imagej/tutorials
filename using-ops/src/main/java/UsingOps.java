@@ -14,7 +14,6 @@ import net.imglib2.type.numeric.real.DoubleType;
 public class UsingOps {
 
 	public static void main(final String... args) throws Exception {
-		System.setProperty("scijava.log.level", "info");
 		final ImageJ ij = new ImageJ();
 
 		// how many ops?
