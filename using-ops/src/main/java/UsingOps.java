@@ -30,7 +30,7 @@ public class UsingOps {
 
 		// create a new blank image
 		final long[] dims = {150, 100};
-		final Object blank = ij.op().create(dims);
+		final Object blank = ij.op().createimg(dims);
 
 		// fill in the image with a sinusoid using a formula
 		final String formula = "10 * (Math.cos(0.3*p[0]) + Math.sin(0.3*p[1]))";
@@ -40,7 +40,7 @@ public class UsingOps {
 		ij.op().add(sinusoid, 13.0);
 
 		// generate a gradient image using a formula
-		final Object gradient = ij.op().equation(ij.op().create(dims), "p[0]+p[1]");
+		final Object gradient = ij.op().equation(ij.op().createimg(dims), "p[0]+p[1]");
 
 		// add the two images
 		final Object composite = ij.op().add(sinusoid, gradient);
