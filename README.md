@@ -1,3 +1,5 @@
+![](http://jenkins.imagej.net/job/ImageJ-tutorials/lastBuild/badge/icon)
+
 This project contains example code for working with [ImageJ2][1].
 
 
