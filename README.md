@@ -34,6 +34,6 @@ SEE ALSO
 The [ImgLib2 Examples][3], an excellent image processing tutorial.
 
 
-[1]: http://developer.imagej.net/
+[1]: http://imagej.net/ImageJ2
 [2]: http://creativecommons.org/publicdomain/zero/1.0/
-[3]: http://fiji.sc/ImgLib2_Examples
+[3]: http://imagej.net/ImgLib2_Examples
