@@ -21,7 +21,7 @@ public class UsingOps {
 		ij.log().info("Found " + opCount + " ops");
 
 		// learn about an op
-		ij.log().info(ij.op().help("add"));
+		ij.log().info(ij.op().help("math.add"));
 
 		// add two numbers
 		final Object seven = ij.op().add(2, 5);
@@ -52,7 +52,7 @@ public class UsingOps {
 		ij.ui().show("composite", composite);
 
 		// execute an op on every pixel of an image
-		final Op addOp = ij.op().op("add", DoubleType.class, new DoubleType(5.0));
+		final Op addOp = ij.op().op("math.add", DoubleType.class, new DoubleType(5.0));
 		ij.op().map(composite, composite, addOp);
 	}
 
