@@ -48,6 +48,7 @@
 		<module>add-rois</module>
 		<module>add-two-datasets</module>
 		<module>call-modern-from-legacy</module>
+		<module>commands-with-preview</module>
 		<module>create-a-new-op</module>
 		<module>create-a-new-plugin-type</module>
 		<module>custom-preprocessor-plugin</module>
