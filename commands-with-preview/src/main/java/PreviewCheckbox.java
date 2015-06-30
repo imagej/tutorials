@@ -97,7 +97,7 @@ public class PreviewCheckbox implements Command, Previewable {
 			ij.dataset().create(dims, name, axes, bitsPerPixel, signed, floating);
 		ij.ui().show(dataset);
 
-		// Launch the "CommandWithPreview" command.
+		// Launch the "PreviewCheckbox" command.
 		ij.command().run(PreviewCheckbox.class, true);
 	}
 
