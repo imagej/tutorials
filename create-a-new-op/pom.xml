@@ -16,8 +16,8 @@
 	<artifactId>create-a-new-op</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<name>Adding ImageJ Operations</name>
-	<description>This example demonstrates how to add a new image processing routine to ImageJ OPS. An op is a reusable algorithm that works on inputs and produces outputs. More information: https://github.com/imagej/imagej-ops</description>
+	<name>Create a New Op</name>
+	<description>This example demonstrates how to add a new image processing routine to ImageJ Ops. An op is a reusable algorithm that works on inputs and produces outputs. More information: https://github.com/imagej/imagej-ops</description>
 
 	<properties>
 		<main-class>CreateANewOp</main-class>

@@ -16,8 +16,8 @@
 	<artifactId>using-ops</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<name>Using ImageJ Operations</name>
-	<description>This example provides an introduction to ImageJ OPS. An op is a reusable algorithm that works on inputs and produces outputs. More information: https://github.com/imagej/imagej-ops</description>
+	<name>Using ImageJ Ops</name>
+	<description>This example provides an introduction to ImageJ Ops. An op is a reusable algorithm that works on inputs and produces outputs. More information: https://github.com/imagej/imagej-ops</description>
 
 	<properties>
 		<main-class>UsingOps</main-class>
