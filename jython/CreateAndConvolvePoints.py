@@ -16,7 +16,6 @@ randomAccess= phantom.randomAccess();
 randomAccess.setPosition(array([xSize/2, ySize/2], 'l'));
 randomAccess.get().setReal(255.0);	
 
-randomAccess= phantom.randomAccess();
 randomAccess.setPosition(array([xSize/4, ySize/4], 'l'));
 randomAccess.get().setReal(255.0);
 
