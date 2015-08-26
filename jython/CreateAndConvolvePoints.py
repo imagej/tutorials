@@ -9,7 +9,7 @@ from net.imglib2 import Point;
 from net.imglib2.algorithm.region.hypersphere import HyperSphere;
 
 # create an empty image 
-phantom=ops.create().img(array([xSize, ySize], 'l'))
+phantom=ops.create().img([xSize, ySize])
 
 # use the randomAccess interface to place points in the image
 randomAccess= phantom.randomAccess();
