@@ -24,28 +24,28 @@ public class UsingOps {
 		ij.log().info(ij.op().help("math.add"));
 
 		// add two numbers
-		final Object seven = ij.op().add(2, 5);
+		final Object seven = ij.op().math().add(2, 5);
 		ij.log().info("What is 2 + 5? " + seven);
 
 		// create a new blank image
 		final long[] dims = {150, 100};
-		final Object blank = ij.op().createimg(dims);
+		final Object blank = ij.op().create().img(dims);
 
 		// fill in the image with a sinusoid using a formula
 		final String formula = "10 * (Math.cos(0.3*p[0]) + Math.sin(0.3*p[1]))";
-		final Object sinusoid = ij.op().equation(blank, formula);
+		final Object sinusoid = ij.op().image().equation(blank, formula);
 
 		// add a constant value to an image
-		ij.op().add(sinusoid, 13.0);
+		ij.op().math().add(sinusoid, 13.0);
 
 		// generate a gradient image using a formula
-		final Object gradient = ij.op().equation(ij.op().createimg(dims), "p[0]+p[1]");
+		final Object gradient = ij.op().image().equation(ij.op().create().img(dims), "p[0]+p[1]");
 
 		// add the two images
-		final Object composite = ij.op().add(sinusoid, gradient);
+		final Object composite = ij.op().math().add(sinusoid, gradient);
 
 		// dump the image to the console
-		final Object ascii = ij.op().ascii(composite);
+		final Object ascii = ij.op().image().ascii(composite);
 		ij.log().info("Composite image:\n" + ascii);
 
 		// show the image in a window
