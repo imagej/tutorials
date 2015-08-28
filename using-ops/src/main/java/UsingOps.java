@@ -21,7 +21,7 @@ public class UsingOps {
 		ij.log().info("Found " + opCount + " ops");
 
 		ij.log().info("-------- Learn about an op --------");
-		ij.log().info(ij.op().help("math.add"));
+		ij.log().info(ij.op().help("math.mul"));
 
 		ij.log().info("-------- Add two numbers --------");
 		final Object seven = ij.op().math().add(2, 5);
