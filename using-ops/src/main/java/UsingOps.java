@@ -24,7 +24,7 @@ public class UsingOps {
 		ij.log().info(ij.op().help("math.mul"));
 
 		ij.log().info("-------- Add two numbers --------");
-		final Object seven = ij.op().math().add(2, 5);
+		final int seven = ij.op().math().add(2, 5);
 		ij.log().info("What is 2 + 5? " + seven);
 
 		ij.log().info("-------- Create a new blank image --------");
