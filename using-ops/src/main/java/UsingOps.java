@@ -39,7 +39,8 @@ public class UsingOps {
 		ij.op().math().add(sinusoid, 13.0);
 
 		ij.log().info("-------- Generate gradient image using a formula --------");
-		final Object gradient = ij.op().image().equation(ij.op().create().img(dims), "p[0]+p[1]");
+		final Object gBlank = ij.op().create().img(dims);
+		final Object gradient = ij.op().image().equation(gBlank, "p[0]+p[1]");
 
 		ij.log().info("-------- Add two images --------");
 		final Object composite = ij.op().math().add(sinusoid, gradient);
