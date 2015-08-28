@@ -12,12 +12,12 @@ import java.util.Map;
 import java.util.concurrent.Future;
 
 import net.imagej.Dataset;
-import net.imagej.DatasetService;
 import net.imagej.ImageJ;
 
 import org.scijava.command.CommandModule;
 import org.scijava.command.CommandService;
 import org.scijava.command.ContextCommand;
+import org.scijava.io.IOService;
 import org.scijava.module.Module;
 import org.scijava.plugins.commands.io.OpenFile;
 
@@ -49,8 +49,8 @@ import org.scijava.plugins.commands.io.OpenFile;
  * <p>
  * A fourth approach is to code the meat of your command as a method in a
  * service. For example, the {@link OpenFile} command ultimately delegates to
- * the {@link DatasetService#open(String)} method to open a {@link Dataset}, so
- * it is easiest to simply call that service method directly.
+ * the {@link IOService} to open files, so it is easiest to simply use that
+ * service directly.
  * </p>
  * <p>
  * As a rule of thumb, a great pattern to follow is:
