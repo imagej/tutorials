@@ -23,7 +23,7 @@ import org.scijava.plugin.Plugin;
  * checkbox is active.
  */
 @Plugin(type = Command.class,
-	menuPath = "Plugins>ImageJ Tutorials>Preview Checkbox")
+	menuPath = "Tutorials>Preview Checkbox")
 public class PreviewCheckbox implements Command, Previewable {
 
 	// -- Parameters --

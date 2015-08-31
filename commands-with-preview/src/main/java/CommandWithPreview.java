@@ -19,7 +19,7 @@ import org.scijava.plugin.Plugin;
 
 /** An ImageJ2 command with preview capabilities. */
 @Plugin(type = Command.class,
-	menuPath = "Plugins>ImageJ Tutorials>Command with Preview")
+	menuPath = "Tutorials>Command with Preview")
 public class CommandWithPreview implements Command, Previewable {
 
 	// -- Parameters --
