@@ -55,6 +55,8 @@ public class UsingOps {
 		ij.log().info("-------- Execute op on every pixel of an image --------");
 		final Op addOp = ij.op().op("math.add", DoubleType.class, new DoubleType(5.0));
 		ij.op().map(composite, composite, addOp);
+
+		ij.log().info("-------- All done! --------");
 	}
 
 }
