@@ -26,11 +26,7 @@ import org.scijava.widget.Button;
 import org.scijava.widget.ChoiceWidget;
 import org.scijava.widget.NumberWidget;
 
-/**
- * Demonstration of various parameter types and their widgets.
- * 
- * @author Curtis Rueden
- */
+/** Demonstration of various parameter types and their widgets. */
 @Plugin(type = Command.class, headless = true,
 	menuPath = "Plugins>ImageJ Tutorials>Widget Demo")
 public class WidgetDemo implements Command, Previewable {
