@@ -8,11 +8,13 @@
 
 import java.util.Set;
 
+import net.imagej.Dataset;
+import net.imagej.DatasetService;
 import net.imagej.ImageJ;
-import net.imagej.operator.CalculatorOp;
-import net.imagej.operator.CalculatorService;
-import net.imagej.threshold.ThresholdMethod;
-import net.imagej.threshold.ThresholdService;
+import net.imagej.display.ImageDisplay;
+import net.imagej.display.ImageDisplayService;
+import net.imagej.display.OverlayService;
+import net.imagej.overlay.Overlay;
 
 import org.scijava.Context;
 import org.scijava.Contextual;
@@ -38,17 +40,12 @@ import org.scijava.plugin.PluginService;
  * There are many other cases of new plugin types throughout ImageJ; e.g.:
  * </p>
  * <ul>
- * <li>The {@link net.imagej.operator} package provides a {@link CalculatorOp}
- * defining a binary operation for the
- * {@code net.imagej.plugins.commands.calculator.ImageCalculator} command, and
- * corresponding {@link CalculatorService} with the API providing the actual
- * calculation routines.</li>
- * <li>The {@link net.imagej.threshold} package provides a
- * {@link ThresholdMethod} defining a method for automatically thresholding an
- * image, used by the interactive
- * {@code net.imagej.plugins.commands.display.interactive.Threshold} command,
- * and corresponding {@link ThresholdService} with the API providing the actual
- * auto-thresholding routines.</li>
+ * <li>The {@link net.imagej} package provides a
+ * {@link DatasetService} for working with {@link Dataset}s.</li>
+ * <li>The {@link net.imagej.overlay} package provides a
+ * {@link OverlayService} for working with {@link Overlay}s.</li>
+ * <li>The {@link net.imagej.display} package provides an
+ * {@link ImageDisplayService} for working with {@link ImageDisplay}s.</li>
  * </ul>
  * <p>
  * The biggest advantage of structuring things in this way is
