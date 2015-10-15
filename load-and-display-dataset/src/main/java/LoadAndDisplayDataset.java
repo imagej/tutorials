@@ -10,6 +10,7 @@
 import java.io.File;
 import java.io.IOException;
 
+import org.scijava.ItemIO;
 import org.scijava.command.Command;
 import org.scijava.log.LogService;
 import org.scijava.plugin.Parameter;
@@ -31,18 +32,16 @@ import net.imagej.ImageJ;
  * any other IDE).
  *
  * Also, because this class implements Command and is annotated as an @Plugin,
- * it will show up in the ImageJ menus: under Tutorials>Display Dataset, as
- * specified by the menuPath field of the @Plugin annotation.
+ * it will show up in the ImageJ menus: under Tutorials>Load and Display
+ * Dataset, as specified by the menuPath field of the @Plugin annotation.
  */
-@Plugin(type = Command.class, menuPath = "Tutorials>Display Dataset")
+@Plugin(type = Command.class, menuPath = "Tutorials>Load and Display Dataset")
 public class LoadAndDisplayDataset implements Command {
 
 	/*
-	 * Our first two @Parameters are core ImageJ services (and thus @Plugins).
-	 * The context will provide them automatically when this command is created.
+	 * This first @Parameter is a core ImageJ service (and thus @Plugin). The
+	 * context will provide it automatically when this command is created.
 	 */
-	@Parameter
-	private UIService uiService;
 
 	@Parameter
 	private DatasetIOService datasetIOService;
@@ -57,15 +56,21 @@ public class LoadAndDisplayDataset implements Command {
 	private LogService logService;
 
 	/*
-	 * We need to know what image to open. So, in java we use java.io.File when
-	 * we need to access a file on disk. Files are not @Plugins, so the context
-	 * cannot provide one. For non-plugin parameters like this, the active user
-	 * interface is asked for an appropriate value. Typically, this will involve
-	 * asking the user for that value, but this command does not need to know
-	 * the specific user interface currently active. We call this "UI agnostic".
+	 * We need to know what image to open. So, the framework will ask the user
+	 * via the active user interface to select a file to open. This command is
+	 * "UI agnostic": it does not need to know the specific user interface
+	 * currently active.
 	 */
 	@Parameter
 	private File imageFile;
+
+	/*
+	 * This command will produce an image that will automatically be shown by
+	 * the framework. Again, this command is "UI agnostic": how the image is
+	 * shown is not specified here.
+	 */
+	@Parameter(type = ItemIO.OUTPUT)
+	private Dataset image;
 
 	/*
 	 * The run() method is where we do the actual 'work' of the command. In this
@@ -74,8 +79,7 @@ public class LoadAndDisplayDataset implements Command {
 	@Override
 	public void run() {
 		try {
-			final Dataset image = datasetIOService.open(imageFile.getAbsolutePath());
-			uiService.show(image);
+			image = datasetIOService.open(imageFile.getAbsolutePath());
 		} catch (final IOException exc) {
 			// Uses LogService to report the error.
 			logService.error(exc);
@@ -87,7 +91,7 @@ public class LoadAndDisplayDataset implements Command {
 	 * directly from Eclipse (or other IDE).
 	 *
 	 * It will launch ImageJ and then run this command using the CommandService.
-	 * This is equivalent to clicking "Tutorials>Display Dataset" in the UI.
+	 * This is equivalent to clicking "Tutorials>Load and Display Dataset" in the UI.
 	 */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
