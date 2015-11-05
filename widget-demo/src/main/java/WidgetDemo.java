@@ -157,7 +157,7 @@ public class WidgetDemo implements Command, Previewable {
 	@Parameter(visibility = ItemVisibility.MESSAGE)
 	private final String labelObjects = OBJECT_LABEL;
 
-	@Parameter
+	@Parameter(style = "directory")
 	private File file;
 
 	@Parameter
@@ -165,6 +165,24 @@ public class WidgetDemo implements Command, Previewable {
 
 	@Parameter
 	private ColorRGB color;
+
+	public static enum Metal {
+		BRONZE("Bronze"), SILVER("Silver"), GOLD("Gold"), PLATINUM("Platinum");
+
+		private final String label;
+
+		private Metal(final String label) {
+			this.label = label;
+		}
+
+		@Override
+		public String toString() {
+			return label;
+		}
+	}
+
+	@Parameter
+	private Metal metal;
 
 	// This section demonstrates how to use alternative widget styles to
 	// customize the widget used for a particular parameter. Note that the
