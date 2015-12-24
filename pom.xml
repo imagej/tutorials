@@ -37,12 +37,65 @@
 			<organization>UW-Madison LOCI</organization>
 			<organizationUrl>http://loci.wisc.edu/</organizationUrl>
 			<roles>
-				<role>architect</role>
+				<role>founder</role>
+				<role>lead</role>
 				<role>developer</role>
+				<role>debugger</role>
+				<role>reviewer</role>
+				<role>support</role>
+				<role>maintainer</role>
+			</roles>
+			<timezone>-6</timezone>
+		</developer>
+		<developer>
+			<id>hinerm</id>
+			<name>Mark Hiner</name>
+			<email>hiner@wisc.edu</email>
+			<url>http://loci.wisc.edu/people/mark-hiner</url>
+			<organization>UW-Madison LOCI</organization>
+			<organizationUrl>http://loci.wisc.edu/</organizationUrl>
+			<roles>
+				<role>lead</role>
+				<role>developer</role>
+				<role>debugger</role>
+				<role>reviewer</role>
+				<role>support</role>
+				<role>maintainer</role>
 			</roles>
 			<timezone>-6</timezone>
 		</developer>
 	</developers>
+	<contributors>
+		<contributor>
+			<name>Johannes Schindelin</name>
+			<url>http://imagej.net/User:Schindelin</url>
+			<properties><id>dscho</id></properties>
+		</contributor>
+		<contributor>
+			<name>Brian Northan</name>
+			<properties><id>bnorthan</id></properties>
+		</contributor>
+		<contributor>
+			<name>Barry DeZonia</name>
+			<url>http://imagej.net/User:Bdezonia</url>
+			<properties><id>bdezonia</id></properties>
+		</contributor>
+		<contributor>
+			<name>Ellen Arena</name>
+			<url>http://imagej.net/User:Etarena</url>
+			<properties><id>etarena</id></properties>
+		</contributor>
+		<contributor>
+			<name>Jan Eglinger</name>
+			<url>http://imagej.net/User:Eglinger</url>
+			<properties><id>imagejan</id></properties>
+		</contributor>
+		<contributor>
+			<name>Aparna Pal</name>
+			<url>http://imagej.net/User:Apal4</url>
+			<properties><id>apal4</id></properties>
+		</contributor>
+	</contributors>
 
 	<modules>
 		<module>add-rois</module>
