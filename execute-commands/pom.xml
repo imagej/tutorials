@@ -40,5 +40,4 @@
 			<artifactId>scijava-plugins-commands</artifactId>
 		</dependency>
 	</dependencies>
-
 </project>

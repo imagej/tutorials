@@ -36,5 +36,4 @@
 			<artifactId>imagej</artifactId>
 		</dependency>
 	</dependencies>
-
 </project>
