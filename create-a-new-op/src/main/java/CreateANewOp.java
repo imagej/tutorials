@@ -7,6 +7,7 @@
  */
 
 import net.imagej.ImageJ;
+import net.imagej.ops.AbstractOp;
 import net.imagej.ops.Op;
 
 import org.scijava.ItemIO;
@@ -27,7 +28,7 @@ public class CreateANewOp {
 	}
 
 	@Plugin(type = Op.class, name = "narf")
-	public static class Narf implements Op {
+	public static class Narf extends AbstractOp {
 
 		@Parameter(type = ItemIO.BOTH)
 		private String string;

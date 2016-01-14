@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>net.imagej</groupId>
 		<artifactId>pom-imagej</artifactId>
-		<version>13.1.0</version>
+		<version>14.4.1</version>
 		<relativePath />
 	</parent>
 
@@ -21,6 +21,7 @@
 
 	<properties>
 		<main-class>ExecuteCommands</main-class>
+		<scijava.jvm.version>1.8</scijava.jvm.version>
 	</properties>
 
 	<repositories>

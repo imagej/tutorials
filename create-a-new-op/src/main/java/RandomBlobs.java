@@ -9,6 +9,7 @@
 import java.util.Random;
 
 import net.imagej.ImageJ;
+import net.imagej.ops.AbstractOp;
 import net.imagej.ops.Op;
 import net.imglib2.RandomAccess;
 import net.imglib2.RandomAccessibleInterval;
@@ -28,7 +29,7 @@ import org.scijava.plugin.Plugin;
  * @author Aparna Pal
  */
 @Plugin(type = Op.class, name = "blobs")
-public class RandomBlobs<T extends RealType<T>> implements Op {
+public class RandomBlobs<T extends RealType<T>> extends AbstractOp {
 
 	@Parameter(type = ItemIO.OUTPUT)
 	private RandomAccessibleInterval<T> image;

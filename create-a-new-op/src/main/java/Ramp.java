@@ -6,6 +6,7 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
+import net.imagej.ops.AbstractOp;
 import net.imagej.ops.Op;
 import net.imglib2.Cursor;
 import net.imglib2.img.array.ArrayImg;
@@ -19,7 +20,7 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 @Plugin(type = Op.class, name = "ramp")
-public class Ramp<T extends RealType<T>> implements Op {
+public class Ramp<T extends RealType<T>> extends AbstractOp {
 
 	@Parameter(type = ItemIO.OUTPUT)
 	private ArrayImg<DoubleType, DoubleArray> rampImg;
