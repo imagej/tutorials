@@ -8,8 +8,6 @@
 
 import java.io.File;
 
-import javax.swing.JFileChooser;
-
 import net.imagej.Dataset;
 import net.imagej.ImageJ;
 
@@ -21,10 +19,7 @@ public class LoadAndDisplayDataset {
 		final ImageJ ij = new ImageJ();
 
 		// ask the user for a file to open
-		final JFileChooser chooser = new JFileChooser();
-		final int returnVal = chooser.showOpenDialog(null);
-		if (returnVal != JFileChooser.APPROVE_OPTION) return;
-		final File file = chooser.getSelectedFile();
+		final File file = ij.ui().chooseFile(null, "open");
 
 		// load the dataset
 		final Dataset dataset = ij.scifio().datasetIO().open(file.getPath());
