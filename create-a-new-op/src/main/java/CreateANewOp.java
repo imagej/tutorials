@@ -30,12 +30,15 @@ public class CreateANewOp {
 	@Plugin(type = Op.class, name = "narf")
 	public static class Narf extends AbstractOp {
 
-		@Parameter(type = ItemIO.BOTH)
-		private String string;
+		@Parameter
+		private String input;
+
+		@Parameter(type = ItemIO.OUTPUT)
+		private String output;
 
 		@Override
 		public void run() {
-			string = "Egads! " + string.toUpperCase();
+			output = "Egads! " + input.toUpperCase();
 		}
 	}
 }
