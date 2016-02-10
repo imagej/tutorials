@@ -29,8 +29,8 @@ import io.scif.services.DatasetIOService;
  * </p>
  * <p>
  * Because this class implements {@link Command} and is annotated with
- * {@code @Plugin}, it will show up in the ImageJ menus: under Tutorials>Open
- * Image, as specified by the {@code menuPath} field of the {@code @Plugin}
+ * {@code @Plugin}, it will show up in the ImageJ menus: under Tutorials &gt;
+ * Open Image, as specified by the {@code menuPath} field of the {@code @Plugin}
  * annotation.
  * </p>
  * <p>
@@ -82,8 +82,9 @@ public class OpenImage implements Command {
 	public void run() {
 		try {
 			image = datasetIOService.open(imageFile.getAbsolutePath());
-		} catch (final IOException exc) {
-			// Uses LogService to report the error.
+		}
+		catch (final IOException exc) {
+			// Use the LogService to report the error.
 			logService.error(exc);
 		}
 	}
@@ -93,13 +94,13 @@ public class OpenImage implements Command {
 	 * directly from Eclipse (or other IDE).
 	 *
 	 * It will launch ImageJ and then run this command using the CommandService.
-	 * This is equivalent to clicking "Tutorials>Load and Display Dataset" in the UI.
+	 * This is equivalent to clicking "Tutorials>Open Image" in the UI.
 	 */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
 		final ImageJ ij = net.imagej.Main.launch(args);
 
-		// Launch the "LoadAndDisplayDataset" command.
+		// Launch the "OpenImage" command.
 		ij.command().run(OpenImage.class, true);
 	}
 
