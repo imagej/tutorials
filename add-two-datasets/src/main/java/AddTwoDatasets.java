@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 import net.imagej.Dataset;
+import net.imagej.DatasetService;
 import net.imagej.ImageJ;
 import net.imagej.axis.AxisType;
 import net.imglib2.Cursor;
@@ -23,40 +24,95 @@ import net.imglib2.type.NativeType;
 import net.imglib2.type.numeric.RealType;
 import net.imglib2.type.numeric.real.FloatType;
 
-import org.scijava.widget.FileWidget;
+import org.scijava.ItemIO;
+import org.scijava.ItemVisibility;
+import org.scijava.app.StatusService;
+import org.scijava.command.Command;
+import org.scijava.command.Previewable;
+import org.scijava.log.LogService;
+import org.scijava.plugin.Parameter;
+import org.scijava.plugin.Plugin;
+
+import io.scif.services.DatasetIOService;
 
 /** Adds two datasets using the ImgLib2 framework. */
-public class AddTwoDatasets {
+@Plugin(type = Command.class, headless = true,
+	menuPath = "Tutorials>Add Two Datasets")
+public class AddTwoDatasets implements Command, Previewable {
+
+	@Parameter
+	private LogService log;
+
+	@Parameter
+	private StatusService statusService;
+
+	@Parameter
+	private DatasetService datasetService;
+
+	@Parameter
+	private DatasetIOService datasetIOService;
+
+	@Parameter(visibility = ItemVisibility.MESSAGE)
+	private final String header = "This demonstration adds two datasets";
+
+	@Parameter(label = "dataset 1")
+	private File file1;
+
+	@Parameter(label = "dataset 2")
+	private File file2;
+
+	@Parameter(label = "Result 1", type = ItemIO.OUTPUT)
+	private Dataset result1;
+
+	@Parameter(label = "Result 2", type = ItemIO.OUTPUT)
+	private Dataset result2;
+
+	@Parameter(label = "Result 3", type = ItemIO.OUTPUT)
+	private Dataset result3;
 
 	public static void main(final String... args) throws Exception {
 		// create the ImageJ application context with all available services
-		final ImageJ ij = new ImageJ();
+		final ImageJ ij = net.imagej.Main.launch(args);
 
-		ij.ui().showUI();
+		ij.command().run(AddTwoDatasets.class, true);
+	}
 
-		// load two datasets
-		final Dataset dataset1 = load(ij);
-		final Dataset dataset2 = load(ij);
-
-		if (dataset1.numDimensions() != dataset2.numDimensions()) {
-			ij.ui().showDialog(
-				"Input datasets must have the same number of dimensions.");
+	@Override
+	public void run() {
+		// add them together
+		Dataset dataset1, dataset2;
+		try {
+			dataset1 = datasetIOService.open(file1.getAbsolutePath());
+		}
+		catch (final IOException e) {
+			log.error(e);
 			return;
 		}
+		try {
+			dataset2 = datasetIOService.open(file2.getAbsolutePath());
+		}
+		catch (final IOException e) {
+			log.error(e);
+			return;
+		}
+		if (dataset1.numDimensions() != dataset2.numDimensions()) {
+			log.error("Input datasets must have the same number of dimensions.");
+			return;
+		}
+		result1 = addRandomAccess(dataset1, dataset2);
+		result2 = addOpsSerial(dataset1, dataset2, new FloatType());
+		result3 = addOpsParallel(dataset1, dataset2, new FloatType());
+	}
 
-		// add them together
-		final Dataset result1 = addRandomAccess(ij, dataset1, dataset2);
-		final Dataset result2 = addOpsSerial(ij, dataset1, dataset2,
-			new FloatType());
-		final Dataset result3 = addOpsParallel(ij, dataset1, dataset2,
-			new FloatType());
+	@Override
+	public void cancel() {
+		log.info("Cancelled");
+	}
 
-		// display the results
-		ij.display().createDisplay(dataset1.getName(), dataset1);
-		ij.display().createDisplay(dataset2.getName(), dataset2);
-		ij.display().createDisplay("Result: random access", result1);
-		ij.display().createDisplay("Result: serial OPS", result2);
-		ij.display().createDisplay("Result: parallel OPS", result3);
+	@Override
+	public void preview() {
+		log.info("previews AddTwoDatasets");
+		statusService.showStatus(header);
 	}
 
 	/**
@@ -64,10 +120,8 @@ public class AddTwoDatasets {
 	 * powerful approach but requires a verbose loop.
 	 */
 	@SuppressWarnings({ "rawtypes" })
-	private static Dataset addRandomAccess(final ImageJ ij, final Dataset d1,
-		final Dataset d2)
-	{
-		final Dataset result = create(ij, d1, d2, new FloatType());
+	private Dataset addRandomAccess(final Dataset d1, final Dataset d2) {
+		final Dataset result = create(d1, d2, new FloatType());
 
 		// sum data into result dataset
 		final RandomAccess<? extends RealType> ra1 = d1.getImgPlus().randomAccess();
@@ -95,10 +149,10 @@ public class AddTwoDatasets {
 	 * processing jobs and is not automatically parallelized.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static <T extends RealType<T> & NativeType<T>> Dataset addOpsSerial(
-		final ImageJ ij, final Dataset d1, final Dataset d2, final T outType)
+	private <T extends RealType<T> & NativeType<T>> Dataset addOpsSerial(
+		final Dataset d1, final Dataset d2, final T outType)
 	{
-		final Dataset output = create(ij, d1, d2, outType);
+		final Dataset output = create(d1, d2, outType);
 		final Img img1 = d1.getImgPlus();
 		final Img img2 = d2.getImgPlus();
 		final Img outputImg = output.getImgPlus();
@@ -114,10 +168,10 @@ public class AddTwoDatasets {
 	 * parallelized!
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static <T extends RealType<T> & NativeType<T>> Dataset addOpsParallel(
-		final ImageJ ij, final Dataset d1, final Dataset d2, final T outType)
+	private <T extends RealType<T> & NativeType<T>> Dataset addOpsParallel(
+		final Dataset d1, final Dataset d2, final T outType)
 	{
-		final Dataset output = create(ij, d1, d2, outType);
+		final Dataset output = create(d1, d2, outType);
 		final Img img1 = d1.getImgPlus();
 		final Img img2 = d2.getImgPlus();
 		final Img outputImg = output.getImgPlus();
@@ -126,22 +180,12 @@ public class AddTwoDatasets {
 		return output;
 	}
 
-	/** Loads a dataset selected by the user from a dialog box. */
-	private static Dataset load(final ImageJ ij) throws IOException {
-		// ask the user for a file to open
-		final File file = ij.ui().chooseFile(null, FileWidget.OPEN_STYLE);
-		if (file == null) return null;
-
-		// load the dataset
-		return ij.dataset().open(file.getAbsolutePath());
-	}
-
 	/**
 	 * Creates a dataset with bounds constrained by the minimum of the two input
 	 * datasets.
 	 */
-	private static <T extends RealType<T> & NativeType<T>> Dataset create(
-		final ImageJ ij, final Dataset d1, final Dataset d2, final T type)
+	private <T extends RealType<T> & NativeType<T>> Dataset create(
+		final Dataset d1, final Dataset d2, final T type)
 	{
 		final int dimCount = Math.min(d1.numDimensions(), d2.numDimensions());
 		final long[] dims = new long[dimCount];
@@ -150,7 +194,7 @@ public class AddTwoDatasets {
 			dims[i] = Math.min(d1.dimension(i), d2.dimension(i));
 			axes[i] = d1.numDimensions() > i ? d1.axis(i).type() : d2.axis(i).type();
 		}
-		return ij.dataset().create(type, dims, "result", axes);
+		return datasetService.create(type, dims, "result", axes);
 	}
 
 }
