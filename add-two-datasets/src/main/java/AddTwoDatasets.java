@@ -46,10 +46,10 @@ public class AddTwoDatasets {
 
 		// add them together
 		final Dataset result1 = addRandomAccess(ij, dataset1, dataset2);
-		final Dataset result2 =
-			addOpsSerial(ij, dataset1, dataset2, new FloatType());
-		final Dataset result3 =
-			addOpsParallel(ij, dataset1, dataset2, new FloatType());
+		final Dataset result2 = addOpsSerial(ij, dataset1, dataset2,
+			new FloatType());
+		final Dataset result3 = addOpsParallel(ij, dataset1, dataset2,
+			new FloatType());
 
 		// display the results
 		ij.display().createDisplay(dataset1.getName(), dataset1);
@@ -70,12 +70,10 @@ public class AddTwoDatasets {
 		final Dataset result = create(ij, d1, d2, new FloatType());
 
 		// sum data into result dataset
-		final RandomAccess<? extends RealType> ra1 =
-			d1.getImgPlus().randomAccess();
-		final RandomAccess<? extends RealType> ra2 =
-			d2.getImgPlus().randomAccess();
-		final Cursor<? extends RealType> cursor =
-			result.getImgPlus().localizingCursor();
+		final RandomAccess<? extends RealType> ra1 = d1.getImgPlus().randomAccess();
+		final RandomAccess<? extends RealType> ra2 = d2.getImgPlus().randomAccess();
+		final Cursor<? extends RealType> cursor = result.getImgPlus()
+			.localizingCursor();
 		final long[] pos1 = new long[d1.numDimensions()];
 		final long[] pos2 = new long[d2.numDimensions()];
 		while (cursor.hasNext()) {
@@ -116,9 +114,8 @@ public class AddTwoDatasets {
 	 * parallelized!
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static <T extends RealType<T> & NativeType<T>> Dataset
-		addOpsParallel(final ImageJ ij, final Dataset d1, final Dataset d2,
-			final T outType)
+	private static <T extends RealType<T> & NativeType<T>> Dataset addOpsParallel(
+		final ImageJ ij, final Dataset d1, final Dataset d2, final T outType)
 	{
 		final Dataset output = create(ij, d1, d2, outType);
 		final Img img1 = d1.getImgPlus();
