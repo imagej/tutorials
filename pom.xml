@@ -99,6 +99,7 @@
 		<module>create-a-new-plugin-type</module>
 		<module>custom-preprocessor-plugin</module>
 		<module>execute-commands</module>
+		<module>ij2-image-plus</module>
 		<module>intro-to-imagej-api</module>
 		<module>load-and-display-dataset</module>
 		<module>listen-to-events</module>
