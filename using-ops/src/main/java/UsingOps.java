@@ -8,6 +8,10 @@
 
 import net.imagej.ImageJ;
 import net.imagej.ops.Op;
+import net.imagej.ops.Ops;
+import net.imagej.ops.special.inplace.Inplaces;
+import net.imagej.ops.special.inplace.UnaryInplaceOp;
+import net.imglib2.IterableInterval;
 import net.imglib2.type.numeric.real.DoubleType;
 
 /** How to use ImageJ Operations. */
@@ -29,32 +33,33 @@ public class UsingOps {
 
 		ij.log().info("-------- Create a new blank image --------");
 		final long[] dims = {150, 100};
-		final Object blank = ij.op().create().img(dims);
+		final IterableInterval<DoubleType> blank = ij.op().create().img(dims);
 
 		ij.log().info("-------- Fill in an image with a formula --------");
 		final String formula = "10 * (Math.cos(0.3*p[0]) + Math.sin(0.3*p[1]))";
-		final Object sinusoid = ij.op().image().equation(blank, formula);
+		final IterableInterval<DoubleType> sinusoid = ij.op().image().equation(blank, formula);
 
 		ij.log().info("-------- Add a constant value to an image --------");
-		ij.op().math().add(sinusoid, 13.0);
+		ij.op().math().add(sinusoid, new DoubleType(13.0d));
 
 		ij.log().info("-------- Generate gradient image using a formula --------");
-		final Object gBlank = ij.op().create().img(dims);
-		final Object gradient = ij.op().image().equation(gBlank, "p[0]+p[1]");
+		final IterableInterval<DoubleType> gBlank = ij.op().create().img(dims);
+		final IterableInterval<DoubleType> gradient = ij.op().image().equation(gBlank, "p[0]+p[1]");
 
 		ij.log().info("-------- Add two images --------");
-		final Object composite = ij.op().math().add(sinusoid, gradient);
+		final IterableInterval<DoubleType> composite = ij.op().math().add(sinusoid, gradient);
 
 		ij.log().info("-------- Dump an image to the console --------");
-		final Object ascii = ij.op().image().ascii(composite);
+		final String ascii = ij.op().image().ascii(composite);
 		ij.log().info("Composite image:\n" + ascii);
 
 		ij.log().info("-------- Show the image in a window --------");
 		ij.ui().show("composite", composite);
 
 		ij.log().info("-------- Execute op on every pixel of an image --------");
-		final Op addOp = ij.op().op("math.add", DoubleType.class, new DoubleType(5.0));
-		ij.op().map(composite, composite, addOp);
+		UnaryInplaceOp<? super DoubleType, DoubleType> addOp = Inplaces.unary(
+				ij.op(), Ops.Math.Add.class, DoubleType.class, new DoubleType(5.0));
+		ij.op().map(composite, addOp);
 
 		ij.log().info("-------- All done! --------");
 	}
