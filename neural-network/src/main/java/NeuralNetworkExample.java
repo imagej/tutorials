@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import net.imagej.Dataset;
 import net.imagej.ImageJ;
+import net.imglib2.RandomAccessibleInterval;
 import net.imglib2.img.Img;
 import net.imglib2.type.numeric.RealType;
 import net.imglib2.type.numeric.real.DoubleType;
@@ -25,8 +26,13 @@ public class NeuralNetworkExample {
 
 		Img<DoubleType> dtypeInput = (Img<DoubleType>) ij.op().convert().float64(imgInput);
 		Img<DoubleType> dtypeTarget = (Img<DoubleType>) ij.op().convert().float64(imgTarget);
+		
+		ij.ui().show( dtypeInput );
 
-		Img<DoubleType> kernel = (Img<DoubleType>) ij.op().learning().convolutionLayerBackProp(dtypeInput, dtypeTarget);
+		//Img<DoubleType> kernel = (Img<DoubleType>) ij.op().learning().convolutionLayerBackProp(dtypeInput, dtypeTarget);
+		//Img<DoubleType> kernel = (Img<DoubleType>) ij.op().learning().convolutionLayerBackProp(dtypeInput, dtypeTarget);
+		
+		RandomAccessibleInterval<DoubleType> kernel = ij.op().learning().convolutionLayerBackProp(dtypeInput, dtypeTarget);
 
 		ij.ui().show(kernel);
 	}
