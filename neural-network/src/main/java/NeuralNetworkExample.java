@@ -3,7 +3,9 @@ import java.io.IOException;
 
 import net.imagej.Dataset;
 import net.imagej.ImageJ;
+import net.imglib2.img.Img;
 import net.imglib2.type.numeric.RealType;
+import net.imglib2.type.numeric.real.DoubleType;
 
 public class NeuralNetworkExample {
 	public static <T extends RealType<T>> void main(final String... args) throws IOException {
@@ -17,6 +19,16 @@ public class NeuralNetworkExample {
 
 		ij.ui().show(input);
 		ij.ui().show(target);
+
+		Img<T> imgInput = (Img<T>) input.getImgPlus().getImg();
+		Img<T> imgTarget = (Img<T>) target.getImgPlus().getImg();
+
+		Img<DoubleType> dtypeInput = (Img<DoubleType>) ij.op().convert().float64(imgInput);
+		Img<DoubleType> dtypeTarget = (Img<DoubleType>) ij.op().convert().float64(imgTarget);
+
+		Img<DoubleType> kernel = (Img<DoubleType>) ij.op().learning().convolutionLayerBackProp(dtypeInput, dtypeTarget);
+
+		ij.ui().show(kernel);
 	}
 
 }
