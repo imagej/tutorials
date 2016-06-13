@@ -113,6 +113,7 @@
 		<module>using-ops</module>
 		<module>widget-demo</module>
 		<module>working-with-modules</module>
+		<module>neural-network</module>
 	</modules>
 
 	<scm>
