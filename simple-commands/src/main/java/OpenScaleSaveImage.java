@@ -51,23 +51,28 @@ import org.scijava.plugin.Plugin;
 @Plugin(type = Command.class, menuPath = "Tutorials>Open+Scale+Save Image")
 public class OpenScaleSaveImage implements Command {
 
+	// -- Scale method constants --
+
 	private static final String LANCZOS = "Lanczos";
 	private static final String N_LINEAR = "N-linear";
 	private static final String NEAREST_NEIGHBOR = "Nearest neighbor";
 	private static final String FLOOR = "Floor";
 
-	// Needed services. See the OpenImage tutorial for an explanation of these.
+	// -- Needed services --
 
+	// For opening and saving images.
 	@Parameter
 	private DatasetIOService datasetIOService;
 
+	// For scaling the image.
 	@Parameter
 	private OpService ops;
 
+	// For logging errors.
 	@Parameter
 	private LogService log;
 
-	// Inputs to the command.
+	// -- Inputs to the command --
 
 	/** Location on disk of the input image. */
 	@Parameter(label = "Image to load")
