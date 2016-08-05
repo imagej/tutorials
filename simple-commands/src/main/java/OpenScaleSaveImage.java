@@ -149,7 +149,7 @@ public class OpenScaleSaveImage implements Command {
 	 * directly from Eclipse (or other IDE).
 	 *
 	 * It will launch ImageJ and then run this command using the CommandService.
-	 * This is equivalent to clicking "Tutorials>Open Image" in the UI.
+	 * This is equivalent to clicking "Tutorials>Open+Scale+Save Image" in the UI.
 	 */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
