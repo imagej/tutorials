@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>net.imagej</groupId>
 		<artifactId>pom-imagej</artifactId>
-		<version>14.4.1</version>
+		<version>15.8.0</version>
 		<relativePath />
 	</parent>
 
@@ -24,7 +24,6 @@
 
 	<properties>
 		<main-class>DatasetWrapping</main-class>
-		<scijava.jvm.version>1.8</scijava.jvm.version>
 	</properties>
 
 	<repositories>
@@ -38,6 +37,16 @@
 		<dependency>
 			<groupId>net.imagej</groupId>
 			<artifactId>imagej</artifactId>
+		</dependency>
+
+		<!-- NB: For ImageJ 1.x support. -->
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>ij</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>imagej-legacy</artifactId>
 		</dependency>
 	</dependencies>
 </project>
