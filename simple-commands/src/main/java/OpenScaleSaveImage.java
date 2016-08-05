@@ -27,7 +27,6 @@ import net.imglib2.interpolation.randomaccess.NearestNeighborInterpolatorFactory
 import net.imglib2.type.numeric.RealType;
 
 import org.scijava.command.Command;
-import org.scijava.convert.ConvertService;
 import org.scijava.log.LogService;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
