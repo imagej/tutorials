@@ -65,9 +65,6 @@ public class OpenScaleSaveImage implements Command {
 	private OpService ops;
 
 	@Parameter
-	private ConvertService convertService;
-
-	@Parameter
 	private LogService log;
 
 	// Inputs to the command.
