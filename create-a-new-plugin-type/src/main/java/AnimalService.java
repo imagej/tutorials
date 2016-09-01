@@ -9,6 +9,8 @@
 import java.util.HashMap;
 import java.util.Set;
 
+import net.imagej.ImageJService;
+
 import org.scijava.plugin.AbstractPTService;
 import org.scijava.plugin.Plugin;
 import org.scijava.plugin.PluginInfo;
@@ -16,7 +18,9 @@ import org.scijava.service.Service;
 
 /** Service which manages available {@link Animal}s. */
 @Plugin(type = Service.class)
-public class AnimalService extends AbstractPTService<Animal> {
+public class AnimalService extends AbstractPTService<Animal> implements
+	ImageJService
+{
 
 	// When creating a new type of plugin (such as Animal), it is very nice to
 	// have a corresponding service that provides operations relevant to your
