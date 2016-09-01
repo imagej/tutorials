@@ -34,8 +34,7 @@ public class AnimalService extends AbstractPTService<Animal> implements
 	// instantiate any given plugin.
 
 	/** Map of each animal name to its corresponding plugin metadata. */
-	private HashMap<String, PluginInfo<Animal>> animals =
-		new HashMap<String, PluginInfo<Animal>>();
+	private HashMap<String, PluginInfo<Animal>> animals = new HashMap<>();
 
 	/**
 	 * Gets the list of available animals. The names on this list can be passed to
