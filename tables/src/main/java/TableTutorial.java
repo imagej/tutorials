@@ -51,7 +51,7 @@ public class TableTutorial {
 	{
 		// we create two columns
 		GenericColumn nameColumn = new GenericColumn("Town");
-		GenericColumn populationColumn = new GenericColumn("Population");
+		DoubleColumn populationColumn = new DoubleColumn("Population");
 
 		// we fill the columns with information about the largest towns in the world.
 		nameColumn.add("Karachi");
@@ -94,11 +94,10 @@ public class TableTutorial {
 		ij.log().info("The header of the second column is: " + header);
 
 		// get a certain column
-		Column populationColumn = table.get("Population");
+		DoubleColumn populationColumn = (DoubleColumn)table.get("Population");
 
 		// get a value from the first line in the column
-		Object value = populationColumn.get(0);
-		double populationOfLargestTown = Double.valueOf(value.toString());
+		double populationOfLargestTown = populationColumn.get(0);
 
 		ij.log().info("The population of the largest town is: " + populationOfLargestTown);
 	}
