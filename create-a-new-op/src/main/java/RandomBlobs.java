@@ -90,7 +90,7 @@ public class RandomBlobs<T extends RealType<T>> extends AbstractOp {
 		final ImageJ ij = new ImageJ();
 
 		// Run our op
-		final Object blobs = ij.op().run("blobs", 20, 16, 128, 128);
+		final Object blobs = ij.op().run("blobs", 20, 16, 256, 256);
 
 		// And display the result!
 		ij.ui().showUI();
