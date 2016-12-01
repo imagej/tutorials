@@ -2,9 +2,12 @@
 /.idea/
 *.iml
 
+*~
 */.classpath
 */.project
 */.settings/
 */target/
 .project
 /.settings/
+.metadata
+.recommenders
