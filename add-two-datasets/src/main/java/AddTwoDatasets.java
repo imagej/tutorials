@@ -6,6 +6,8 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
+import io.scif.services.DatasetIOService;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -13,13 +15,10 @@ import net.imagej.Dataset;
 import net.imagej.DatasetService;
 import net.imagej.ImageJ;
 import net.imagej.axis.AxisType;
+import net.imagej.ops.OpService;
 import net.imglib2.Cursor;
+import net.imglib2.IterableInterval;
 import net.imglib2.RandomAccess;
-import net.imglib2.img.Img;
-import net.imglib2.ops.img.ImageCombiner;
-import net.imglib2.ops.operation.BinaryOperation;
-import net.imglib2.ops.operation.img.binary.ImgCombine;
-import net.imglib2.ops.operation.real.binary.RealAdd;
 import net.imglib2.type.NativeType;
 import net.imglib2.type.numeric.RealType;
 import net.imglib2.type.numeric.real.FloatType;
@@ -32,10 +31,11 @@ import org.scijava.command.Previewable;
 import org.scijava.log.LogService;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
+import org.scijava.widget.FileWidget;
 
-import io.scif.services.DatasetIOService;
-
-/** Adds two datasets using the ImgLib2 framework. */
+/**
+ * Adds two datasets using the ImgLib2 framework.
+ */
 @Plugin(type = Command.class, headless = true,
 	menuPath = "Tutorials>Add Two Datasets")
 public class AddTwoDatasets implements Command, Previewable {
@@ -51,6 +51,9 @@ public class AddTwoDatasets implements Command, Previewable {
 
 	@Parameter
 	private DatasetIOService datasetIOService;
+
+	@Parameter
+	private OpService opService;
 
 	@Parameter(visibility = ItemVisibility.MESSAGE)
 	private final String header = "This demonstration adds two datasets";
@@ -88,6 +91,7 @@ public class AddTwoDatasets implements Command, Previewable {
 			log.error(e);
 			return;
 		}
+
 		try {
 			dataset2 = datasetIOService.open(file2.getAbsolutePath());
 		}
@@ -95,10 +99,12 @@ public class AddTwoDatasets implements Command, Previewable {
 			log.error(e);
 			return;
 		}
+
 		if (dataset1.numDimensions() != dataset2.numDimensions()) {
 			log.error("Input datasets must have the same number of dimensions.");
 			return;
 		}
+
 		result1 = addRandomAccess(dataset1, dataset2);
 		result2 = addOpsSerial(dataset1, dataset2, new FloatType());
 		result3 = addOpsParallel(dataset1, dataset2, new FloatType());
@@ -128,8 +134,10 @@ public class AddTwoDatasets implements Command, Previewable {
 		final RandomAccess<? extends RealType> ra2 = d2.getImgPlus().randomAccess();
 		final Cursor<? extends RealType> cursor = result.getImgPlus()
 			.localizingCursor();
+
 		final long[] pos1 = new long[d1.numDimensions()];
 		final long[] pos2 = new long[d2.numDimensions()];
+
 		while (cursor.hasNext()) {
 			cursor.fwd();
 			cursor.localize(pos1);
@@ -144,7 +152,7 @@ public class AddTwoDatasets implements Command, Previewable {
 	}
 
 	/**
-	 * Adds two datasets using the ImgLib OPS framework. This is a very succinct
+	 * Adds two datasets using the ImageJ OPS framework. This is a very succinct
 	 * approach that does not require a loop. This version is designed for small
 	 * processing jobs and is not automatically parallelized.
 	 */
@@ -153,12 +161,18 @@ public class AddTwoDatasets implements Command, Previewable {
 		final Dataset d1, final Dataset d2, final T outType)
 	{
 		final Dataset output = create(d1, d2, outType);
-		final Img img1 = d1.getImgPlus();
-		final Img img2 = d2.getImgPlus();
-		final Img outputImg = output.getImgPlus();
-		final BinaryOperation addOp = new RealAdd();
-		final ImgCombine combiner = new ImgCombine(addOp);
-		combiner.compute(img1, img2, outputImg);
+		final IterableInterval img1 = d1.getImgPlus();
+		final IterableInterval img2 = d2.getImgPlus();
+		final IterableInterval outputImg = output.getImgPlus();
+
+		// Convert image to FloatType for better numeric precision
+		final IterableInterval<FloatType> float_img1 = opService.convert().float32(
+			img1);
+		final IterableInterval<FloatType> float_img2 = opService.convert().float32(
+			img2);
+
+		opService.math().add(outputImg, float_img1, float_img2);
+
 		return output;
 	}
 
@@ -172,12 +186,39 @@ public class AddTwoDatasets implements Command, Previewable {
 		final Dataset d1, final Dataset d2, final T outType)
 	{
 		final Dataset output = create(d1, d2, outType);
-		final Img img1 = d1.getImgPlus();
-		final Img img2 = d2.getImgPlus();
-		final Img outputImg = output.getImgPlus();
-		final BinaryOperation addOp = new RealAdd();
-		ImageCombiner.applyOp(addOp, img1, img2, outputImg);
+		final IterableInterval img1 = d1.getImgPlus();
+		final IterableInterval img2 = d2.getImgPlus();
+		final IterableInterval outputImg = output.getImgPlus();
+
+		// Convert image to FloatType for better numeric precision
+		final IterableInterval<FloatType> float_img1 = opService.convert().float32(
+			img1);
+		final IterableInterval<FloatType> float_img2 = opService.convert().float32(
+			img2);
+
+		opService.run("math.add", outputImg, float_img1, float_img2);
+
 		return output;
+	}
+
+	/**
+	 * Loads a dataset selected by the user from a dialog box.
+	 */
+	private static Dataset load(final ImageJ ij) throws IOException {
+		// ask the user for a file to open
+		final File file = ij.ui().chooseFile(null, FileWidget.OPEN_STYLE);
+
+		if (file == null) {
+			return null;
+		}
+
+		// load the dataset
+		if (ij.scifio().datasetIO().canOpen(file.getAbsolutePath())) {
+			return ij.scifio().datasetIO().open(file.getAbsolutePath());
+		}
+		else {
+			return null;
+		}
 	}
 
 	/**
