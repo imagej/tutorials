@@ -2,7 +2,8 @@ package net.enteryourdomainhere.enteryourprojectnamehere;
 
 
 import java.io.File;
-
+import net.imagej.Dataset;
+import net.imagej.ImageJ;
 import net.imagej.ops.OpService;
 import net.imglib2.RandomAccessibleInterval;
 import net.imglib2.img.Img;
@@ -12,9 +13,6 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 import org.scijava.ui.UIService;
 
-import net.imagej.Dataset;
-import net.imagej.ImageJ;
-
 /**
  *
  *
@@ -22,8 +20,7 @@ import net.imagej.ImageJ;
  *
  */
 @Plugin(type = Command.class, menuPath = "Plugins>EnterYourPluginNameHere")
-public class EnterYourPluginNameHere<T extends RealType<T>> implements Command
-{
+public class EnterYourPluginNameHere<T extends RealType<T>> implements Command {
     //
     // Feel free to add more parameters here...
     //
