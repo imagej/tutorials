@@ -9,8 +9,7 @@
 	<parent>
 		<groupId>net.imagej</groupId>
 		<artifactId>pom-imagej</artifactId>
-		<version>16.5.0</version>
-		<relativePath />
+		<version>16.6.0</version>
 	</parent>
 
 	<groupId>net.enteryourdomainhere</groupId>
@@ -38,7 +37,6 @@
 	</dependencies>
 
 	<repositories>
-		<!-- NB: for project parent -->
 		<repository>
 			<id>imagej.public</id>
 			<url>http://maven.imagej.net/content/groups/public</url>
