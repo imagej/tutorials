@@ -32,6 +32,10 @@ public class Ramp<T extends RealType<T>> extends AbstractOp {
 
 		final Cursor<DoubleType> c = rampImg.localizingCursor();
 		final long[] pos = new long[rampImg.numDimensions()];
+
+		// Iterate the image and get the each pixel location
+		// Every pixel value is assigned its locations sum,
+		// so generate the ramp pattern image.
 		while (c.hasNext()) {
 			c.fwd();
 			c.localize(pos);
