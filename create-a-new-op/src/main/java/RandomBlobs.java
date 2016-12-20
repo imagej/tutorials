@@ -69,16 +69,28 @@ public class RandomBlobs<T extends RealType<T>> extends AbstractOp {
 
 		final Random r = new Random(seed);
 
+		// Iterate to generate each blob
 		final RandomAccess<T> ra = image.randomAccess(image);
 		for (int i = 0; i < blobNum; i++) {
+			// generate a random positon in [0, total)
 			final long index = (long) (r.nextDouble() * total);
+			// convert the linear index to the 2-D index
+			// For example, index = 59662, dims = [256,256],
+			// then blobCenter = [14,233]
 			IntervalIndexer.indexToPosition(index, dims, blobCenter);
 
+			// For generating current blob, it is necessary to scan
+			// the whole image to determine the elements which are
+			// locate in the radius of the blobCenter.
 			for (int j = 0; j < total; j++) {
 				IntervalIndexer.indexToPosition(j, dims, pos);
 				final double dist = distance(pos, blobCenter);
 				if (dist > blobSize) continue;
 
+				// This element is in the radius of the blobCenter, so it is
+				// assigned with value inversely proportional to the distance.
+				// Namely, if the distance is 0.0, then the norm is 1.0; if the
+				// distance is blobSize, then the norm is 0.0, and so on.
 				ra.setPosition(pos);
 				final double norm = 1.0 - dist / blobSize;
 				ra.get().setReal(Math.max(ra.get().getRealDouble(), norm));
