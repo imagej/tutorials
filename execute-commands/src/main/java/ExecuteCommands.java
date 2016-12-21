@@ -131,7 +131,7 @@ public class ExecuteCommands {
 		logDatasetInfo(ij, "datasetFromJava", datasetFromJava);
 
 		// execute using a service
-		final Dataset datasetFromService = ij.dataset().open("sample-image.fake");
+		final Dataset datasetFromService = ij.scifio().datasetIO().open("sample-image.fake");
 		logDatasetInfo(ij, "datasetFromService", datasetFromService);
 	}
 
