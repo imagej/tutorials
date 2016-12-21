@@ -203,7 +203,7 @@ public class ExecuteCommands {
 		final String t = dataset.getType().getClass().getSimpleName();
 		final long x = dataset.dimension(0);
 		final long y = dataset.dimension(1);
-		ij.log().info(prefix + ": (" + "type = " + t + ", x = " + x + ", y = " + y);
+		ij.log().info(prefix + ": (" + "type = " + t + ", x = " + x + ", y = " + y + ")");
 	}
 
 }
