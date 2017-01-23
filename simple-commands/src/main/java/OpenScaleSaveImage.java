@@ -18,7 +18,9 @@ import net.imagej.ImageJ;
 import net.imagej.ImgPlus;
 import net.imagej.ops.OpService;
 import net.imglib2.RandomAccessible;
+import net.imglib2.RandomAccessibleInterval;
 import net.imglib2.img.Img;
+import net.imglib2.img.ImgView;
 import net.imglib2.interpolation.InterpolatorFactory;
 import net.imglib2.interpolation.randomaccess.FloorInterpolatorFactory;
 import net.imglib2.interpolation.randomaccess.LanczosInterpolatorFactory;
@@ -140,7 +142,9 @@ public class OpenScaleSaveImage implements Command {
 		}
 
 		// Perform the transformation using Ops.
-		return ops.transform().scale(image, scaleFactors, interpolator);
+		final RandomAccessibleInterval<T> rai = //
+			ops.transform().scale(image, scaleFactors, interpolator);
+		return ImgView.wrap(rai, image.factory());
 	}
 
 	/*

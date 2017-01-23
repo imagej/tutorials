@@ -6,20 +6,25 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>net.imagej</groupId>
-		<artifactId>pom-imagej</artifactId>
-		<version>15.8.0</version>
+		<groupId>org.scijava</groupId>
+		<artifactId>pom-scijava</artifactId>
+		<version>12.0.0</version>
 		<relativePath />
 	</parent>
 
 	<groupId>imagej-tutorials</groupId>
-	<artifactId>pom-imagej-tutorials</artifactId>
+	<artifactId>imagej-tutorials-aggregator</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>ImageJ Tutorials</name>
 	<description>A collection of tutorials for ImageJ.</description>
+	<url>https://github.com/imagej/imagej-tutorials</url>
 	<inceptionYear>2012</inceptionYear>
+	<organization>
+		<name>ImageJ</name>
+		<url>https://imagej.net/</url>
+	</organization>
 	<licenses>
 		<license>
 			<name>CC0 1.0 Universal License</name>
@@ -82,6 +87,13 @@
 		</contributor>
 	</contributors>
 
+	<mailingLists>
+		<mailingList>
+			<name>ImageJ Forum</name>
+			<archive>http://forum.imagej.net/</archive>
+		</mailingList>
+	</mailingLists>
+
 	<modules>
 		<module>add-rois</module>
 		<module>add-two-datasets</module>
@@ -116,6 +128,12 @@
 		<system>Jenkins</system>
 		<url>http://jenkins.imagej.net/job/ImageJ-tutorials/</url>
 	</ciManagement>
+
+	<properties>
+		<license.licenseName>c00</license.licenseName>
+		<license.copyrightOwners>N/A</license.copyrightOwners>
+		<license.projectName>ImageJ software for multidimensional image processing and analysis.</license.projectName>
+	</properties>
 
 	<repositories>
 		<repository>

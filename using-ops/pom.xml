@@ -6,9 +6,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>net.imagej</groupId>
-		<artifactId>pom-imagej</artifactId>
-		<version>14.4.1</version>
+		<groupId>org.scijava</groupId>
+		<artifactId>pom-scijava</artifactId>
+		<version>12.0.0</version>
 		<relativePath />
 	</parent>
 
@@ -18,10 +18,59 @@
 
 	<name>Using ImageJ Ops</name>
 	<description>This example provides an introduction to ImageJ Ops. An op is a reusable algorithm that works on inputs and produces outputs. More information: https://github.com/imagej/imagej-ops</description>
+	<url>https://github.com/[MY-ORG]/[MY-REPO]</url>
+	<inceptionYear>2014</inceptionYear>
+	<organization>
+		<name>[MY-ORGANIZATION-NAME]</name>
+		<url>[MY-ORGANIZATION-WEB-SITE]</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>CC0 1.0 Universal License</name>
+			<url>http://creativecommons.org/publicdomain/zero/1.0/</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>[MY-GITHUB-ID]</id>
+			<name>[MY-FULL-NAME]</name>
+			<url>https://imagej.net/User:[MY-IMAGEJ-WIKI-ACCOUNT]</url>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>None</name>
+		</contributor>
+	</contributors>
+
+	<mailingLists>
+		<mailingList>
+			<name>ImageJ Forum</name>
+			<archive>http://forum.imagej.net/</archive>
+		</mailingList>
+	</mailingLists>
+
+	<scm>
+		<connection>scm:git:git://github.com/[MY-ORG]/[MY-REPO]</connection>
+		<developerConnection>scm:git:git@github.com:[MY-ORG]/[MY-REPO]</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/[MY-ORG]/[MY-REPO]</url>
+	</scm>
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>http://github.com/[MY-ORG]/[MY-REPO]/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>None</system>
+	</ciManagement>
 
 	<properties>
 		<main-class>UsingOps</main-class>
-		<scijava.jvm.version>1.8</scijava.jvm.version>
+		<license.licenseName>cc0</license.licenseName>
+		<license.copyrightOwners>N/A</license.copyrightOwners>
+		<license.projectName>ImageJ software for multidimensional image processing and analysis.</license.projectName>
 	</properties>
 
 	<repositories>

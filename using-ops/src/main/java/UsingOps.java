@@ -33,20 +33,20 @@ public class UsingOps {
 
 		ij.log().info("-------- Fill in an image with a formula --------");
 		final String formula = "10 * (Math.cos(0.3*p[0]) + Math.sin(0.3*p[1]))";
-		final Object sinusoid = ij.op().image().equation(blank, formula);
+		final Object sinusoid = ij.op().run("image.equation", blank, formula);
 
 		ij.log().info("-------- Add a constant value to an image --------");
-		ij.op().math().add(sinusoid, 13.0);
+		ij.op().run("math.add", sinusoid, 13.0);
 
 		ij.log().info("-------- Generate gradient image using a formula --------");
 		final Object gBlank = ij.op().create().img(dims);
-		final Object gradient = ij.op().image().equation(gBlank, "p[0]+p[1]");
+		final Object gradient = ij.op().run("image.equation", gBlank, "p[0]+p[1]");
 
 		ij.log().info("-------- Add two images --------");
-		final Object composite = ij.op().math().add(sinusoid, gradient);
+		final Object composite = ij.op().run("math.add", sinusoid, gradient);
 
 		ij.log().info("-------- Dump an image to the console --------");
-		final Object ascii = ij.op().image().ascii(composite);
+		final Object ascii = ij.op().run("image.ascii", composite);
 		ij.log().info("Composite image:\n" + ascii);
 
 		ij.log().info("-------- Show the image in a window --------");
@@ -54,7 +54,7 @@ public class UsingOps {
 
 		ij.log().info("-------- Execute op on every pixel of an image --------");
 		final Op addOp = ij.op().op("math.add", DoubleType.class, new DoubleType(5.0));
-		ij.op().map(composite, composite, addOp);
+		ij.op().run("map", composite, addOp);
 
 		ij.log().info("-------- All done! --------");
 	}
