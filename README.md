@@ -15,8 +15,8 @@ You can import these projects into your favorite IDE:
 Or build and run from the command line:
 
     mvn
-    cd load-and-display-dataset
-    mvn exec:java -Dexec.mainClass=LoadAndDisplayDataset
+    cd simple-commands
+    mvn -Pexec -Dmain-class=GradientImage
 
 
 LICENSING
