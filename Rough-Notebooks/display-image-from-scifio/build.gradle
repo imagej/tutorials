@@ -1,0 +1,17 @@
+apply plugin: 'eclipse'
+apply plugin: 'groovy'
+
+repositories {
+	mavenCentral()
+	maven { url 'http://maven.imagej.net/content/groups/public' }
+}
+
+dependencies {
+	compile 'org.codehaus.groovy:groovy:2.4.7'
+	compile 'net.imagej:imagej:2.0.0-rc-50'
+}
+
+task run (dependsOn: 'classes', type: JavaExec) {
+	main = 'org.example.Display_Image_from_SCIFIO'
+	classpath = sourceSets.main.runtimeClasspath
+}

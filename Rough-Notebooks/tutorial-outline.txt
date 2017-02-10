@@ -1,0 +1,93 @@
+STILL TO DO
+
+0. Mind-blowing demo (showing neat stuff right away, including images)
+
+1.01. Fundamentals of ImageJ
+
+  Data I/O - configuration
+  -- ij.scifio().datasetIO().open ( type safety; SCIFIOConfig )
+
+1.02. Introduction to ImageJ Ops
+
+  logic -- boolean and bitwise operations
+
+  special ops / op chaining
+  -- Super basic uses of map and slice "quick and dirty" warn about safety
+  -- Note that there are more subtleties to this; see later section 7.x...
+     math.add (RealType + RealType = RealType)
+     Img<DoubleType> + Img<DoubleType> = Img<DoubleType>  ... would be nice and convenient
+     With Map, you can say:
+     mathAddBinaryOp = op.op("math.add", RealType.class(output), RealType.class(in1), RealType.class(in2))
+     summedImage = op.map(mathAddBinaryOp, image1, image2) // functional, processing all elements of a collection element-wise in sync
+     imagePlusConstant = op.map(mathAddBinaryOp, image1, 5) // functional, add 5 to each element of the collection
+     PROBLEM: op.op looks up _any_ op with matching params and that name. Not necessarily binary computer/function/inplace as needed
+     // we need to GUARANTEE that the returned Op will be a BinaryFunction, because map needs one
+     mathAddBinaryOp = Functions.binary("math.add", RealType.class(output), RealType.class(in1), RealType.class(in2))
+  -- slice -- performing ops on subsets of images in sequence (e.g., per-plane)
+
+1.03. N-dimensional image processing
+
+  labeling? but how to visualize? [Ops Example 05]
+
+  features -- tamura, zernike, haralick, hog, topology, etc... -- someday will be in a nested features namespace
+  -- great opportunity to show groovy plotting?
+  -- these are per-image features -- or per-object, so great to combine with labeling
+
+  convolution, fft -- ...
+
+  deconvolution -- I REALLY want to show this, and we really probably cannot... PSF generation, etc., too complex
+  -- for now, point to Brian's talk
+
+  geom? but how to visualize?
+
+  Working with ROIs
+  -- For now, direct people to chapter 6 -- use IJ1
+
+  Working with tables
+  -- ImageJ2 supports them... Beaker supports them. Would be nice to show
+  -- Could introduce above in features section?
+
+1.05. Mixing in routines from ImageJ 1.x
+  -- <BRAINSTORM THIS LATER>
+  -- Working with ROIs?
+  -- Analyze particles
+  -- Results tables?
+
+Intro to image data structures (ImgLib2) -- FUNDAMENTAL IMAGE APIS
+ 8.1 Intervals
+ 8.2 Iterating pixels (IIs) [see Ops Example 4 for a comparison of iteration vs calling into ops]
+ 8.3 Random access (RAIs)
+ 8.4 Image types (RealType et. al)
+
+9. Writing image processing algorithms (Ops) -- WRITING PLUGINS
+ 9.1 Our first image processing op: Ramp Image [CURRENTLY: Ops Example 03b]
+ 9.2 Random image generation [CURRENTLY: Ops Example 03c]
+
+/////////// ADVANCED TOPICS
+
+10. ImageJ topics
+ 10.1 Metadata
+  -- Needs RichImage to be finished first
+
+11. More fun with ImageJ Ops
+ 11.1 Writing a "special" op
+ 11.2 Inplace ops
+ 11.3 Function ops
+ 11.4 Computer ops
+ 11.5 Hybrid ops
+
+12. More fun with ImgLib2
+ -- TODO: go through list of ImgLib2 tutorials; catalog and order them here
+ -- for each low-level example, preface with the ops way so people don't use the "hard way" unnecessarily
+ -- TODO: Example 5 needs an ops.tile / ops.combine (which namespace?) for synthesizing multiple images together
+
+13. SciJava
+ 13.1 Writing a new service
+ 13.2 Writing a new module preprocessor or postprocessor
+
+14. SCIFIO
+ reading plane by plane / low level API stuff
+ writing images?
+ translating metadata
+ creating your own format plugin
+ lots of fun stuff for later

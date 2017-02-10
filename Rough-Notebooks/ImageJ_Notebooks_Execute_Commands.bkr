@@ -1,0 +1,529 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "smartHTMLMode"
+                }
+            }
+        },
+        {
+            "name": "TeX",
+            "plugin": "TeX",
+            "view": {
+                "cm": {
+                    "mode": "stex"
+                }
+            }
+        },
+        {
+            "name": "IPython",
+            "plugin": "IPython",
+            "imports": "",
+            "supplementalClassPath": "",
+            "view": {
+                "cm": {
+                    "mode": "python"
+                }
+            },
+            "setup": "%matplotlib inline\nimport numpy\nimport matplotlib\nfrom matplotlib import pylab, mlab, pyplot\nnp = numpy\nplt = pyplot\nfrom IPython.display import display\nfrom IPython.core.pylabtools import figsize, getfigs\nfrom pylab import *\nfrom numpy import *\n"
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "jsSetting2": "",
+            "jsSetting1": "",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "R",
+            "plugin": "R",
+            "view": {
+                "cm": {
+                    "mode": "r"
+                }
+            }
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*\njava.util.concurrent.TimeUnit\ncom.twosigma.beaker.table.*\ncom.twosigma.beaker.table.format.*\ncom.twosigma.beaker.table.renderer.*\ncom.twosigma.beaker.table.highlight.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "section001",
+            "type": "section",
+            "level": 1,
+            "title": "ImageJ API example: Execute commands",
+            "collapsed": false,
+            "evaluatorReader": false,
+            "isError": false
+        },
+        {
+            "id": "sectiondWXqiA",
+            "type": "section",
+            "title": "Introduction",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false,
+            "isError": false
+        },
+        {
+            "id": "markdown9dHd5C",
+            "type": "markdown",
+            "body": [
+                "This example illustrates how to execute commands using the ImageJ API. The source code demonstrates four different ways of invoking a command programmatically:",
+                "1. Using [CommandService](http://javadoc.imagej.net/SciJava/org/scijava/command/CommandService.html)  with a list of arguments",
+                "2. Using [CommandService](http://javadoc.imagej.net/SciJava/org/scijava/command/CommandService.html)  with arguments in a [Map](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html)",
+                "3. Calling a command's Java API directly",
+                "4. Calling the underlying service method (if there is one)",
+                "",
+                "The [CommandService](http://javadoc.imagej.net/SciJava/org/scijava/command/CommandService.html) approaches can be used to invoke any command, but the compiler cannot guarantee the correctness of the input types. That is, passing any [Object](https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html) is possible for both parameter names and values, which increases the chance of coding errors.",
+                "To address this issue, you can provide public API methods inside the command itself. If written correctly, an ImageJ command can be instantiated, populated and run as a **\"plain old java object\" (POJO)** rather than needing to use the command service as above. This provides stronger type guarantees (i.e., compile-time safety), rather than everything being resolved dynamically at runtime. The easiest way to make a command usable in this manner is to extend the [ContextCommand](http://javadoc.imagej.net/SciJava/org/scijava/command/ContextCommand.html) base class and include getter and setter methods for its parameters.",
+                " A fourth approach is to code the meat of your command as a method in a service. For example, the [OpenFile](http://javadoc.imagej.net/SciJava/org/scijava/plugins/commands/io/OpenFile.html) command ultimately delegates to",
+                " the [IOService](http://javadoc.imagej.net/SciJava/org/scijava/io/IOService.html) to open files, so it is easiest to simply use that",
+                " service directly."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "markdown0mKOyB",
+            "type": "markdown",
+            "body": [
+                "As a rule of thumb, a great pattern to follow is:",
+                "1. Create a service which provides the Java API you wish to make available to others.",
+                "2. Write commands whose implementations are very simple because they just invoke service methods to accomplish their goals.",
+                "",
+                "Here is a point-by-point comparison of the approaches:",
+                "<table>",
+                "<tr>",
+                "<th>&nbsp;</th>",
+                "<th>CommandService</th>",
+                "<th>Java API</th>",
+                "<th>Service call</th>",
+                "</tr>",
+                "<tr>",
+                "<td>Publishes events</td>",
+                "<td>Yes</td>",
+                "<td>No</td>",
+                "<td>No</td>",
+                "</tr>",
+                "<tr>",
+                "<td>Can perform pre- and post-processing</td>",
+                "<td>Yes</td>",
+                "<td>No</td>",
+                "<td>No</td>",
+                "</tr>",
+                "<tr>",
+                "<td>Executes in a separate thread</td>",
+                "<td>Yes</td>",
+                "<td>No</td>",
+                "<td>No</td>",
+                "</tr>",
+                "<tr>",
+                "<td>Compile-time safe</td>",
+                "<td>No</td>",
+                "<td>Yes</td>",
+                "<td>Yes</td>",
+                "</tr>",
+                "<tr>",
+                "<td>Works with any command</td>",
+                "<td>Yes</td>",
+                "<td>No</td>",
+                "<td>No</td>",
+                "</tr>",
+                "<tr>",
+                "<td>Single line of code</td>",
+                "<td>Yes</td>",
+                "<td>No</td>",
+                "<td>Yes</td>",
+                "</tr>",
+                "</table>"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "section8LHMGc",
+            "type": "section",
+            "title": "Bootstrap ImageJ",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false,
+            "isError": false
+        },
+        {
+            "id": "codeGB53Md",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "/////////////////////////////////////////////////////////////////",
+                    "// Bootstrap ImageJ. This may take some minutes the first time,",
+                    "// but will be fast on subsequent runs on the same computer.",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab(group='net.imagej', module='imagej', version='2.0.0-rc-58')",
+                    "import net.imagej.ImageJ",
+                    "/////////////////////////////////////////////////////////////////",
+                    "",
+                    "///////////////////////////////////////////////////////////////////////////////",
+                    "// Define an object which houses some handy notebook functions. In particular,",
+                    "// we include a way to display ImgLib images (i.e., RandomAccessibleInterval",
+                    "// objects) directly inside the notebook here.",
+                    "",
+                    "import java.awt.image.BufferedImage",
+                    "import net.imagej.display.ColorTables",
+                    "import net.imglib2.RandomAccessibleInterval",
+                    "import net.imglib2.converter.RealLUTConverter",
+                    "import net.imglib2.display.projector.composite.CompositeXYProjector",
+                    "import net.imglib2.display.screenimage.awt.ARGBScreenImage",
+                    "import net.imglib2.view.Views",
+                    "",
+                    "notebook = new Object() {",
+                    "  BufferedImage display(RandomAccessibleInterval source, double min = 0.0, double max = 255.0) {",
+                    "    return display(source, 0, 1, -1, min, max)",
+                    "  }",
+                    "  BufferedImage display(RandomAccessibleInterval source, int xAxis, int yAxis, int cAxis, double min, double max) {",
+                    "    offset = new long[source.numDimensions()]",
+                    "    for (int d = 0; d < offset.length; d++) {",
+                    "     offset[d] = -source.min(d) ",
+                    "    }",
+                    "    image = Views.translate(source, offset)",
+                    "    ",
+                    "    w = (int) image.dimension(xAxis)",
+                    "    h = (int) image.dimension(yAxis)",
+                    "    c = 1",
+                    "    target = new ARGBScreenImage(w, h)",
+                    "    converters = new ArrayList<RealLUTConverter>(c)",
+                    "    for (int i=0; i<c; i++) {",
+                    "      converters.add(new RealLUTConverter(min, max, ColorTables.GRAYS))",
+                    "    }",
+                    "    proj = new CompositeXYProjector(image, target, converters, cAxis)",
+                    "    proj.map()",
+                    "    return target.image()",
+                    "  }",
+                    "}",
+                    "",
+                    "print \"Bootstrap ImageJ success.\""
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Bootstrap ImageJ success.\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "283d0701-304a-4321-a2d8-92b16dd63a1f",
+                "elapsedTime": 4073,
+                "height": 55
+            },
+            "evaluatorReader": true,
+            "lineCount": 47,
+            "isError": false
+        },
+        {
+            "id": "codeOpUAsY",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imagej.ImageJ",
+                    "import net.imagej.Dataset",
+                    "import java.io.File",
+                    "import java.util.HashMap",
+                    "import java.util.Map",
+                    "import java.util.concurrent.Future",
+                    "import org.scijava.command.CommandModule",
+                    "import org.scijava.module.Module",
+                    "import org.scijava.plugins.commands.io.OpenFile",
+                    "",
+                    "constructor = new Object() {",
+                    "  /**",
+                    "   * Invokes the OpenFile command using the CommandService with a list of arguments.",
+                    "   * This approach is very flexible and compact, but the compiler cannot guarantee ",
+                    "   * the correctness of the input types.",
+                    "   */",
+                    "  public Dataset invokeWithArgs(ImageJ ij) {",
+                    "    // execute asynchronously using the command service",
+                    "    Future<CommandModule> future = ij.command().run(OpenFile.class, true, \"inputFile\", new File(\"sample-image.fake\"))",
+                    "    // wait for the execution thread to complete",
+                    "    Module module = ij.module().waitFor(future)",
+                    "    // return the desired output parameter value",
+                    "    module.getOutput(\"data\")",
+                    "  }",
+                    "  ",
+                    "  /**",
+                    "   * Invokes the OpenFile command using the CommandService with arguments in a Map.",
+                    "   * This approach is extremely flexible, but the compiler cannot guarantee the ",
+                    "   * correctness of the input types.",
+                    "   */",
+                    "  public Dataset invokeWithMap(ImageJ ij) {",
+                    "    // populate the map of input parameters",
+                    "    Map<String, Object> inputMap = new HashMap<String, Object>()",
+                    "    inputMap.put(\"inputFile\", new File(\"sample-image.fake\"))",
+                    "    // execute asynchronously using the command service",
+                    "    Future<CommandModule> future = ij.command().run(OpenFile.class, true, inputMap)",
+                    "    // wait for the execution thread to complete",
+                    "    Module module = ij.module().waitFor(future)",
+                    "    // return the desired output parameter value",
+                    "    return module.getOutput(\"data\")",
+                    "  }",
+                    "  ",
+                    "  private static void logDatasetInfo(ImageJ ij, String prefix, Dataset dataset) {",
+                    "    String t = dataset.getType().getClass().getSimpleName()",
+                    "    long x = dataset.dimension(0)",
+                    "    long y = dataset.dimension(1)",
+                    "    ij.log().info(prefix + \": (\" + \"type = \" + t + \", x = \" + x + \", y = \" + y + \")\")",
+                    "  }",
+                    "  ",
+                    "  /**",
+                    "   * Directly invokes the OpenFile command using its Java API.",
+                    "   * This approach is compile-time safe, but only commands that expose their",
+                    "   * Java API can be invoked in this way. Note that no pre- or postprocessing of",
+                    "   * the command is done, and no events are published with respect to the",
+                    "   * execution, making this approach convenient for nesting command executions.",
+                    "   * Note that with this method, casting is not necessary, nor is it possible to",
+                    "   * accidentally pass in parameters of the wrong type. The only catch is that",
+                    "   * anyone wishing to call the code must inject the ImageJ application context",
+                    "   * first by calling the setContext method.",
+                    "   */",
+                    "  public Dataset invokeFromJava(ImageJ ij) {",
+                    "    // construct a new instance of the command",
+                    "    openFile = new OpenFile()",
+                    "    openFile.setContext(ij.getContext())",
+                    "    // assign input parameter values",
+                    "    openFile.setInputFile(new File(\"sample-image.fake\"))",
+                    "    // execute the command in the same thread, blocking until complete",
+                    "    // (or you could run it in a separate thread using the ThreadService)",
+                    "    openFile.run()",
+                    "    // return the desired output parameter value",
+                    "    return openFile.getData()",
+                    "  }",
+                    "}",
+                    "",
+                    "print \"create object success.\""
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "create object success.\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "283d0701-304a-4321-a2d8-92b16dd63a1f",
+                "elapsedTime": 737,
+                "height": 55
+            },
+            "evaluatorReader": true,
+            "lineCount": 75,
+            "isError": false
+        },
+        {
+            "id": "sectionypvq97",
+            "type": "section",
+            "title": "Implementation",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false,
+            "isError": false
+        },
+        {
+            "id": "section8mdtMr",
+            "type": "section",
+            "title": "Execute using CommandService#run(String, Object...)",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": false,
+            "isError": false
+        },
+        {
+            "id": "codeTMpYOB",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imagej.ImageJ",
+                    "",
+                    "ij = new ImageJ()",
+                    "",
+                    "// execute using CommandService#run(String, Object...)",
+                    "datasetWithArgs = constructor.invokeWithArgs(ij)",
+                    "constructor.logDatasetInfo(ij, \"datasetWithArgs\", datasetWithArgs)",
+                    ""
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "err",
+                            "value": "[INFO] datasetWithArgs: (type = UnsignedByteType, x = 512, y = 512)\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "283d0701-304a-4321-a2d8-92b16dd63a1f",
+                "elapsedTime": 770,
+                "height": 55
+            },
+            "evaluatorReader": true,
+            "lineCount": 8,
+            "isError": false
+        },
+        {
+            "id": "section1cQR74",
+            "type": "section",
+            "title": "Invokes the command using the CommandService with arguments in a Map",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": false,
+            "isError": false
+        },
+        {
+            "id": "codedbHqHQ",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// execute using CommandService#run(String, Map)",
+                    "datasetWithMap = constructor.invokeWithMap(ij)",
+                    "constructor.logDatasetInfo(ij, \"datasetWithMap\", datasetWithMap)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "err",
+                            "value": "[INFO] datasetWithMap: (type = UnsignedByteType, x = 512, y = 512)\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "283d0701-304a-4321-a2d8-92b16dd63a1f",
+                "elapsedTime": 775,
+                "height": 55
+            },
+            "evaluatorReader": true,
+            "lineCount": 3,
+            "isError": false
+        },
+        {
+            "id": "sectionIkNnI4",
+            "type": "section",
+            "title": "Execute using the command's Java API",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": false,
+            "isError": false
+        },
+        {
+            "id": "codelCwcVt",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// execute using the command's Java API",
+                    "datasetFromJava = constructor.invokeFromJava(ij)",
+                    "constructor.logDatasetInfo(ij, \"datasetFromJava\", datasetFromJava);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "err",
+                            "value": "[INFO] datasetFromJava: (type = UnsignedByteType, x = 512, y = 512)\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "283d0701-304a-4321-a2d8-92b16dd63a1f",
+                "elapsedTime": 767,
+                "height": 55
+            },
+            "evaluatorReader": true,
+            "lineCount": 3,
+            "isError": false
+        },
+        {
+            "id": "sectionMNKQUM",
+            "type": "section",
+            "title": "Execute using a service",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": false,
+            "isError": false
+        },
+        {
+            "id": "codeACSp9j",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// execute using a service",
+                    "datasetFromService = ij.scifio().datasetIO().open(\"sample-image.fake\")",
+                    "constructor.logDatasetInfo(ij, \"datasetFromService\", datasetFromService)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "err",
+                            "value": "[INFO] datasetFromService: (type = UnsignedByteType, x = 512, y = 512)\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "283d0701-304a-4321-a2d8-92b16dd63a1f",
+                "elapsedTime": 698,
+                "height": 55
+            },
+            "evaluatorReader": true,
+            "lineCount": 3,
+            "isError": false
+        }
+    ],
+    "namespace": {}
+}
