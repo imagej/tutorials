@@ -6,6 +6,7 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
+import net.imagej.ImageJ;
 import net.imagej.ops.AbstractOp;
 import net.imagej.ops.Op;
 import net.imglib2.Cursor;
@@ -31,6 +32,10 @@ public class Ramp<T extends RealType<T>> extends AbstractOp {
 
 		final Cursor<DoubleType> c = rampImg.localizingCursor();
 		final long[] pos = new long[rampImg.numDimensions()];
+
+		// Iterate the image and get the each pixel location
+		// Every pixel value is assigned its locations sum,
+		// so generate the ramp pattern image.
 		while (c.hasNext()) {
 			c.fwd();
 			c.localize(pos);
@@ -43,5 +48,16 @@ public class Ramp<T extends RealType<T>> extends AbstractOp {
 		for (long p : pos) sum += p;
 		return sum;
 	}
+
+    public static void main(final String... args) throws Exception {
+        final ImageJ ij = new ImageJ();
+
+        // Run our op
+        final Object ramp = ij.op().run("ramp");
+
+        // And display the result!
+        ij.ui().showUI();
+        ij.ui().show(ramp);
+    }
 
 }
