@@ -1,0 +1,280 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "smartHTMLMode"
+                }
+            }
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\njava.util.concurrent.TimeUnit\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*\ncom.twosigma.beaker.table.*\ncom.twosigma.beaker.table.format.*\ncom.twosigma.beaker.table.renderer.*\ncom.twosigma.beaker.table.highlight.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "sectionTwJPIh",
+            "type": "section",
+            "title": "Mixed World: Using ImageJ 1.x",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": false,
+            "isError": false
+        },
+        {
+            "id": "markdownoBRpfo",
+            "type": "markdown",
+            "body": [
+                "Familiar with [ImageJ 1.x](https://imagej.net/ImageJ1)? Want to mix and match? Here's how."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionApATJM",
+            "type": "section",
+            "title": "Enabling ImageJ 1.x",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false,
+            "isError": false
+        },
+        {
+            "id": "markdownrSb932",
+            "type": "markdown",
+            "body": [
+                "In order to make use of [ImageJ 1.x](https://imagej.net/ImageJ1) functionality, we need to ensure the [ImageJ Legacy](https://imagej.net/ImageJ_Legacy) component is present on the runtime classpath."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeafhmcm",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// Behind a firewall? Configure your proxy settings here.",
+                    "//systemProperties = System.getProperties()",
+                    "//systemProperties.setProperty(\"http.proxyHost\",\"myproxy.domain\")",
+                    "//systemProperties.setProperty(\"http.proxyPort\",\"8080\")",
+                    "",
+                    "//////////////////////////////////////////////////////////////",
+                    "// Load ImageJ. This may take some minutes the first time   //",
+                    "// while ImageJ is installed into ~/.groovy/grapes locally. //",
+                    "//////////////////////////////////////////////////////////////",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab('net.imagej:imagej:2.0.0-rc-58')",
+                    "// Enable support for legacy ImageJ 1.x functions, too.",
+                    "// Version number must correspond to what is listed in the Bill of Materials:",
+                    "// https://github.com/scijava/pom-scijava/blob/pom-scijava-13.2.1/pom.xml#L234",
+                    "@Grab('net.imagej:imagej-legacy:0.23.4')",
+                    "import net.imagej.ImageJ",
+                    "ij = new ImageJ()",
+                    "println(\"ImageJ is ready to go.\")"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "net.imagej.ImageJ@402ae2b7",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "8dd805dd-476c-4970-9f2a-d89924b5af6f",
+                "elapsedTime": 5569,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 15,
+            "isError": false
+        },
+        {
+            "id": "markdownFxXIuC",
+            "type": "markdown",
+            "body": [
+                "The above procedure patches ImageJ 1.x so that it can run [headless](https://imagej.net/Headless). Indeed, we can verify that this notebook runs headless:"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeVvyfKH",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "println(\"Running headless? \" + System.getProperty(\"java.awt.headless\"))",
+                    "println(\"Does ImageJ agree? \" + ij.ui().isHeadless())"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Running headless? true\nDoes ImageJ agree? true\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "8dd805dd-476c-4970-9f2a-d89924b5af6f",
+                "elapsedTime": 599,
+                "height": 71
+            },
+            "evaluatorReader": true,
+            "lineCount": 2,
+            "isError": false
+        },
+        {
+            "id": "markdowns6GJtJ",
+            "type": "markdown",
+            "body": [
+                "The ImageJ Legacy component includes a handy `LegacyService` which provides operations bridging the gap between ImageJ 1.x and ImageJ2:"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeOPBzV8",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// Grab a handle on the legacy service.",
+                    "import net.imagej.legacy.LegacyService",
+                    "legacy = ij.get(LegacyService.class)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "net.imagej.legacy.LegacyService [priority = 1.0]",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "8dd805dd-476c-4970-9f2a-d89924b5af6f",
+                "elapsedTime": 575,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 3,
+            "isError": false
+        },
+        {
+            "id": "markdownRSLg1t",
+            "type": "markdown",
+            "body": [
+                "For example, we can convert an ImageJ2 `Dataset` to an ImageJ1 `ImagePlus`:"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeoq4BCX",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// Open an IJ2 Dataset.",
+                    "clown = ij.io().open(\"http://imagej.net/images/clown.png\")",
+                    "",
+                    "// Convert it to an IJ1 ImagePlus.",
+                    "clownIJ2 = ij.display().createDisplay(clown)",
+                    "clownIJ1 = legacy.getImageMap().registerDisplay(imageDisplay)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "img[http://imagej.net/images/clown.png (320x200x3x1x1)]",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "2242bed1-299e-46c1-aec3-fa222084f9c2",
+                "elapsedTime": 7151,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 6,
+            "isError": false
+        },
+        {
+            "id": "markdown3M9JI5",
+            "type": "markdown",
+            "body": [
+                "Now that ImageJ1 is patched, we can also call the ImageJ1 API directly as desired:"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "code7VIc0G",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import ij.IJ",
+                    "blobsIJ1 = IJ.openImage(\"http://imagej.net/images/blobs.gif\")"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "img[blobs.gif (256x254x1x1x1)]",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "8dd805dd-476c-4970-9f2a-d89924b5af6f",
+                "elapsedTime": 1148,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 2,
+            "isError": false
+        },
+        {
+            "id": "markdownPjCSnO",
+            "type": "markdown",
+            "body": [
+                "ImageJ1 `ImagePlus` objects can be converted to ImageJ2 `ImageDisplay` and/or `Dataset`:"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "code7VMevK",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// Convert IJ1 blobs image to an IJ2 image.",
+                    "blobsIJ2 = legacy.getImageMap().registerLegacyImage(blobsIJ1)",
+                    "blobsIJ2.get(0).getData()"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "blobs.gif",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "8dd805dd-476c-4970-9f2a-d89924b5af6f",
+                "elapsedTime": 581,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 3,
+            "isError": false
+        }
+    ],
+    "namespace": {}
+}

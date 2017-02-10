@@ -1,0 +1,428 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "smartHTMLMode"
+                }
+            }
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\njava.util.concurrent.TimeUnit\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*\ncom.twosigma.beaker.table.*\ncom.twosigma.beaker.table.format.*\ncom.twosigma.beaker.table.renderer.*\ncom.twosigma.beaker.table.highlight.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "markdownoBRpfo",
+            "type": "markdown",
+            "body": [
+                "# N-dimensional image processing",
+                "This tutorial covers:",
+                "* How to access and manipulate image sample values directly using [ImgLib2](https://imagej.net/ImgLib2)'s primary image structures.",
+                "* How to perform image processing operations such as convolution, deconvolution and Fourier transforms.",
+                "* How to work with non-rectangular regions of interest (ROIs) and do computational geometry.",
+                "* How to compute image features and use them with machine learning algorithms."
+            ],
+            "evaluatorReader": false,
+            "locked": true
+        },
+        {
+            "id": "codeGP4qcs",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// Behind a firewall? Configure your proxy settings here.",
+                    "//systemProperties = System.getProperties()",
+                    "//systemProperties.setProperty(\"http.proxyHost\",\"myproxy.domain\")",
+                    "//systemProperties.setProperty(\"http.proxyPort\",\"8080\")",
+                    "",
+                    "//////////////////////////////////////////////////////////////",
+                    "// Load ImageJ. This may take some minutes the first time   //",
+                    "// while ImageJ is installed into ~/.groovy/grapes locally. //",
+                    "//////////////////////////////////////////////////////////////",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab('net.imagej:imagej:2.0.0-rc-58')",
+                    "import net.imagej.ImageJ",
+                    "ij = new ImageJ()",
+                    "println(\"ImageJ is ready to go.\")"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "ImageJ is ready to go.\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "61d4f658-823d-403c-9076-10d52a2a1946",
+                "elapsedTime": 3905,
+                "height": 54
+            },
+            "evaluatorReader": true,
+            "lineCount": 10,
+            "initialization": true,
+            "isError": false,
+            "locked": true
+        },
+        {
+            "id": "sectionneO9UM",
+            "type": "section",
+            "title": "Image samples",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        },
+        {
+            "id": "markdownJ3pw4s",
+            "type": "markdown",
+            "body": [
+                "Images in ImageJ are backed by data structures from the [ImgLib2](https://imagej.net/ImgLib2) library. There are several important interfaces, but the two most crucial to understand initially are `IterableInterval` and `RandomAccessibleInterval`.",
+                "",
+                "As you can infer from their names, both of them are `Interval`s, which means finite, discrete point samplings in $\\mathbb{Z}^{n}$ bounded in each dimension. For example, a `uint8` image with dimensions $1024 \\times 768$ is an interval in $\\mathbb{Z}^{2}$ bounded in X (the first dimension) by $[0, 1023]$ and bounded in Y (the second dimension) by $[0, 767]$, with each integer coordinate inside the interval possessing some value $v \\in \\mathbb{Z} : 0 \\leq v \\leq 255$.",
+                "",
+                "* An `IterableInterval` is an image which can be _[iterated](https://en.wikipedia.org/wiki/Iteration#Computing)_ in some order. That is, you can loop over its samples, although the _iteration order_ may vary depending on the type of image—that is, you cannot rely on a particular sample order _a priori_. The good news is that an `IterableInterval` _does_ know its dimensional position at each iteration. An `IterableInterval` is essentially a [stream](https://en.wikipedia.org/wiki/Stream_(computing)).",
+                "",
+                "* A `RandomAccessibleInterval` is an image which can be _inspected_ at will at arbitrary positions within the interval. In other words, it provides _[random access](https://en.wikipedia.org/wiki/Random_access)_ to the image samples.",
+                "",
+                "If you are familiar with the `java.io` package of the Java standard library, `IterableInterval` is to `java.io.InputStream` as `RandomAccessibleInterval` is to `java.io.RandomAccessFile`.",
+                "",
+                "Let's dive into the API for each of these types of images!"
+            ],
+            "evaluatorReader": false,
+            "locked": true
+        },
+        {
+            "id": "sectionUr2hgp",
+            "type": "section",
+            "title": "Iterating images",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        },
+        {
+            "id": "markdownWHF33J",
+            "type": "markdown",
+            "body": [
+                "Here is a demonstration of image iteration:"
+            ],
+            "evaluatorReader": false,
+            "locked": true
+        },
+        {
+            "id": "code2hEeD9",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imglib2.IterableInterval",
+                    "",
+                    "// Create a tiny image.",
+                    "image = ij.op().run(\"create.img\", [5, 3])",
+                    "println(\"The image is a \" + image.getClass().getName())",
+                    "println(\"image instanceof IterableInterval? \" + (image instanceof IterableInterval))",
+                    "println(\"Each sample is a \" + image.firstElement().getClass().getName())",
+                    "",
+                    "// Populate it with a diagonal gradient.",
+                    "ij.op().image().equation(image, \"p[0]+p[1]\")",
+                    "",
+                    "// Iterate over the image samples!",
+                    "print(\"Sample values =\")",
+                    "for (v in image)",
+                    "  print(\" \" + v)",
+                    "println()"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "The image is a net.imglib2.img.array.ArrayImg\nimage instanceof IterableInterval? true\nEach sample is a net.imglib2.type.numeric.real.DoubleType\nSample values = 0.0 1.0 2.0 3.0 4.0 1.0 2.0 3.0 4.0 5.0 2.0 3.0 4.0 5.0 6.0\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "61d4f658-823d-403c-9076-10d52a2a1946",
+                "elapsedTime": 625,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 16,
+            "isError": false
+        },
+        {
+            "id": "markdowntEH1Tf",
+            "type": "markdown",
+            "body": [
+                "The actual type of the created image object is `ArrayImg`, which is an _image container_ backed by one big array—in this case, a `double[]` because the samples are of type `DoubleType`.",
+                "",
+                "More generally: an `Img` is an object which is both an `IterableInterval` and a `RandomAccessibleInterval`. Other kinds of image containers include `PlanarImg` (one array per 2D slice) and `CellImg` (one array per N-dimensional block).",
+                "",
+                "You might be wondering: what if I need to know the dimensional position during iteration? The solution is to use a _cursor_:"
+            ],
+            "evaluatorReader": false,
+            "locked": true
+        },
+        {
+            "id": "codetNQ6Lj",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "print(\"Samples by position:\")",
+                    "c = image.localizingCursor()",
+                    "while (c.hasNext()) {",
+                    "  v = c.next()",
+                    "  xPos = c.getLongPosition(0)",
+                    "  yPos = c.getLongPosition(1)",
+                    "  if (xPos == 0) println()",
+                    "  print(\"\\t(\" + xPos + \", \" + yPos + \") = \" + v)",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Samples by position:\n\t(0, 0) = 0.0\t(1, 0) = 1.0\t(2, 0) = 2.0\t(3, 0) = 3.0\t(4, 0) = 4.0\n\t(0, 1) = 1.0\t(1, 1) = 2.0\t(2, 1) = 3.0\t(3, 1) = 4.0\t(4, 1) = 5.0\n\t(0, 2) = 2.0\t(1, 2) = 3.0\t(2, 2) = 4.0\t(3, 2) = 5.0\t(4, 2) = 6.0\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "61d4f658-823d-403c-9076-10d52a2a1946",
+                "elapsedTime": 703,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 9,
+            "isError": false
+        },
+        {
+            "id": "markdownB1F68I",
+            "type": "markdown",
+            "body": [
+                "Each cursor is a pointer into the image somewhere, which knows its position. It is possible to run multiple cursors over an image simultaneously.",
+                "",
+                "Note that for performance, we use a _localizing cursor_ above by calling `localizingCursor()`, because we knew we would query the position every time. If we were going to query the position only rarely, `cursor()` would be better—a vanilla cursor still knows its position, but does less bookkeeping and hence is faster to iterate in cases where you don't query very often."
+            ],
+            "evaluatorReader": false,
+            "locked": true
+        },
+        {
+            "id": "sectionPYjAte",
+            "type": "section",
+            "title": "Iteration orders",
+            "level": 4,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        },
+        {
+            "id": "markdownD7Bw3I",
+            "type": "markdown",
+            "body": [
+                "From the positions above, we see that the iteration order here happens to be nice and organized, with X moving fastest, followed by Y. This so-called _flat iteration order_ is what you get with `ArrayImg`, but may differ with other image containers. Here is an example of how a _cell image_ with $2 \\times 2 \\times 2$ blocks differs from an _array image_ of the same size:"
+            ],
+            "evaluatorReader": false,
+            "locked": true
+        },
+        {
+            "id": "codelqtAEl",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// Create an array image and a cell (2x2x2) image.",
+                    "import net.imglib2.img.array.ArrayImgs",
+                    "import net.imglib2.img.cell.CellImgFactory",
+                    "long[] dims = [4, 2, 2]",
+                    "arrayImg = ArrayImgs.unsignedBytes(dims)",
+                    "cellImg = new CellImgFactory(2).create(dims, arrayImg.firstElement())",
+                    "",
+                    "def printPositions(ii, width) {",
+                    "  c = ii.localizingCursor()",
+                    "  col = 0",
+                    "  while (c.hasNext()) {",
+                    "    v = c.next()",
+                    "    xPos = c.getLongPosition(0)",
+                    "    yPos = c.getLongPosition(1)",
+                    "    zPos = c.getLongPosition(2)",
+                    "    print(\"\\t(\" + xPos + \", \" + yPos + \", \" + zPos + \")\")",
+                    "    if (++col == width) { col = 0;  println() }",
+                    "  }",
+                    "  println()",
+                    "}",
+                    "",
+                    "println(\"Array image iteration order =\")",
+                    "printPositions(arrayImg, 4)",
+                    "",
+                    "println(\"Cell image iteration order =\")",
+                    "printPositions(cellImg, 4)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Array image iteration order =\n\t(0, 0, 0)\t(1, 0, 0)\t(2, 0, 0)\t(3, 0, 0)\n\t(0, 1, 0)\t(1, 1, 0)\t(2, 1, 0)\t(3, 1, 0)\n\t(0, 0, 1)\t(1, 0, 1)\t(2, 0, 1)\t(3, 0, 1)\n\t(0, 1, 1)\t(1, 1, 1)\t(2, 1, 1)\t(3, 1, 1)\nCell image iteration order =\n\t(0, 0, 0)\t(1, 0, 0)\t(0, 1, 0)\t(1, 1, 0)\n\t(0, 0, 1)\t(1, 0, 1)\t(0, 1, 1)\t(1, 1, 1)\n\t(2, 0, 0)\t(3, 0, 0)\t(2, 1, 0)\t(3, 1, 0)\n\t(2, 0, 1)\t(3, 0, 1)\t(2, 1, 1)\t(3, 1, 1)\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "61d4f658-823d-403c-9076-10d52a2a1946",
+                "elapsedTime": 666,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 26,
+            "isError": false
+        },
+        {
+            "id": "markdownEuENEx",
+            "type": "markdown",
+            "body": [
+                ""
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionMM9bml",
+            "type": "section",
+            "title": "Accessing image samples directly",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        },
+        {
+            "id": "markdownU3jWdY",
+            "type": "markdown",
+            "body": [
+                "TODO `RandomAccessibleInterval`"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionmFb5cp",
+            "type": "section",
+            "title": "Convolution, deconvolution and Fourier transforms",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        },
+        {
+            "id": "sectionwrAdtO",
+            "type": "section",
+            "title": "Convolution",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        },
+        {
+            "id": "markdownebLjVs",
+            "type": "markdown",
+            "body": [
+                "TODO"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "section75FHBq",
+            "type": "section",
+            "title": " Deconvolution",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        },
+        {
+            "id": "sectionipYyFr",
+            "type": "section",
+            "title": "Fourier transforms",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        },
+        {
+            "id": "sectionNEB68g",
+            "type": "section",
+            "title": "Regions of interest (ROIs)",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        },
+        {
+            "id": "sectionz3OqsW",
+            "type": "section",
+            "title": "Computational geometry",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        },
+        {
+            "id": "sectionducloz",
+            "type": "section",
+            "title": "Machine learning with images",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        },
+        {
+            "id": "section7h4M35",
+            "type": "section",
+            "title": "Image features",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        }
+    ],
+    "namespace": {}
+}

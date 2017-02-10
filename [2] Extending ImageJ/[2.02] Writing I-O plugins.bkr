@@ -1,0 +1,98 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "smartHTMLMode"
+                }
+            }
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\njava.util.concurrent.TimeUnit\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*\ncom.twosigma.beaker.table.*\ncom.twosigma.beaker.table.format.*\ncom.twosigma.beaker.table.renderer.*\ncom.twosigma.beaker.table.highlight.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "sectionTwJPIh",
+            "type": "section",
+            "title": "Extending ImageJ: Data I/O",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": false,
+            "isError": false
+        },
+        {
+            "id": "markdownoBRpfo",
+            "type": "markdown",
+            "body": [
+                "How to write an `IOPlugin`."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeGP4qcs",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// Behind a firewall? Configure your proxy settings here.",
+                    "//systemProperties = System.getProperties()",
+                    "//systemProperties.setProperty(\"http.proxyHost\",\"myproxy.domain\")",
+                    "//systemProperties.setProperty(\"http.proxyPort\",\"8080\")",
+                    "",
+                    "//////////////////////////////////////////////////////////////",
+                    "// Load ImageJ. This may take some minutes the first time   //",
+                    "// while ImageJ is installed into ~/.groovy/grapes locally. //",
+                    "//////////////////////////////////////////////////////////////",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab('net.imagej:imagej:2.0.0-rc-58')",
+                    "import net.imagej.ImageJ",
+                    "ij = new ImageJ()",
+                    "println(\"ImageJ is ready to go.\")"
+                ]
+            },
+            "output": {
+                "state": {}
+            },
+            "evaluatorReader": true,
+            "lineCount": 11
+        },
+        {
+            "id": "codePjBpSD",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// TODO"
+                ]
+            },
+            "output": {
+                "state": {}
+            },
+            "evaluatorReader": true,
+            "lineCount": 1
+        }
+    ],
+    "namespace": {}
+}
