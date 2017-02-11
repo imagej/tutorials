@@ -68,9 +68,8 @@
             "input": {
                 "body": [
                     "// Behind a firewall? Configure your proxy settings here.",
-                    "//systemProperties = System.getProperties()",
-                    "//systemProperties.setProperty(\"http.proxyHost\",\"myproxy.domain\")",
-                    "//systemProperties.setProperty(\"http.proxyPort\",\"8080\")",
+                    "//System.setProperty(\"http.proxyHost\",\"myproxy.domain\")",
+                    "//System.setProperty(\"http.proxyPort\",\"8080\")",
                     "",
                     "//////////////////////////////////////////////////////////////",
                     "// Load ImageJ. This may take some minutes the first time   //",
@@ -107,7 +106,7 @@
                 "height": 0
             },
             "evaluatorReader": true,
-            "lineCount": 20,
+            "lineCount": 19,
             "isError": false
         },
         {
