@@ -34,21 +34,14 @@
     ],
     "cells": [
         {
-            "id": "sectionTwJPIh",
-            "type": "section",
-            "title": "Mixed World: Using ImageJ 1.x",
-            "level": 1,
-            "evaluatorReader": false,
-            "collapsed": false,
-            "isError": false
-        },
-        {
             "id": "markdownoBRpfo",
             "type": "markdown",
             "body": [
+                "# Mixed World: Using ImageJ 1.x",
                 "Familiar with [ImageJ 1.x](https://imagej.net/ImageJ1)? Want to mix and match? Here's how."
             ],
-            "evaluatorReader": false
+            "evaluatorReader": false,
+            "locked": true
         },
         {
             "id": "sectionApATJM",
@@ -56,7 +49,7 @@
             "title": "Enabling ImageJ 1.x",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false,
+            "collapsed": true,
             "isError": false
         },
         {
@@ -65,7 +58,8 @@
             "body": [
                 "In order to make use of [ImageJ 1.x](https://imagej.net/ImageJ1) functionality, we need to ensure the [ImageJ Legacy](https://imagej.net/ImageJ_Legacy) component is present on the runtime classpath."
             ],
-            "evaluatorReader": false
+            "evaluatorReader": false,
+            "locked": true
         },
         {
             "id": "codeafhmcm",
@@ -84,9 +78,11 @@
                     "//////////////////////////////////////////////////////////////",
                     "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
                     "@Grab('net.imagej:imagej:2.0.0-rc-58')",
-                    "// Enable support for legacy ImageJ 1.x functions, too.",
-                    "// Version number must correspond to what is listed in the Bill of Materials:",
-                    "// https://github.com/scijava/pom-scijava/blob/pom-scijava-13.2.1/pom.xml#L234",
+                    "/////////////////////////////////////////////////////////////////////////////////",
+                    "// Enable support for legacy ImageJ 1.x functions, too.                        //",
+                    "// Version number must correspond to what is listed in the Bill of Materials:  //",
+                    "// https://github.com/scijava/pom-scijava/blob/pom-scijava-13.2.1/pom.xml#L234 //",
+                    "/////////////////////////////////////////////////////////////////////////////////",
                     "@Grab('net.imagej:imagej-legacy:0.23.4')",
                     "import net.imagej.ImageJ",
                     "ij = new ImageJ()",
@@ -95,15 +91,23 @@
             },
             "output": {
                 "state": {},
-                "result": "net.imagej.ImageJ@402ae2b7",
-                "selectedType": "Text",
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "ImageJ is ready to go.\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "8dd805dd-476c-4970-9f2a-d89924b5af6f",
-                "elapsedTime": 5569,
-                "height": 56
+                "shellId": "a1f19774-97a5-4ec2-9997-fdc99cefc710",
+                "elapsedTime": 5461,
+                "height": 0
             },
             "evaluatorReader": true,
-            "lineCount": 15,
+            "lineCount": 20,
             "isError": false
         },
         {
@@ -112,7 +116,8 @@
             "body": [
                 "The above procedure patches ImageJ 1.x so that it can run [headless](https://imagej.net/Headless). Indeed, we can verify that this notebook runs headless:"
             ],
-            "evaluatorReader": false
+            "evaluatorReader": false,
+            "locked": true
         },
         {
             "id": "codeVvyfKH",
@@ -139,10 +144,60 @@
                 "pluginName": "Groovy",
                 "shellId": "8dd805dd-476c-4970-9f2a-d89924b5af6f",
                 "elapsedTime": 599,
-                "height": 71
+                "height": 0
             },
             "evaluatorReader": true,
             "lineCount": 2,
+            "isError": false
+        },
+        {
+            "id": "sectionyWtBUG",
+            "type": "section",
+            "title": "Calling ImageJ 1.x directly",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true,
+            "isError": false
+        },
+        {
+            "id": "markdown3M9JI5",
+            "type": "markdown",
+            "body": [
+                "Now that ImageJ1 is patched, we can call the ImageJ1 API directly as desired:"
+            ],
+            "evaluatorReader": false,
+            "locked": true
+        },
+        {
+            "id": "code7VIc0G",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import ij.IJ",
+                    "blobsIJ1 = IJ.openImage(\"http://imagej.net/images/blobs.gif\")"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "img[blobs.gif (256x254x1x1x1)]",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "8dd805dd-476c-4970-9f2a-d89924b5af6f",
+                "elapsedTime": 1148,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 2,
+            "isError": false
+        },
+        {
+            "id": "sectionksnY33",
+            "type": "section",
+            "title": "Using the legacy service",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true,
             "isError": false
         },
         {
@@ -151,7 +206,8 @@
             "body": [
                 "The ImageJ Legacy component includes a handy `LegacyService` which provides operations bridging the gap between ImageJ 1.x and ImageJ2:"
             ],
-            "evaluatorReader": false
+            "evaluatorReader": false,
+            "locked": true
         },
         {
             "id": "codeOPBzV8",
@@ -171,7 +227,7 @@
                 "pluginName": "Groovy",
                 "shellId": "8dd805dd-476c-4970-9f2a-d89924b5af6f",
                 "elapsedTime": 575,
-                "height": 56
+                "height": 0
             },
             "evaluatorReader": true,
             "lineCount": 3,
@@ -183,7 +239,8 @@
             "body": [
                 "For example, we can convert an ImageJ2 `Dataset` to an ImageJ1 `ImagePlus`:"
             ],
-            "evaluatorReader": false
+            "evaluatorReader": false,
+            "locked": true
         },
         {
             "id": "codeoq4BCX",
@@ -196,7 +253,7 @@
                     "",
                     "// Convert it to an IJ1 ImagePlus.",
                     "clownIJ2 = ij.display().createDisplay(clown)",
-                    "clownIJ1 = legacy.getImageMap().registerDisplay(imageDisplay)"
+                    "clownIJ1 = legacy.getImageMap().registerDisplay(clownIJ2)"
                 ]
             },
             "output": {
@@ -206,50 +263,20 @@
                 "pluginName": "Groovy",
                 "shellId": "2242bed1-299e-46c1-aec3-fa222084f9c2",
                 "elapsedTime": 7151,
-                "height": 56
+                "height": 0
             },
             "evaluatorReader": true,
             "lineCount": 6,
             "isError": false
         },
         {
-            "id": "markdown3M9JI5",
-            "type": "markdown",
-            "body": [
-                "Now that ImageJ1 is patched, we can also call the ImageJ1 API directly as desired:"
-            ],
-            "evaluatorReader": false
-        },
-        {
-            "id": "code7VIc0G",
-            "type": "code",
-            "evaluator": "Groovy",
-            "input": {
-                "body": [
-                    "import ij.IJ",
-                    "blobsIJ1 = IJ.openImage(\"http://imagej.net/images/blobs.gif\")"
-                ]
-            },
-            "output": {
-                "state": {},
-                "result": "img[blobs.gif (256x254x1x1x1)]",
-                "selectedType": "Text",
-                "pluginName": "Groovy",
-                "shellId": "8dd805dd-476c-4970-9f2a-d89924b5af6f",
-                "elapsedTime": 1148,
-                "height": 56
-            },
-            "evaluatorReader": true,
-            "lineCount": 2,
-            "isError": false
-        },
-        {
             "id": "markdownPjCSnO",
             "type": "markdown",
             "body": [
-                "ImageJ1 `ImagePlus` objects can be converted to ImageJ2 `ImageDisplay` and/or `Dataset`:"
+                "And ImageJ1 `ImagePlus` objects can be converted to ImageJ2 `ImageDisplay` and/or `Dataset`:"
             ],
-            "evaluatorReader": false
+            "evaluatorReader": false,
+            "locked": true
         },
         {
             "id": "code7VMevK",
@@ -269,7 +296,7 @@
                 "pluginName": "Groovy",
                 "shellId": "8dd805dd-476c-4970-9f2a-d89924b5af6f",
                 "elapsedTime": 581,
-                "height": 56
+                "height": 0
             },
             "evaluatorReader": true,
             "lineCount": 3,
