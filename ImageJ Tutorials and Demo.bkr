@@ -241,8 +241,8 @@
             "evaluator": "Groovy",
             "input": {
                 "body": [
-                    "//sourcePath = \"http://imagej.net/images\"",
-                    "sourcePath = \"/Users/curtis/data\"",
+                    "sourcePath = \"http://imagej.net/images\"",
+                    "//sourcePath = System.getProperty(\"user.home\") + \"/data\"",
                     "cells = ij.io().open(sourcePath + \"/FluorescentCells.jpg\")",
                     "lena = ij.io().open(sourcePath + \"/lena.jpg\")",
                     "tile([cells, lena])"
