@@ -107,7 +107,7 @@
                     "outputdata": [
                         {
                             "type": "out",
-                            "value": "Bootstrap ImageJ success!\n"
+                            "value": "ImageJ is ready to go.\n"
                         }
                     ]
                 },
