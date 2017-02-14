@@ -106,7 +106,9 @@
             "body": [
                 "Images in ImageJ are backed by data structures from the [ImgLib2](https://imagej.net/ImgLib2) library. There are several important interfaces, but the two most crucial to understand initially are `IterableInterval` and `RandomAccessibleInterval`.",
                 "",
-                "As you can infer from their names, both of them are `Interval`s, which means finite, discrete point samplings in $\\mathbb{Z}^{n}$ bounded in each dimension. For example, a `uint8` image with dimensions $1024 \\times 768$ is an interval in $\\mathbb{Z}^{2}$ bounded in X (the first dimension) by $[0, 1023]$ and bounded in Y (the second dimension) by $[0, 767]$, with each integer coordinate inside the interval possessing some value $v \\in \\mathbb{Z} : 0 \\leq v \\leq 255$.",
+                "As you can infer from their names, both of them are `Interval`s, which means finite, discrete point samplings in",
+                "$\\mathbb{Z}^{n}$",
+                "bounded in each dimension. For example, a `uint8` image with dimensions $1024 \\times 768$ is an interval in $\\mathbb{Z}^{2}$ bounded in X (the first dimension) by $[0, 1023]$ and bounded in Y (the second dimension) by $[0, 767]$, with each integer coordinate inside the interval possessing some value $v \\in \\mathbb{Z} : 0 \\leq v \\leq 255$.",
                 "",
                 "* An `IterableInterval` is an image which can be _[iterated](https://en.wikipedia.org/wiki/Iteration#Computing)_ in some order. That is, you can loop over its samples, although the _iteration order_ may vary depending on the type of image—that is, you cannot rely on a particular sample order _a priori_. The good news is that an `IterableInterval` _does_ know its dimensional position at each iteration. An `IterableInterval` is essentially a [stream](https://en.wikipedia.org/wiki/Stream_(computing)).",
                 "",
