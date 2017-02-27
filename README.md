@@ -1,4 +1,4 @@
-[![](http://jenkins.imagej.net/job/ImageJ-tutorials/lastBuild/badge/icon)](http://jenkins.imagej.net/job/ImageJ-tutorials/)
+[![](https://travis-ci.org/imagej/tutorials.svg?branch=master)](https://travis-ci.org/imagej/tutorials)
 
 This project contains example code for working with [ImageJ2][1].
 

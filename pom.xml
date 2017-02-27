@@ -126,8 +126,8 @@
 		<url>http://github.com/imagej/imagej-tutorials/issues</url>
 	</issueManagement>
 	<ciManagement>
-		<system>Jenkins</system>
-		<url>http://jenkins.imagej.net/job/ImageJ-tutorials/</url>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/imagej/tutorials</url>
 	</ciManagement>
 
 	<properties>
