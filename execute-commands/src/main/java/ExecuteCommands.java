@@ -63,7 +63,8 @@ import org.scijava.plugins.commands.io.OpenFile;
  * </ol>
  * <p>
  * Here is a point-by-point comparison of the approaches:
- * <table>
+ * </p>
+ * <table summary="A comparison of command execution approaches">
  * <tr>
  * <th>&nbsp;</th>
  * <th>CommandService</th>
@@ -107,7 +108,6 @@ import org.scijava.plugins.commands.io.OpenFile;
  * <td>Yes</td>
  * </tr>
  * </table>
- * </p>
  * 
  * @author Curtis Rueden
  * @author Grant Harris

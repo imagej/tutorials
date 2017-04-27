@@ -24,26 +24,29 @@ import net.imglib2.type.numeric.RealType;
 /**
  * This tutorial shows how to use the ImageJ Ops DoG filter, and how to use
  * ImageJ Ops normalizeScale op to do image type conversion.
- *
+ * <p>
  * A main method is provided so this class can be run directly from Eclipse (or
  * any other IDE).
- *
- * Also, because this class implements Command and is annotated as an @Plugin,
- * it will show up in the ImageJ menus: under Tutorials>Load and Display
- * Dataset, as specified by the menuPath field of the @Plugin annotation.
+ * </p>
+ * <p>
+ * Also, because this class implements {@link Command} and is annotated as an
+ * {@code @Plugin}, it will show up in the ImageJ menus: under Tutorials&gt;DoG
+ * Filtering, as specified by the {@code menuPath} field of the {@code @Plugin}
+ * annotation.
+ * </p>
  */
 @Plugin(type = Command.class, menuPath = "Tutorials>DoG Filtering")
 public class UsingOpsDog<T extends RealType<T> & NativeType<T>> implements Command {
 
     /*
-     * This @Parameter is for Image Display service.
+     * This {@code @Parameter} is for Image Display service.
      * The context will provide it automatically when this command is created.
      */
     @Parameter
     private ImageDisplayService imageDisplayService;
 
     /*
-     * This @Parameter is for ImageJ Ops service. The
+     * This {@code @Parameter} is for ImageJ Ops service. The
      * context will provide it automatically when this command is created.
      */
     @Parameter
@@ -97,9 +100,10 @@ public class UsingOpsDog<T extends RealType<T> & NativeType<T>> implements Comma
     /*
      * This main method is for convenience - so you can run this command
      * directly from Eclipse (or other IDE).
-     *
+     * <p>
      * It will launch ImageJ and then run this command using the CommandService.
-     * This is equivalent to clicking "Tutorials>DoG Filtering" in the UI.
+     * This is equivalent to clicking "Tutorials&gt;DoG Filtering" in the UI.
+     * </p>
      */
     public static void main(final String... args) throws Exception {
         // Launch ImageJ as usual.

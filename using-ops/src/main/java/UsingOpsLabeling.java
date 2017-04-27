@@ -43,12 +43,15 @@ import org.scijava.ui.UIService;
 /**
  * This tutorial shows how to do binary image labeling in ImageJ, and how to use
  * ConnectedComponents to do connected components analysis.
- *
+ * <p>
  * A main method is provided so this class can be run directly from IDE.
- *
- * Also, because this class implements Command and is annotated as an @Plugin,
- * it will show up in the ImageJ menus: under Tutorials>Labeling Filtering,
- * as specified by the menuPath field of the @Plugin annotation.
+ * </p>
+ * <p>
+ * Also, because this class implements Command and is annotated as an
+ * {@code @Plugin}, it will show up in the ImageJ menus: under
+ * Tutorials&gt;Labeling Filtering, as specified by the {@code menuPath} field
+ * of the {@code @Plugin} annotation.
+ * </p>
  */
 @Plugin(type = Command.class, menuPath = "Tutorials>Labeling Filtering")
 public class UsingOpsLabeling<T extends RealType<T>> implements Command {
@@ -264,9 +267,11 @@ public class UsingOpsLabeling<T extends RealType<T>> implements Command {
     /*
      * This main method is for convenience - so you can run this command
      * directly from Eclipse (or other IDE).
-     *
-     * It will launch ImageJ and then run this command using the CommandService.
-     * This is equivalent to clicking "Tutorials>Labeling Filtering" in the UI.
+     * <p>
+     * It will launch ImageJ and then run this command using the
+     * CommandService. This is equivalent to clicking "Tutorials&gt;Labeling
+     * Filtering" in the UI.
+     * </p>
      */
     public static void main(final String... args) throws Exception {
         // create the ImageJ application context with all available services
