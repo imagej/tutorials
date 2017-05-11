@@ -8,7 +8,7 @@
 
 import org.scijava.plugin.Plugin;
 
-/** An animal that is the king of the jungle. */
+/** An animal that rules the jungle. */
 @Plugin(type = Animal.class, name = "Lion")
 public class Lion implements Animal {
 
