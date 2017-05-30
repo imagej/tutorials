@@ -10,3 +10,4 @@
 /.settings/
 .idea
 *.iml
+*.ipynb_checkpoints*
