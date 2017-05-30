@@ -1,5 +1,5 @@
 #!/bin/sh
-dir="$(dirname "$0")"
+dir=$(cd "$(dirname "$0")" && pwd)
 if [ "$TRAVIS_SECURE_ENV_VARS" = true \
   -a "$TRAVIS_PULL_REQUEST" = false \
   -a "$TRAVIS_BRANCH" = master ]
