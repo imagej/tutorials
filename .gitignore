@@ -1,13 +1,14 @@
-# IntelliJ
-/.idea/
+# Maven #
+target/
+
+# Eclipse #
+.classpath
+.project
+.settings/
+
+# IntelliJ #
+.idea/
 *.iml
 
-*/.classpath
-*/.project
-*/.settings/
-*/target/
-.project
-/.settings/
-.idea
-*.iml
+# Jupyter #
 *.ipynb_checkpoints*
