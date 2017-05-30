@@ -9,7 +9,7 @@ JUPYTER NOTEBOOKS
 -----------------
 
 The easiest way to get started with the ImageJ and SciJava APIs is via the
-[ImageJ Jupyter notebooks](https://nbviewer.jupyter.org/github/imagej/tutorials/blob/master/notebooks/ImageJ%20Tutorials%20and%20Demo.ipynb),
+[ImageJ Jupyter notebooks](https://nbviewer.jupyter.org/github/imagej/tutorials/blob/master/notebooks/ImageJ_Tutorials_and_Demo.ipynb),
 located in the `notebooks` subfolder of this repository.
 
 These notebooks use the
