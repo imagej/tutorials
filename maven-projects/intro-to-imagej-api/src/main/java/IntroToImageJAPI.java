@@ -15,7 +15,7 @@ public class IntroToImageJAPI {
 
 	public static void main(final String... args) throws Exception {
 		// The first step when working with ImageJ is to create an *ImageJ
-		// application context*. This is an instance of the class imagej.ImageJ,
+		// application context*. This is an instance of the class net.imagej.ImageJ,
 		// and is created as follows:
 		final ImageJ ij = new ImageJ();
 		// This context provides access to ImageJ operations and data structures.
