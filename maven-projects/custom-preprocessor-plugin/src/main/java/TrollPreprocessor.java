@@ -6,6 +6,8 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
+import net.imagej.ImageJ;
+
 import org.scijava.module.Module;
 import org.scijava.module.process.AbstractPreprocessorPlugin;
 import org.scijava.module.process.PreprocessorPlugin;
@@ -66,7 +68,8 @@ public class TrollPreprocessor extends AbstractPreprocessorPlugin {
 	/** Tests the custom preprocessor plugin. */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
-		net.imagej.Main.launch(args);
+		final ImageJ ij = new ImageJ();
+		ij.launch(args);
 	}
 
 }

@@ -46,9 +46,8 @@ public class CopyLabels extends ContextCommand {
 	/** A {@code main()} method for testing. */
 	public static void main(final String... args) {
 		// Launch ImageJ as usual.
-		final ImageJ ij = net.imagej.Main.launch(args);
-
-		ij.ui().showUI();
+		final ImageJ ij = new ImageJ();
+		ij.launch(args);
 
 		// Create an image with fancy slice labels.
 		IJ.newImage("Fancy", "8-bit", 384, 64, 2);

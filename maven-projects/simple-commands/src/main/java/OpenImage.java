@@ -91,14 +91,15 @@ public class OpenImage implements Command {
 
 	/*
 	 * This main method is for convenience - so you can run this command
-	 * directly from Eclipse (or other IDE).
+	 * directly from Eclipse (or any other IDE).
 	 *
 	 * It will launch ImageJ and then run this command using the CommandService.
 	 * This is equivalent to clicking "Tutorials>Open Image" in the UI.
 	 */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
-		final ImageJ ij = net.imagej.Main.launch(args);
+		final ImageJ ij = new ImageJ();
+		ij.launch(args);
 
 		// Launch the "OpenImage" command.
 		ij.command().run(OpenImage.class, true);

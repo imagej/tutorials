@@ -6,6 +6,8 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
+import java.io.File;
+
 import net.imagej.display.ImageDisplayService;
 import net.imagej.Dataset;
 import net.imagej.ImageJ;
@@ -107,10 +109,23 @@ public class UsingOpsDog<T extends RealType<T> & NativeType<T>> implements Comma
      */
     public static void main(final String... args) throws Exception {
         // Launch ImageJ as usual.
-        final ImageJ ij = net.imagej.Main.launch(args);
+        final ImageJ ij = new ImageJ();
+        ij.launch(args);
 
-        // Launch the "UsingOpsDog" command.
-        ij.command().run(UsingOpsDog.class, true);
+        // ask the user for a file to open
+        final File file = ij.ui().chooseFile(null, "open");
+
+        if (file != null) {
+            // load the dataset
+            final Dataset dataset = ij.scifio().datasetIO().open(file.getPath());
+
+            // show the image
+            ij.ui().show(dataset);
+
+            // Launch the "UsingOpsDog" command.
+            ij.command().run(UsingOpsDog.class, true);
+        }
+
     }
 
 }

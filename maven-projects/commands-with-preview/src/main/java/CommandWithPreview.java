@@ -68,7 +68,8 @@ public class CommandWithPreview implements Command, Previewable {
 	/** Tests our command. */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
-		final ImageJ ij = net.imagej.Main.launch(args);
+		final ImageJ ij = new ImageJ();
+		ij.launch(args);
 
 		// Create a beautiful test image.
 		long[] dims = {512, 128};
