@@ -68,7 +68,8 @@ public class GradientImage implements Command {
 	/** Tests our command. */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
-		final ImageJ ij = net.imagej.Main.launch(args);
+		final ImageJ ij = new ImageJ();
+		ij.launch(args);
 
 		// Launch the "Gradient Image" command right away.
 		ij.command().run(GradientImage.class, true);

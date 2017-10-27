@@ -73,13 +73,6 @@ public class AddTwoDatasets implements Command, Previewable {
 	@Parameter(label = "Result 3", type = ItemIO.OUTPUT)
 	private Dataset result3;
 
-	public static void main(final String... args) throws Exception {
-		// create the ImageJ application context with all available services
-		final ImageJ ij = net.imagej.Main.launch(args);
-
-		ij.command().run(AddTwoDatasets.class, true);
-	}
-
 	@Override
 	public void run() {
 		// add them together
@@ -236,6 +229,15 @@ public class AddTwoDatasets implements Command, Previewable {
 			axes[i] = d1.numDimensions() > i ? d1.axis(i).type() : d2.axis(i).type();
 		}
 		return datasetService.create(type, dims, "result", axes);
+	}
+
+	public static void main(final String... args) throws Exception {
+		// Create the ImageJ application context with all available services
+		final ImageJ ij = new ImageJ();
+		ij.launch(args);
+
+		// Launch the "Add Two Datasets" command right away.
+		ij.command().run(AddTwoDatasets.class, true);
 	}
 
 }

@@ -366,7 +366,8 @@ public class WidgetDemo implements Command, Previewable {
 	/** Launches the widget demo. */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
-		final ImageJ ij = net.imagej.Main.launch(args);
+		final ImageJ ij = new ImageJ();
+		ij.launch(args);
 
 		// Launch the "Widget Demo" command right away.
 		ij.command().run(WidgetDemo.class, true);

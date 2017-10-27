@@ -10,7 +10,6 @@ import ij.IJ;
 import ij.gui.GenericDialog;
 import ij.plugin.PlugIn;
 import net.imagej.ImageJ;
-import net.imagej.Main;
 import net.imagej.table.DefaultGenericTable;
 import net.imagej.table.GenericTable;
 
@@ -56,7 +55,9 @@ public class DisplayATable implements PlugIn {
 
 	/** Tests the plugin. */
 	public static void main(final String... args) {
-		Main.launch(args);
+		final ImageJ ij = new ImageJ();
+		ij.launch(args);
+
 		IJ.runPlugIn(DisplayATable.class.getName(), "");
 	}
 

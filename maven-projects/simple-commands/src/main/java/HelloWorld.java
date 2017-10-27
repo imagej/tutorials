@@ -73,7 +73,8 @@ public class HelloWorld implements Command {
 	 */
 	public static void main(final String... args) {
 		// Launch ImageJ as usual.
-		final ImageJ ij = net.imagej.Main.launch(args);
+		final ImageJ ij = new ImageJ();
+		ij.launch(args);
 
 		// Launch our "Hello World" command right away.
 		ij.command().run(HelloWorld.class, true);

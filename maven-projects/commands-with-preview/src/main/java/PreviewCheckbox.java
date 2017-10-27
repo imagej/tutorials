@@ -19,7 +19,7 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 /**
- * An ImageJ2 command with preview that is triggered only check the Preview
+ * An ImageJ2 command with preview that is triggered only when the Preview
  * checkbox is active.
  */
 @Plugin(type = Command.class,
@@ -84,7 +84,8 @@ public class PreviewCheckbox implements Command, Previewable {
 	/** Tests our command. */
 	public static void main(final String... args) throws Exception {
 		// Launch ImageJ as usual.
-		final ImageJ ij = net.imagej.Main.launch(args);
+		final ImageJ ij = new ImageJ();
+		ij.launch(args);
 
 		// Create a beautiful test image.
 		long[] dims = {512, 128};
