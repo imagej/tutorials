@@ -24,17 +24,18 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 /**
- * This example illustrates how to print image metadata using the {@link FormatService} and {@link FieldPrinter}.
+ * This example illustrates how to access and display image metadata using the {@link FormatService} and
+ * {@link FieldPrinter}.
  * <p>
  * We use the {@link FormatService} to determine the {@link Format} of the input image. Then, we parse
- * the metadata from the image file and use {@link FieldPrinter} to print the metadata fields as strings.
+ * the metadata from the image file and use {@link FieldPrinter} to retrieve the metadata fields as strings.
  * </p>
  * <p>
  * An optional {@code formatMetadata} method is included to (hopefully) make the text more readable.
  * </p>
  */
-@Plugin(type = Command.class, menuPath = "Plugins>Print Metadata")
-public class PrintMetadata implements Command {
+@Plugin(type = Command.class, menuPath = "Image>Show Metadata")
+public class GetMetadata implements Command {
 
     // -- Needed services --
 
@@ -116,7 +117,7 @@ public class PrintMetadata implements Command {
         ij.ui().show(img);
 
         // invoke the plugin
-        ij.command().run(PrintMetadata.class, true);
+        ij.command().run(GetMetadata.class, true);
 
     }
 

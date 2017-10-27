@@ -8,18 +8,18 @@
 	<parent>
 		<groupId>org.scijava</groupId>
 		<artifactId>pom-scijava</artifactId>
-		<version>16.1.0</version>
+		<version>17.1.1</version>
 		<relativePath />
 	</parent>
 
 	<groupId>imagej-tutorials</groupId>
 	<artifactId>metadata</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 
 	<name>Metadata</name>
-	<description>This example shows how to access and print metadata with SCIFIO.</description>
+	<description>This example shows how to access and display metadata with SCIFIO.</description>
 	<url>https://github.com/[MY-ORG]/[MY-REPO]</url>
-	<inceptionYear>2013</inceptionYear>
+	<inceptionYear>2017</inceptionYear>
 	<organization>
 		<name>[MY-ORGANIZATION-NAME]</name>
 		<url>[MY-ORGANIZATION-WEB-SITE]</url>
@@ -67,7 +67,7 @@
 	</ciManagement>
 
 	<properties>
-		<main-class>PrintMetadata</main-class>
+		<main-class>GetMetadata</main-class>
 		<license.licenseName>cc0</license.licenseName>
 		<license.copyrightOwners>N/A</license.copyrightOwners>
 		<license.projectName>ImageJ software for multidimensional image processing and analysis.</license.projectName>
@@ -92,17 +92,17 @@
 		<dependency>
 			<groupId>io.scif</groupId>
 			<artifactId>scifio-bf-compat</artifactId>
-            <scope>runtime</scope>
+			<scope>runtime</scope>
 		</dependency>
-        <dependency>
-            <groupId>ome</groupId>
-            <artifactId>formats-bsd</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>ome</groupId>
-            <artifactId>formats-gpl</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+		<dependency>
+			<groupId>ome</groupId>
+			<artifactId>formats-bsd</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ome</groupId>
+			<artifactId>formats-gpl</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 </project>
