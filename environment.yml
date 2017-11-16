@@ -2,6 +2,7 @@ name: scijava-jupyter-kernel
 channels:
   - damianavila82
   - conda-forge
+  - hanslovsky
 dependencies:
   - python
   - numpy
@@ -10,3 +11,4 @@ dependencies:
   - bokeh
   - rise
   - scijava-jupyter-kernel
+  - imglib2-imglyb
