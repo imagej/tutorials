@@ -1,4 +1,4 @@
-name: scijava-jupyter-kernel
+name: scijava
 channels:
   - damianavila82
   - conda-forge
