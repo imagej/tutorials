@@ -19,7 +19,7 @@
 
 	<name>ImageJ Tutorials</name>
 	<description>A collection of tutorials for ImageJ.</description>
-	<url>https://github.com/imagej/imagej-tutorials</url>
+	<url>https://github.com/imagej/tutorials</url>
 	<inceptionYear>2012</inceptionYear>
 	<organization>
 		<name>ImageJ</name>
@@ -117,14 +117,14 @@
 	</modules>
 
 	<scm>
-		<connection>scm:git:git://github.com/imagej/imagej-tutorials</connection>
-		<developerConnection>scm:git:git@github.com:imagej/imagej-tutorials</developerConnection>
+		<connection>scm:git:git://github.com/imagej/tutorials</connection>
+		<developerConnection>scm:git:git@github.com:imagej/tutorials</developerConnection>
 		<tag>HEAD</tag>
-		<url>https://github.com/imagej/imagej-tutorials</url>
+		<url>https://github.com/imagej/tutorials</url>
 	</scm>
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>http://github.com/imagej/imagej-tutorials/issues</url>
+		<url>http://github.com/imagej/tutorials/issues</url>
 	</issueManagement>
 	<ciManagement>
 		<system>Travis CI</system>
