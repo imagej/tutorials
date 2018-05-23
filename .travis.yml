@@ -8,7 +8,7 @@ branches:
   only:
   - master
   - "/.*-[0-9]+\\..*/"
-install: ".travis/install.sh"
+install: true
 script: ".travis/build.sh"
 cache:
   directories:
