@@ -35,9 +35,8 @@ You can import these projects into your favorite IDE:
 
 Or build and run from the command line:
 
-    cd maven-projects
     mvn
-    cd simple-commands
+    cd maven-projects/simple-commands
     mvn -Pexec -Dmain-class=GradientImage
 
 

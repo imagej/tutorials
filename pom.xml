@@ -95,25 +95,25 @@
 	</mailingLists>
 
 	<modules>
-		<module>add-rois</module>
-		<module>add-two-datasets</module>
-		<module>call-modern-from-legacy</module>
-		<module>commands-with-preview</module>
-		<module>create-a-new-op</module>
-		<module>create-a-new-plugin-type</module>
-		<module>custom-preprocessor-plugin</module>
-		<module>dynamic-commands</module>
-		<module>execute-commands</module>
-		<module>ij2-image-plus</module>
-		<module>intro-to-imagej-api</module>
-		<module>load-and-display-dataset</module>
-		<module>listen-to-events</module>
-		<module>mixed-world-command</module>
-		<module>simple-commands</module>
-		<module>tables</module>
-		<module>using-ops</module>
-		<module>widget-demo</module>
-		<module>working-with-modules</module>
+		<module>maven-projects/add-rois</module>
+		<module>maven-projects/add-two-datasets</module>
+		<module>maven-projects/call-modern-from-legacy</module>
+		<module>maven-projects/commands-with-preview</module>
+		<module>maven-projects/create-a-new-op</module>
+		<module>maven-projects/create-a-new-plugin-type</module>
+		<module>maven-projects/custom-preprocessor-plugin</module>
+		<module>maven-projects/dynamic-commands</module>
+		<module>maven-projects/execute-commands</module>
+		<module>maven-projects/ij2-image-plus</module>
+		<module>maven-projects/intro-to-imagej-api</module>
+		<module>maven-projects/load-and-display-dataset</module>
+		<module>maven-projects/listen-to-events</module>
+		<module>maven-projects/mixed-world-command</module>
+		<module>maven-projects/simple-commands</module>
+		<module>maven-projects/tables</module>
+		<module>maven-projects/using-ops</module>
+		<module>maven-projects/widget-demo</module>
+		<module>maven-projects/working-with-modules</module>
 	</modules>
 
 	<scm>
