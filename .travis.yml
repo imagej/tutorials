@@ -1,9 +1,5 @@
-language:
-  - java
-  - python
+language: java
 jdk: oraclejdk8
-python:
-  - "3.5"
 branches:
   only:
   - master
