@@ -1,12 +1,3 @@
 #!/bin/sh
-dir=$(cd "$(dirname "$0")" && pwd)
-if [ "$TRAVIS_SECURE_ENV_VARS" = true \
-  -a "$TRAVIS_PULL_REQUEST" = false \
-  -a "$TRAVIS_BRANCH" = master ]
-then
-  cd maven-projects &&
-  mvn -Pdeploy-to-imagej deploy --settings "$dir/settings.xml"
-else
-  cd maven-projects &&
-  mvn install
-fi
+curl -fsLO https://raw.githubusercontent.com/scijava/scijava-scripts/master/travis-build.sh
+sh travis-build.sh $encrypted_4bf550f17d15_key $encrypted_4bf550f17d15_iv

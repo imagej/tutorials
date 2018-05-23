@@ -1,9 +1,19 @@
-language: java
+language:
+  - java
+  - python
 jdk: oraclejdk8
+python:
+  - "3.5"
 branches:
-  only: master
-install: true
+  only:
+  - master
+  - "/.*-[0-9]+\\..*/"
+install: ".travis/install.sh"
 script: ".travis/build.sh"
+cache:
+  directories:
+  - "~/.m2/repository"
+  - "~/miniconda"
 env:
   global:
   - secure: bM/ROC4gfw5dwe7hvcpdFTNBRx51wIvQ+atUPhf9jZjBRidI5Wr0Rhsc30HUAF0sWh4tw2qkCjPAioC/84jp2tVqUXM0PqiElLunVdf6ooJ09uBkTr3nUTdSWflEpKqrI4DPfBS317Xoj26GdWu6YaPLlpQDIPMgdMjZG9fUJRE=
