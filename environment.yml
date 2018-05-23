@@ -8,8 +8,6 @@ dependencies:
   - numpy
   - scikit-image
   - matplotlib
-  - pandas
-  - bokeh
   - rise
   - scijava-jupyter-kernel
   - imglib2-imglyb
