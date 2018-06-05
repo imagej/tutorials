@@ -11,3 +11,5 @@ dependencies:
   - rise
   - scijava-jupyter-kernel
   - imglib2-imglyb
+  - pip:
+    - imagej
