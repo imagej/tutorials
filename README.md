@@ -2,8 +2,7 @@
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/imagej/tutorials/master)
 
 This project contains example code for working with
-[ImageJ2](https://imagej.net/ImageJ2) and
-[SciJava](https://imagej.net/SciJava).
+[ImageJ](https://imagej.net/ImageJ) and [SciJava](https://imagej.net/SciJava).
 
 
 JUPYTER NOTEBOOKS
@@ -13,12 +12,13 @@ The easiest way to get started with the ImageJ and SciJava APIs is via the
 [ImageJ Jupyter notebooks](https://nbviewer.jupyter.org/github/imagej/tutorials/blob/master/notebooks/ImageJ_Tutorials_and_Demo.ipynb),
 located in the `notebooks` subfolder of this repository.
 
-These notebooks use the
-[SciJava Jupyter Kernel](https://github.com/hadim/scijava-jupyter-kernel).
-SciJava cells support
-[all SciJava script languages](http://imagej.net/Scripting#Supported_languages),
-including mixing and matching languages within the same notebook.
-The notebooks here use [Groovy](http://imagej.net/Groovy_Scripting).
+The introductory notebooks use the Groovy kernel from
+[BeakerX](https://beakerx.com). Several other JVM-based kernels
+are usable as well, including Clojure, Java, Kotlin and Scala.
+
+There are also notebooks using the standard Python kernel plus
+the [pyimagej](https://pypi.org/project/pyimagej) package,
+enabling use of ImageJ from Python programs.
 
 
 JAVA PROJECTS
