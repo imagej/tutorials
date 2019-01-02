@@ -34,7 +34,7 @@ but here is the procedure we recommend to get started quickly:
 7. In the browser, click into `notebooks`, then click on the
    `ImageJ-Tutorials-and-Demo.ipynb` notebook to open it.
 
-Learn more about Jupyter Notebook on [its web site](at https://jupyter.org/).
+Learn more about Jupyter Notebook on [its web site](https://jupyter.org/).
 
 JAVA PROJECTS
 -------------
