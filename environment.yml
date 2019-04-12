@@ -2,7 +2,7 @@ name: scijava
 channels:
   - conda-forge
 dependencies:
-  - beakerx
+  - beakerx=1.4.0
   - jupyter_contrib_nbextensions
   - numpy
   - openjdk=8
