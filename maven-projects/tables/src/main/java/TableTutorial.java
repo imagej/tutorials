@@ -8,7 +8,11 @@
 
 
 import net.imagej.ImageJ;
-import net.imagej.table.*;
+
+import org.scijava.table.DefaultGenericTable;
+import org.scijava.table.DoubleColumn;
+import org.scijava.table.GenericColumn;
+import org.scijava.table.GenericTable;
 
 /**
  * This tutorial shows how to work with tables using ImageJ API

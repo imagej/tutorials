@@ -143,7 +143,7 @@ public class OpenScaleSaveImage implements Command {
 
 		// Perform the transformation using Ops.
 		final RandomAccessibleInterval<T> rai = //
-			ops.transform().scale(image, scaleFactors, interpolator);
+			ops.transform().scaleView(image, scaleFactors, interpolator);
 		return ImgView.wrap(rai, image.factory());
 	}
 
