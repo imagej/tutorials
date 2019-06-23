@@ -45,7 +45,7 @@ public class DynamicInitialization extends DynamicCommand implements
 	@Override
 	public void initialize() {
 		final MutableModuleItem<Integer> dimensionItem = //
-			getInfo().getMutableInput("dimension", int.class);
+			getInfo().getMutableInput("dimension", Integer.class);
 		dimensionItem.setMaximumValue(image.numDimensions() - 1);
 	}
 
