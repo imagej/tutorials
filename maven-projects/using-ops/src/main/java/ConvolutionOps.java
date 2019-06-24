@@ -28,16 +28,15 @@ public class ConvolutionOps {
 		final int[] size = new int[] { 200, 200 };
 
 		// create an input with a small sphere at the center
-		final Img<FloatType> in = new ArrayImgFactory<FloatType>().create(size,
-			new FloatType());
+		final Img<FloatType> in = new ArrayImgFactory<FloatType>(new FloatType()).create(size);
 		placeSphereInCenter(in);
 
 		// show the image in a window
 		ij.ui().show("input", in);
 
 		final int[] kernelSize = new int[] { 3, 3 };
-		final Img<FloatType> kernel = new ArrayImgFactory<FloatType>().create(
-			kernelSize, new FloatType());
+		final Img<FloatType> kernel = new ArrayImgFactory<FloatType>(new FloatType()).create(
+			kernelSize);
 		final RandomAccess<FloatType> kernelRa = kernel.randomAccess();
 		// long[] borderSize = new long[] {1, 1};
 
@@ -56,8 +55,7 @@ public class ConvolutionOps {
 		// show the image in a window
 		ij.ui().show("kernel", kernel);
 
-		final Img<FloatType> out = new ArrayImgFactory<FloatType>().create(in,
-			new FloatType());
+		final Img<FloatType> out = new ArrayImgFactory<FloatType>(new FloatType()).create(in);
 
 		final OutOfBoundsFactory<FloatType, RandomAccessibleInterval<FloatType>> obf =
 			new OutOfBoundsConstantValueFactory<>(//
