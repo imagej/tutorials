@@ -107,6 +107,7 @@
 		<module>maven-projects/ij2-image-plus</module>
 		<module>maven-projects/intro-to-imagej-api</module>
 		<module>maven-projects/load-and-display-dataset</module>
+		<module>maven-projects/low-pass-filter</module>
 		<module>maven-projects/listen-to-events</module>
 		<module>maven-projects/mixed-world-command</module>
 		<module>maven-projects/simple-commands</module>
