@@ -26,10 +26,9 @@ but here is the procedure we recommend to get started quickly:
 1. Install [Miniconda](https://conda.io/miniconda.html).
 2. Clone this `imagej/tutorials` repository.
 3. Open a console and `cd` to your cloned working copy.
-4. `conda env create -f binder/environment.yml` to create a conda environment with the
+4. `conda env create -f environment.yml` to create a conda environment with the
    dependencies these notebooks need.
-5. `source activate scijava` (or `activate scijava` on Windows) to activate the
-   environment.
+5. `conda activate scijava` to activate the environment.
 6. `jupyter notebook` to launch Jupyter Notebook in a web browser window.
 7. In the browser, click into `notebooks`, then click on the
    `ImageJ-Tutorials-and-Demo.ipynb` notebook to open it.
