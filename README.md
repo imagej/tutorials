@@ -1,5 +1,4 @@
 [![](https://travis-ci.org/imagej/tutorials.svg?branch=master)](https://travis-ci.org/imagej/tutorials)
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/imagej/tutorials/master)
 
 This project contains example code for working with
 [ImageJ](https://imagej.net/ImageJ) and [SciJava](https://imagej.net/SciJava).
@@ -8,9 +7,14 @@ This project contains example code for working with
 JUPYTER NOTEBOOKS
 -----------------
 
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/imagej/tutorials/master)
+
 The easiest way to get started with the ImageJ and SciJava APIs is via the
 [ImageJ Jupyter notebooks](https://imagej.github.io/tutorials),
 located in the `notebooks` subfolder of this repository.
+
+Use the "launch binder" badge above to try the Jupyter notebooks on the cloud
+using [Binder](https://mybinder.org), with no local installation necessary.
 
 The introductory notebooks use the Groovy kernel from
 [BeakerX](https://beakerx.com). Several other JVM-based kernels
@@ -33,14 +37,21 @@ but here is the procedure we recommend to get started quickly:
 7. In the browser, click into `notebooks`, then click on the
    `ImageJ-Tutorials-and-Demo.ipynb` notebook to open it.
 
-Learn more about Jupyter Notebook on [its web site](https://jupyter.org/).
+Learn more about Jupyter Notebook on [its web site](https://jupyter.org).
 
 JAVA PROJECTS
 -------------
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/imagej/tutorials)
+
 For the
 [type-safety-inclined](https://softwareengineering.stackexchange.com/a/38257),
-this repository also contains Maven projects written in Java.
+this repository also contains Maven projects written in Java, located in the
+`maven-projects` subfolder of this repository.
+
+Use the "Open in Gitpod" button above to run the (non-GUI) Java projects on the
+cloud using [Gitpod](https://gitpod.io), with no local installation necessary.
+
 You can import these projects into your favorite IDE:
 
   * Eclipse: File > Import > Existing Maven Projects
