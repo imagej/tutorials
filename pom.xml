@@ -115,6 +115,7 @@
 		<module>maven-projects/using-ops</module>
 		<module>maven-projects/widget-demo</module>
 		<module>maven-projects/working-with-modules</module>
+		<module>howtos</module>
 	</modules>
 
 	<scm>
