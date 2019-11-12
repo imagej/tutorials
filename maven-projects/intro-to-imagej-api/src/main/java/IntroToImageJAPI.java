@@ -3,7 +3,7 @@
  * all copyright and related or neighboring rights to this tutorial code.
  *
  * See the CC0 1.0 Universal license for details:
- *     http://creativecommons.org/publicdomain/zero/1.0/
+ *     https://creativecommons.org/publicdomain/zero/1.0/
  */
 
 import java.net.URL;
