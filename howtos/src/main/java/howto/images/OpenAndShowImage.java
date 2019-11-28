@@ -10,6 +10,7 @@ package howto.images;
 
 import io.scif.img.IO;
 import net.imagej.ImageJ;
+import net.imglib2.RandomAccessibleInterval;
 import net.imglib2.img.Img;
 import net.imglib2.img.display.imagej.ImageJFunctions;
 
@@ -38,7 +39,9 @@ public class OpenAndShowImage {
 	}
 
 	/**
-	 * .. by using static methods:
+	 * .. by using static methods: <br>
+	 * (NOTE1: Only open images like this if you don't have and don't want a {@link org.scijava.Context}.)
+	 * (NOTE2: {@link ImageJFunctions#show} relies on ImageJ1.)
 	 */
 	private static void runStatic() {
 
