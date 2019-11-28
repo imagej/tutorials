@@ -10,6 +10,7 @@ package howto.images;
 
 import ij.ImagePlus;
 import io.scif.img.IO;
+import net.imagej.ImageJ;
 import net.imagej.ImgPlus;
 import net.imagej.axis.Axes;
 import net.imagej.axis.AxisType;
@@ -18,6 +19,8 @@ import net.imglib2.RandomAccessibleInterval;
 import net.imglib2.img.Img;
 import net.imglib2.img.display.imagej.ImageJFunctions;
 import net.imglib2.view.Views;
+
+import java.io.IOException;
 
 /**
  * How to convert between various image class representations
@@ -29,17 +32,19 @@ public class ConvertImageClasses {
 	/**
 	 * .. wrapping {@link Img} as {@link ImgPlus}:
 	 */
-	private static void imgToImgPlus() {
-		Img img = IO.openImgs("https://samples.fiji.sc/blobs.png").get(0);
-		ImgPlus imgPlus = new ImgPlus(img, "blobs", new AxisType[]{Axes.X, Axes.Y, Axes.TIME});
+	private static void imgToImgPlus() throws IOException {
+		ImageJ ij = new ImageJ();
+		Img img = ij.op().create().img(new int[]{10, 20, 3});
+		ImgPlus imgPlus = new ImgPlus(img, "image", new AxisType[]{Axes.X, Axes.Y, Axes.CHANNEL});
 		System.out.println(imgPlus);
 	}
 
 	/**
 	 * .. converting {@link RandomAccessibleInterval} to {@link IterableInterval}:
 	 */
-	private static void raiToIterableInterval() {
-		RandomAccessibleInterval rai = IO.openImgs("https://samples.fiji.sc/blobs.png").get(0);
+	private static void raiToIterableInterval() throws IOException {
+		ImageJ ij = new ImageJ();
+		RandomAccessibleInterval rai = ij.op().create().img(new int[]{10, 20, 3});
 		IterableInterval ii = Views.iterable(rai);
 		System.out.println(ii);
 	}
@@ -48,7 +53,8 @@ public class ConvertImageClasses {
 	 * .. converting {@link RandomAccessibleInterval} to {@link Img}:
 	 */
 	private static void raiToImg() {
-		RandomAccessibleInterval rai = IO.openImgs("https://samples.fiji.sc/blobs.png").get(0);
+		ImageJ ij = new ImageJ();
+		RandomAccessibleInterval rai = ij.op().create().img(new int[]{10, 20, 3});
 		Img img = (Img) rai;
 		System.out.println(img);
 	}
@@ -57,8 +63,9 @@ public class ConvertImageClasses {
 	 * .. converting {@link RandomAccessibleInterval} to IJ1 {@link ImagePlus}:
 	 */
 	private static void raiToImagePlus() {
-		RandomAccessibleInterval rai = IO.openImgs("https://samples.fiji.sc/blobs.png").get(0);
-		ImagePlus imp = ImageJFunctions.wrap(rai, "blobs");
+		ImageJ ij = new ImageJ();
+		RandomAccessibleInterval rai = ij.op().create().img(new int[]{10, 20, 3});
+		ImagePlus imp = ImageJFunctions.wrap(rai, "image");
 		System.out.println(imp);
 	}
 
@@ -71,7 +78,7 @@ public class ConvertImageClasses {
 		System.out.println(img);
 	}
 
-	public static void main(String... args) {
+	public static void main(String... args) throws IOException {
 		imgToImgPlus();
 		raiToIterableInterval();
 		raiToImg();
