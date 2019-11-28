@@ -14,8 +14,6 @@ import net.imglib2.algorithm.region.hypersphere.HyperSphere;
 import net.imglib2.img.Img;
 import net.imglib2.type.numeric.real.DoubleType;
 
-import java.io.IOException;
-
 /**
  * How to draw a circle
  *
@@ -33,9 +31,7 @@ public class DrawCircle {
 		ra.setPosition(new long[] { 70, 98 });
 
 		// draws circle of radius 30 at position [70, 98]
-		HyperSphere<DoubleType> hyperSphere = new HyperSphere<>(img, ra, 30);
-		for (DoubleType value : hyperSphere)
-			value.set(25);
+		new HyperSphere<>(img, ra, 30).forEach(value -> value.set(25));
 
 		ij.ui().show(img);
 
