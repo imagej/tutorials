@@ -40,7 +40,7 @@ public class CropConfocalSeries {
         OpService ops = ij.op();
 
         // load data set
-        Dataset data = (Dataset) ij.io().open("src/main/resources/confocal-series.tif");
+        Dataset data = (Dataset) ij.io().open(Object.class.getResource("/confocal-series.tif").getPath());
         ImgPlus c0;
         ImgPlus z12;
         ImgPlus c0z12;
