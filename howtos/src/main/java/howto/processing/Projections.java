@@ -53,7 +53,6 @@ public class Projections {
         long width = data.dimension(data.dimensionIndex(Axes.X));
         long height = data.dimension(data.dimensionIndex(Axes.Y));
         long depth = data.dimension(data.dimensionIndex(Axes.Z));
-        long numChannels = data.dimension(data.dimensionIndex(Axes.CHANNEL));
 
         // crop a channel
         ImgPlus c0 = (ImgPlus) ops.transform().crop(img, Intervals.createMinMax(0, 0, 0, 0, width - 1, height - 1, 0, depth - 1));
