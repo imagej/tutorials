@@ -47,7 +47,7 @@ public class Projections {
         OpService ops = ij.op();
         UIService ui = ij.ui();
 
-        Dataset data = (Dataset) ij.io().open("src/main/resources/confocal-series.tif");
+        Dataset data = (Dataset) ij.io().open(Object.class.getResource("/confocal-series.tif").getPath());
 
         ImgPlus<? extends RealType<?>> img = data.getImgPlus();
         long width = data.dimension(data.dimensionIndex(Axes.X));
