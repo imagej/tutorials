@@ -52,25 +52,25 @@ public class CropConfocalSeries {
         }
         ImgPlus<? extends RealType<?>> img = data.getImgPlus();
 
-        long xLen = data.dimension(data.dimensionIndex(Axes.X));
-        long yLen = data.dimension(data.dimensionIndex(Axes.Y));
-        long zLen = data.dimension(data.dimensionIndex(Axes.Z));
-        long cLen = data.dimension(data.dimensionIndex(Axes.CHANNEL));
+        long width = data.dimension(data.dimensionIndex(Axes.X));
+        long height = data.dimension(data.dimensionIndex(Axes.Y));
+        long depth = data.dimension(data.dimensionIndex(Axes.Z));
+        long numChannels = data.dimension(data.dimensionIndex(Axes.CHANNEL));
 
         // crop a channel
-        c0= (ImgPlus) ops.transform().crop(img, Intervals.createMinMax(0, 0, 0,0,xLen-1, yLen-1, 0, zLen-1));
+        c0 = (ImgPlus) ops.transform().crop(img, Intervals.createMinMax(0, 0, 0, 0, width - 1, height - 1, 0, depth - 1));
         c0.setName("c0");
 
         // crop both channels at z=12
-        z12= (ImgPlus) ops.transform().crop(img, Intervals.createMinMax(0,0,0,12, xLen-1, yLen-1, cLen-1, 12));
+        z12 = (ImgPlus) ops.transform().crop(img, Intervals.createMinMax(0, 0, 0, 12, width - 1, height - 1, numChannels - 1, 12));
         z12.setName("z12");
 
         // crop channel 0 at z=12
-        c0z12= (ImgPlus) ops.transform().crop(img, Intervals.createMinMax(0,0,0,12, xLen-1, yLen-1, 0, 12));
+        c0z12 = (ImgPlus) ops.transform().crop(img, Intervals.createMinMax(0, 0, 0, 12, width - 1, height - 1, 0, 12));
         c0z12.setName("c0z12");
 
         // crop an roi at channel 0, z=12
-        roiC0z12= (ImgPlus) ops.transform().crop(img, Intervals.createMinMax(150,150,0,12, 200, 200, 0, 12));
+        roiC0z12 = (ImgPlus) ops.transform().crop(img, Intervals.createMinMax(150, 150, 0, 12, 200, 200, 0, 12));
         roiC0z12.setName("roiC0z12");
 
         // show original
