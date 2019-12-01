@@ -22,7 +22,7 @@ import org.scijava.ui.UIService;
 import java.io.IOException;
 
 /**
- * How to use ImageJ Ops for processing
+ * How to use ImageJ Ops for making max and sum projections
  *
  * @author hadmin
  * @author stelfrich
@@ -33,7 +33,7 @@ import java.io.IOException;
 public class Projections {
 
     /**
-     * Exploring and using ops for processing numbers and images
+     * Getting Ops to apply them
      */
     public static void firstSolution() throws IOException, InterruptedException {
 
@@ -95,5 +95,6 @@ public class Projections {
     public static void main(String...args) throws IOException, InterruptedException {
 
         firstSolution();
+
     }
 }
