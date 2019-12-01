@@ -8,16 +8,11 @@ import net.imglib2.img.Img;
 import net.imglib2.img.array.ArrayImg;
 import net.imglib2.img.basictypeaccess.array.DoubleArray;
 import net.imglib2.type.numeric.real.DoubleType;
-import org.scijava.app.StatusService;
 import org.scijava.command.CommandService;
 import org.scijava.log.LogService;
-import org.scijava.menu.MenuService;
-import org.scijava.platform.PlatformService;
-import org.scijava.plugin.PluginService;
 import org.scijava.ui.UIService;
 
 import java.io.IOException;
-import java.net.URL;
 
 /**
  * How to use ImageJ Ops for processing
@@ -31,7 +26,7 @@ import java.net.URL;
 public class UseOps {
 
     /**
-     *
+     * Exploring and using ops for processing numbers and images
      */
     public static void firstSolution() throws IOException, InterruptedException {
 
