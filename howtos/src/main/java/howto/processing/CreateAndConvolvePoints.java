@@ -56,10 +56,9 @@ public class CreateAndConvolvePoints {
         location.setPosition(new long[]{3 * xSize / 4, 3 * ySize / 4, 3 * zSize / 4});
         HyperSphere<DoubleType> hyperSphere = new HyperSphere(phantom, location, 5);
 
-        // use a cursor to go through the pixels in the hypersphere
-        HyperSphereCursor<DoubleType> cursor = hyperSphere.cursor();
-        while (cursor.hasNext()) {
-            cursor.next().setReal(16);
+        // iterate through the pixels in the hypersphere
+        for (DoubleType value : hyperSphere) {
+        	value.setReal(16);
         }
         phantom.setName("phantom");
 
