@@ -8,7 +8,10 @@ import net.imagej.axis.Axes;
 import net.imagej.ops.Op;
 import net.imagej.ops.OpService;
 import net.imagej.ops.Ops;
+import net.imagej.ops.special.computer.Computers;
+import net.imagej.ops.special.computer.UnaryComputerOp;
 import net.imglib2.IterableInterval;
+import net.imglib2.RandomAccessibleInterval;
 import net.imglib2.img.Img;
 import net.imglib2.img.array.ArrayImg;
 import net.imglib2.img.basictypeaccess.array.DoubleArray;
@@ -47,7 +50,7 @@ public class Projections {
         OpService ops = ij.op();
         UIService ui = ij.ui();
 
-        Dataset data = (Dataset) ij.io().open(Object.class.getResource("/confocal-series.tif").getPath());
+        Dataset data = ij.scifio().datasetIO().open(Object.class.getResource("/confocal-series.tif").getPath());
 
         ImgPlus<? extends RealType<?>> img = data.getImgPlus();
         long width = data.dimension(data.dimensionIndex(Axes.X));
@@ -55,16 +58,17 @@ public class Projections {
         long depth = data.dimension(data.dimensionIndex(Axes.Z));
 
         // crop a channel
-        ImgPlus c0 = (ImgPlus) ops.transform().crop(img, Intervals.createMinMax(0, 0, 0, 0, width - 1, height - 1, 0, depth - 1));
-        c0.setName("c0");
+        RandomAccessibleInterval<? extends RealType<?>> c0 = ops.transform().crop(img, Intervals.createMinMax(0, 0, 0, 0, width - 1, height - 1, 0, depth - 1));
+        //c0.setName("c0");
 
         // get the dimension to project
         int pDim = data.dimensionIndex(Axes.Z);
 
         // generate the projected dimension
-        int[] projectedDimensions = new int[]{
-                data.dimensionIndex(Axes.X),
-                data.dimensionIndex(Axes.Y)
+        long[] projectedDimensions = new long[]{
+                data.dimension(Axes.X),
+                data.dimension(Axes.Y),
+                data.dimension(Axes.CHANNEL)
         };
 
         // create memory for projections
@@ -72,7 +76,7 @@ public class Projections {
         Img<DoubleType> sumProjection = ops.create().img(projectedDimensions);
 
         // use op service to get the max op
-        Op maxOp = ops.op(Ops.Stats.Max.class, data);
+        UnaryComputerOp maxOp = (UnaryComputerOp) ops.op(Ops.Stats.Max.class, maxProjection.firstElement(), data);
         // use op service to get the sum op
         Op sumOp = ops.op(Ops.Stats.Sum.class, sumProjection.firstElement(), data);
 
@@ -83,10 +87,13 @@ public class Projections {
         // dimensionToProject: the dimension to project
 
         //ops.transform().project(maxProjection, data, maxOp, pDim);
+        ops.transform().project(maxProjection, data, maxOp, data.dimensionIndex(Axes.Z));
 
         // project again this time use sum projection
 
         //ops.transform().project(sumProjection, data, sumOp, pDim)
+        
+        ij.ui().show(maxProjection);
 
 
     }
