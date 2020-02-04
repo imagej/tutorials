@@ -1,38 +1,32 @@
 /*
-
  * To the extent possible under law, the ImageJ developers have waived
-
  * all copyright and related or neighboring rights to this tutorial code.
-
  *
-
  * See the CC0 1.0 Universal license for details:
-
  *     https://creativecommons.org/publicdomain/zero/1.0/
-
  */
-
-
 
 package howto.userinput;
 
-
+import net.imagej.Dataset;
 import net.imagej.ImageJ;
-
+import net.imagej.axis.Axes;
+import net.imagej.axis.AxisType;
 import net.imglib2.type.numeric.integer.UnsignedByteType;
 
+import org.scijava.command.Command;
+import org.scijava.command.ContextCommand;
+import org.scijava.plugin.Parameter;
+import org.scijava.plugin.Plugin;
+import org.scijava.ui.UIService;
 
 /**
-
- * How to use the validater method for Scijava-parameters
-
- * Here the execution is cancelled if the Dataset does not have the expected number of dimensions 
-
+ * How to use the validater method for SciJava parameters. Here, the execution
+ * is canceled if the {@link Dataset} does not have the expected number of
+ * dimensions.
  */
-
-
 @Plugin(type = Command.class)
-public class Validate2D extends ContextCommand {
+public class ValidateParameter extends ContextCommand {
 
 	@Parameter
 	private UIService uiService;
@@ -63,6 +57,6 @@ public class Validate2D extends ContextCommand {
 		final Dataset d = ij.dataset().create(type, dims, name, axes);
 		ij.ui().show(d);
 
-		ij.command().run(Validate2D.class, true);
+		ij.command().run(ValidateParameter.class, true);
 	}
 }
