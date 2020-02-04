@@ -35,6 +35,7 @@ public class CallService {
 
 	/**
 	 * .. get an instance of the {@link IOService} without using the {@link ImageJ} gateway
+	 * (e.g. for repositories with a SciJava but no ImageJ dependency)
 	 */
 	public static void callWithoutImageJ() {
 
