@@ -13,7 +13,7 @@ public class SwingExample {
 
 	public static void main(final String[] args) {
 		final ImageJ ij = new ImageJ();
-		ij.launch(args);
+		ij.ui().showUI("swing");
 	}
 
 }
