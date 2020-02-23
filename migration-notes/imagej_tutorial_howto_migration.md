@@ -5,21 +5,21 @@ ImageJ maven-projects > howto migration notes
 
 ### **Testing maven-project migrated files (howto):**
 
-| File name | Moved from (maven-projects) | Moved to (howto) | Runs (Y/N) | Issues | Action taken | Notes |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `AddROIs.java` | add-rois | images | **Y** | --- | --- | Runs in IJ2. |
-| `AddTwoDatasets.java` | add-two-datasets | datasets | **Y** | --- | --- | Runs in IJ1. |
+| File name | Moved from (maven-projects) | Moved to (howto) | Runs (Y/N) | Issues | Action taken | Migrated (Y/N) |Notes |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| `AddROIs.java` | add-rois | images | **Y** | ROIs do not display on image until interacted with. | --- | **Y** |Calls swing UI. |
+| `AddTwoDatasets.java` | add-two-datasets | --- | **Y** | Module throws exception if images are not extactly the same `java.lang.IllegalArgumentException: No matching 'net.imagej.ops.Ops$Math$Add' op`. | --- | **N** | Calls AWT UI. |
 | `DisplayATable.java` | call-modern-from-legacy | adv | **Y** | --- | --- | Rename class to be more descriptive |
-| `CreateANewOp.java` | create-a-new-op | ops | **Y** | --- | --- | --- |
-| `Ramp.java` | create-a-new-op | ops > images | **Y** | --- | Renamed file to `RampOp.java`. | Runs in IJ1. |
-| `RandomBlobs.java` | create-a-new-op | ops > images | **Y** | --- | Renamed file to `RandomBlobsOp.java` | Runs in IJ1. |
-| `CommandWithPreview.java` |commands-with-preview | ui > preview | **Y** | --- | --- | Runs in IJ1. |
-| `PreviewCheckbox.java` | commands-with-preview | ui > preview | **Y** | --- | --- | Runs in IJ1. |
+| `CreateANewOp.java` | create-a-new-op | ops | **Y** | --- | --- | **Y** | No UI. |
+| `Ramp.java` | create-a-new-op | ops | **Y** | --- | Renamed file to `RampOp.java`. | **Y** | Calls AWT UI. |
+| `RandomBlobs.java` | create-a-new-op | ops | **Y** | --- | Renamed file to `RandomBlobsOp.java` | **Y** |Calls AWT UI. |
+| `CommandWithPreview.java` |commands-with-preview | ui > preview | **Y** | --- | --- | **Y** | Calls AWT UI. |
+| `PreviewCheckbox.java` | commands-with-preview | ui > preview | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `ExecuteCommands.java` | execute-commands | commands | **Y** | Broken import of `org.scijava.plugins.commands.io.OpenFile` | --- | Idea: fix by requesting IO from scijava context. |
 | `DatasetWrapping.java` | ij2-image-plus | adv | **N** | Doesn't seem to load anything into the imagej frame. | --- | Runs in IJ1. |
 | `IntroToImageJAPI.java` | intro-to-imagej-api | adv | **Y** | --- | --- | --- |
 | `ListenToEvents.java` | listen-to-events | events | **Y** | Does not output events to terminal. | Request IJ2 interface by calling `ij.ui().showUI("swing")`. | Works when running in IJ2, not in IJ1 |
-| `LoadAndDisplayDataset.java` | load-and-display-dataset | datasets | **Y** | --- | --- | Runs in IJ1. |
+| `LoadAndDisplayDataset.java` | load-and-display-dataset | datasets | **Y** | Does not draw test image correctly. Some images can be drawn correctly after resetting each channel (RGB), others cannot (both are `.png` files). | --- | **N** | Calls AWT UI (image window only). |
 | `LowPassFilter.java` | low-pass-filter | images > filter | **Y** | Output image is different when when running from IJ1 and IJ2. | --- | Runs in IJ1 |
 | `GetMetadata.java` | metadata | metadata | **Y** | Displayed sample image is malformed. | --- | Runs in IJ1. |
 | `CopyLabels.java` | mixed-world-command | commands | **Y** | --- | --- | Runs in IJ1. |
@@ -37,7 +37,7 @@ ImageJ maven-projects > howto migration notes
 | `UsingOpsDog.java` | using-ops |  ops | **Y** | --- | --- | Runs in IJ1. |
 | `UsingOpsLabeling.java` | using-ops | ops | **Y** | --- | --- | Runs in IJ1. |
 | `UsingSpecialOps.java` | using-ops |ops | **Y** | --- | --- | --- |
-| `WidgetDemo.java` | widget-demo | ui | **Y** | --- | --- | Runs in IJ1. |
+| `WidgetDemo.java` | widget-demo | ui | **Y** | --- | --- | **Y** | Calls AWT UI. |
 
 
 ### **Testing howto java files:**
