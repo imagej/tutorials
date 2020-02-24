@@ -8,7 +8,7 @@ ImageJ maven-projects > howto migration notes
 | File name | Moved from (maven-projects) | Moved to (howto) | Runs (Y/N) | Issues | Action taken | Migrated (Y/N) |Notes |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | `AddROIs.java` | add-rois | images | **Y** | ROIs do not display on image until interacted with. | --- | **Y** | Calls swing UI. |
-| `AddTwoDatasets.java` | add-two-datasets | --- | **Y** | Module throws exception if images are not extactly the same `java.lang.IllegalArgumentException: No matching 'net.imagej.ops.Ops$Math$Add' op`. | --- | **N** | Calls AWT UI. |
+| `AddTwoDatasets.java` | add-two-datasets | --- | **Y** | Module throws exception if images are not extactly the same `java.lang.IllegalArgumentException: No matching 'net.imagej.ops.Ops$Math$Add' op`. | --- | **N** | Calls AWT UI. Outputs 1 of 2 datasets as a composite image. Likely not what its supposed to do. |
 | `DisplayATable.java` | call-modern-from-legacy | adv | **Y** | --- | Renamed class to `ModernFromLegacy` and file name to `ModernFromLegacy.java` | **Y** | Calls AWT UI. Opens swing table. |
 | `CreateANewOp.java` | create-a-new-op | ops | **Y** | --- | --- | **Y** | No UI. Terminal output only. |
 | `Ramp.java` | create-a-new-op | ops | **Y** | --- | Renamed file to `RampOp.java`. | **Y** | Calls AWT UI. |
