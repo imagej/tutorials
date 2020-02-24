@@ -13,8 +13,18 @@ ImageJ maven-projects > howto migration notes
 | `CreateANewOp.java` | create-a-new-op | ops | **Y** | --- | --- | **Y** | No UI. Terminal output only. |
 | `Ramp.java` | create-a-new-op | ops | **Y** | --- | Renamed file to `RampOp.java`. | **Y** | Calls AWT UI. |
 | `RandomBlobs.java` | create-a-new-op | ops | **Y** | --- | Renamed file to `RandomBlobsOp.java` | **Y** |Calls AWT UI. |
+| `Animal.java` | create-a-new-plugin-type | plugins > create | **N** | --- | --- | **Y** | Dependency for `CreateANewPluginType.java`. |
+| `AnimalService.java` | create-a-new-plugin-type | plugins > create | **N** | --- | --- | **Y** | Dependency for `CreateANewPluginType.java` |
+| `Bear.java` | create-a-new-plugin-type | plugins > create | **N** | --- | --- | **Y** | Dependency for `CreateANewPluginType.java` |
+| `CreateANewPluginType.java` | create-a-new-plugin-type | plugins > create | **Y** | --- | --- | **Y** | No UI. Terminal output only. |
+| `Lion.java` | create-a-new-plugin-type | plugins > create | **N** | --- | --- | **Y** | Dependency for `CreateANewPluginType.java` |
+| `Tiger.java` | create-a-new-plugin-type | plugins > create | **N** | --- | --- | **Y** | Dependency for `CreateANewPluginType.java` | 
 | `CommandWithPreview.java` |commands-with-preview | ui > preview | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `PreviewCheckbox.java` | commands-with-preview | ui > preview | **Y** | --- | --- | **Y** | Calls AWT UI. |
+| `TrollPreprocessor.java` | custom-preprocessor-plugin | --- | **Y** | Runs for each command for all `.java` files calling UI. Annoying! | --- | **N** | Calls AWT UI. |
+| `DynamicCallbacks.java` | dynamic-commands | --- | **Y** | Opens UI. Selecting options either returns input letter (a, b or c) or returns only the first item in the `kindOfThing` list. | --- | **N** | Calls AWT UI. |
+| `DynamicInitialization.java` | dynamic-commands | commands > dynamic | **Y** | --- | --- | **Y** | Calls AWT UI. |
+| `DynamicNumberOfParameters.java` | dynamic-commands | commands > dynamic | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `ExecuteCommands.java` | execute-commands | --- | **N** | Broken import of `org.scijava.plugins.commands.io.OpenFile` | --- | **N** | --- |
 | `DatasetWrapping.java` | ij2-image-plus | --- | **Y** | Doesn't seem to do anything, opens blank image. | --- | **N** | Calls AWT UI. |
 | `IntroToImageJAPI.java` | intro-to-imagej-api | adv | **Y** | --- | --- | **Y** | No UI. Opens imagej.net webpage and terminal output. |
