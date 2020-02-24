@@ -5,7 +5,7 @@
  * See the CC0 1.0 Universal license for details:
  *     https://creativecommons.org/publicdomain/zero/1.0/
  */
-package howto.commands;
+package howto.commands.simple;
 
 import ij.IJ;
 import ij.ImagePlus;
