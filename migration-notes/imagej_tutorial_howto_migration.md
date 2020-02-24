@@ -32,11 +32,11 @@ ImageJ maven-projects > howto migration notes
 | `LoadAndDisplayDataset.java` | load-and-display-dataset | datasets | **Y** | Input image drawn incorrectly (legacy bug). | --- | **Y** | Calls AWT UI (image window only). |
 | `LowPassFilter.java` | low-pass-filter | images > filter | **Y** | Input image drawn incorrectly (legacy bug). | --- | **Y** |Calls AWT UI. |
 | `GetMetadata.java` | metadata | metadata | **Y** | Input image drawn incorrectly (legacy bug) | --- | **Y** | Calls AWT UI. |
-| `CopyLabels.java` | mixed-world-command | commands | **Y** | --- | --- | **Y** | Calls AWT UI. |.
-| `GradientImage.java` | simple-commands | commands | **Y** | --- | --- | **Y** | Calls AWT UI. |
-| `HelloWorld.java` | simple-commands | commands | **Y** | --- | --- | **Y** | Calls AWT UI. |
-| `OpenImage.java` | simple-commands | commands | **Y** | Input image drawn incorretly (legacy bug). | --- | **Y** | Calls AWT UI. |
-| `OpenScaleSaveImage.java` | simple-commands | commands | **Y** | --- | --- | **Y** | Calls AWT UI. |
+| `CopyLabels.java` | mixed-world-command | commands > simple | **Y** | --- | --- | **Y** | Calls AWT UI. |.
+| `GradientImage.java` | simple-commands | commands > simple | **Y** | --- | --- | **Y** | Calls AWT UI. |
+| `HelloWorld.java` | simple-commands | commands > simple | **Y** | --- | --- | **Y** | Calls AWT UI. |
+| `OpenImage.java` | simple-commands | commands > simple | **Y** | Input image drawn incorretly (legacy bug). | --- | **Y** | Calls AWT UI. |
+| `OpenScaleSaveImage.java` | simple-commands | commands > simple | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `DeconvolutionCommand.java` | swing-example | --- | --- | --- | --- | **N** | Depedency for `DeconvolutionDialog.java`. |
 | `DeconvolutionCommandSwing.java` | swing-example | --- | --- | --- | --- | **N** |Dependency for `DeconvolutionDialog.java`. |
 | `DeconvolutionDialog.java` | swing-example | --- | **Y** | OK and Cancel buttons do not work. Crashes after interaction. | --- | **N** |**Do not migrate until workout bug issue** |
@@ -48,6 +48,7 @@ ImageJ maven-projects > howto migration notes
 | `UsingOpsLabeling.java` | using-ops | ops | **Y** | Input image drawn incorrectly (legacy bug). | --- | **Y** | Calls AWT UI. |
 | `UsingSpecialOps.java` | using-ops |ops | **Y** | --- | --- | **Y** | Has commented out code block. Remove? |
 | `WidgetDemo.java` | widget-demo | ui | **Y** | --- | --- | **Y** | Calls AWT UI. |
+| `WorkingWithModules.java` | working-with-modules | --- | **N** | Missing `images/about` path and throws exception | --- | **N** | --- |
 
 
 ### **Testing howto java files:**
