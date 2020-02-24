@@ -17,8 +17,13 @@ import org.scijava.Context;
 import org.scijava.table.DefaultGenericTable;
 import org.scijava.table.GenericTable;
 
-/** Demonstrates use of the modern ImageJ API from a legacy ImageJ1 plugin. */
-public class DisplayATable implements PlugIn {
+/** 
+ * 
+ * Demonstrates how to call the modern ImageJ API from a legacy ImageJ1 plugin. 
+ * This example displays a table.
+ * 
+*/
+public class ModernFromLegacy implements PlugIn {
 
 	@Override
 	public void run(final String arg) {
@@ -60,7 +65,7 @@ public class DisplayATable implements PlugIn {
 		final ImageJ ij = new ImageJ();
 		ij.launch(args);
 
-		IJ.runPlugIn(DisplayATable.class.getName(), "");
+		IJ.runPlugIn(ModernFromLegacy.class.getName(), "");
 	}
 
 }
