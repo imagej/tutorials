@@ -1,3 +1,11 @@
+/*
+ * To the extent possible under law, the ImageJ developers have waived
+ * all copyright and related or neighboring rights to this tutorial code.
+ *
+ * See the Unlicense for details:
+ *     https://unlicense.org/
+ */
+
 package howto.extensions;
 
 import net.imagej.ImageJ;

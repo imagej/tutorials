@@ -29,8 +29,8 @@
 	</organization>
 	<licenses>
 		<license>
-			<name>CC0 1.0 Universal License</name>
-			<url>https://creativecommons.org/publicdomain/zero/1.0/</url>
+			<name>Unlicense</name>
+			<url>https://unlicense.org/</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
@@ -71,7 +71,7 @@
 
 	<properties>
 		<main-class>DatasetWrapping</main-class>
-		<license.licenseName>cc0</license.licenseName>
+		<license.licenseName>unlicense</license.licenseName>
 		<license.copyrightOwners>N/A</license.copyrightOwners>
 		<license.projectName>ImageJ software for multidimensional image processing and analysis.</license.projectName>
 	</properties>
