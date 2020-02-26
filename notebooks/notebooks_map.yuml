@@ -1,8 +1,7 @@
 // {type:deployment}
 // {generate:true}
 
-[tutorials]-[notebooks]
-[notebooks]-[note: notebooks_map.yuml\nnotebooks_map.png\n{bg:wheat}]
+[notebooks]-[note: notebooks_map.yuml\nnotebooks_map.png\nnotebooks_map.svg\n{bg:wheat}]
 [notebooks]-[5-ImageJ-Core-Libraries]
 [5-ImageJ-Core-Libraries]-[note: 2-ImgLib2-in-Detail.ipynb\n1-SciJava-in-Detail.ipynb\n3-Using-Special-Ops.ipynb\n{bg:wheat}]
 [notebooks]-[4-Using-Ops]
