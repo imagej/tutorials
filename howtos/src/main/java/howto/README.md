@@ -2,6 +2,8 @@
 
 This repository is supposed to help Java developers write code based on ImageJ2 and SciJava.
 
+![howtos folder and file map](howto_map.png)
+
 ## How to contribute
 
 ### Adding questions
