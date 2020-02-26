@@ -7,6 +7,8 @@ yUML map
 
 ![notebooks yUML map](notebooks_map.png)
 
+test
+
 The easiest way to get started with the ImageJ and SciJava APIs is via the
 [ImageJ Jupyter notebooks](https://imagej.github.io/tutorials),
 located in the `notebooks` subfolder of this repository.
