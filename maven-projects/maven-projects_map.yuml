@@ -1,0 +1,21 @@
+// {type:deployment}
+// {generate:true}
+
+[maven-projects]-[dynamic-commands]
+[dynamic-commands]-[note: DynamicInitialization.java\nDynamicNumberOfParameters.java\nDynamicCallbacks.java\n{bg:wheat}]
+[maven-projects]-[swing-example]
+[swing-example]-[note: DeconvolutionCommand.java\nSwingExample.java\nDeconvolutionCommandSwing.java\nDeconvolutionDialog.java\n{bg:wheat}]
+[maven-projects]-[listen-to-events]
+[listen-to-events]-[note: ListenToEvents.java\n{bg:wheat}]
+[maven-projects]-[simple-commands]
+[simple-commands]-[note: GradientImage.java\nHelloWorld.java\nOpenImage.java\nOpenScaleSaveImage.java\n{bg:wheat}]
+[maven-projects]-[custom-preprocessor-plugin]
+[custom-preprocessor-plugin]-[note: TrollPreprocessor.java\n{bg:wheat}]
+[maven-projects]-[working-with-modules]
+[working-with-modules]-[note: WorkingWithModules.java\n{bg:wheat}]
+[maven-projects]-[execute-commands]
+[execute-commands]-[note: ExecuteCommands.java\n{bg:wheat}]
+[maven-projects]-[add-two-datasets]
+[add-two-datasets]-[note: AddTwoDatasets.java\n{bg:wheat}]
+[maven-projects]-[ij2-image-plus]
+[ij2-image-plus]-[note: DatasetWrapping.java\n{bg:wheat}]
