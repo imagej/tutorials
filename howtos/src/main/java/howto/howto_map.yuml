@@ -1,7 +1,6 @@
 // {type:deployment}
 // {generate:true}
 
-[]-[howto]
 [howto]-[note: Template.java\n{bg:wheat}]
 [howto]-[datasets]
 [datasets]-[note: LoadAndDisplayDataset.java\n{bg:wheat}]

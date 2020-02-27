@@ -5,12 +5,8 @@ JUPYTER NOTEBOOKS
 
 Welcome to the Jupyter notebook tutorials for the ImageJ and SciJava APIs. Here you will find a variety of notebooks detailing different use cases, examples and demonstrations of ImageJ, SciJAva, ImageJ-Ops and more. While we arranged the notebooks from introduction to more specific and advanced topics, ***you can start anywhere you like***. To help you navigate this directory, below you will find a map depicting the folder and notebook layout.
 
-<center>
-
 ### **Directory Layout**
 ![notebooks yUML map](notebooks_map.png)
-
-</center>
 
 Use the "launch binder" badge above to try the Jupyter notebooks on the cloud
 using [Binder](https://mybinder.org), with no local installation necessary.
