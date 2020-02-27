@@ -103,6 +103,7 @@
 		<module>maven-projects/ij2-image-plus</module>
 		<module>maven-projects/listen-to-events</module>
 		<module>maven-projects/simple-commands</module>
+		<module>maven-projects/swing-example</module>
 		<module>maven-projects/working-with-modules</module>
 	</modules>
 
