@@ -30,7 +30,7 @@ ImageJ maven-projects > howto migration notes
 | `IntroToImageJAPI.java` | intro-to-imagej-api | adv | **Y** | --- | --- | **Y** | No UI. Opens imagej.net webpage and terminal output. |
 | `ListenToEvents.java` | listen-to-events | --- | **Y** | AWT image window does not output events to the terminal, swing image window does. | Possible action: Request swing UI by calling `ij.ui().showUI("swing")`. | **N** | Calls AWT UI (image window only). |
 | `LoadAndDisplayDataset.java` | load-and-display-dataset | datasets | **Y** | Input image drawn incorrectly (legacy bug). | --- | **Y** | Calls AWT UI (image window only). |
-| `LowPassFilter.java` | low-pass-filter | images > filter | **Y** | Input image drawn incorrectly (legacy bug). | --- | **Y** |Calls AWT UI. |
+| `LowPassFilter.java` | low-pass-filter | images > filtering | **Y** | Input image drawn incorrectly (legacy bug). | --- | **Y** |Calls AWT UI. |
 | `GetMetadata.java` | metadata | metadata | **Y** | Input image drawn incorrectly (legacy bug) | --- | **Y** | Calls AWT UI. |
 | `CopyLabels.java` | mixed-world-command | commands > simple | **Y** | --- | --- | **Y** | Calls AWT UI. |.
 | `GradientImage.java` | simple-commands | commands > simple | **Y** | --- | --- | **Y** | Calls AWT UI. |
