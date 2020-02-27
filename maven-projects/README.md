@@ -4,9 +4,6 @@ This project contains example code for working with
 [ImageJ](https://imagej.net/ImageJ) and [SciJava](https://imagej.net/SciJava).
 
 
-### **Directory Layout**
-![maven-projects yUML map](maven-projects_map.png)
-
 JAVA PROJECTS
 -------------
 
