@@ -80,4 +80,4 @@ SEE ALSO
 * The [ImageJ Tutorials](https://imagej.net/Tutorials) and [Development](https://imagej.net/Development) sections of the ImageJ wiki.
 
 ## **Directory Layout (not final)**
-![ImageJ Tutorial Map](tutorials_map.png)
+![ImageJ Tutorial Map](/images/tutorials_map.png)
