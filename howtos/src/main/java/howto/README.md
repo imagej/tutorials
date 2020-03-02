@@ -19,3 +19,5 @@ Make use of the [template](Template.java)!
 - Each solution is represented as a static method.
 - The solutions can directly be executed via main method.
 - Comments are used to explain what exactly the code is doing. 
+
+![Howtos directory map](../../../../../images/howto_map.png)

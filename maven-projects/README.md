@@ -19,7 +19,7 @@ cloud using [Gitpod](https://gitpod.io), with no local installation necessary.
 
 You can import these projects into your favorite IDE:
 
-  * Eclipse: File > Import > Existing Maven Projects
+  * Eclipse: File > Import > Existing Maven Projectsnotebooks
   * NetBeans: File > Open Project
   * IDEA: File > Open Project... (select pom.xml)
 
@@ -43,3 +43,6 @@ SEE ALSO
 --------
 
 * The [ImageJ Tutorials](https://imagej.net/Tutorials) and [Development](https://imagej.net/Development) sections of the ImageJ wiki.
+
+
+![Maven-projects directory map](../images/maven-projects_map.png)
