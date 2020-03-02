@@ -34,3 +34,6 @@ enabling use of ImageJ from Python programs.
 
 
 Learn more about Jupyter Notebook on [its web site](https://jupyter.org).
+
+## **Notebooks directory layout (not final)**
+![Notebooks directory map](../images/notebooks_map.png)
