@@ -13,12 +13,12 @@ ImageJ maven-projects > howto migration notes
 | `CreateANewOp.java` | create-a-new-op | ops | **Y** | --- | --- | **Y** | No UI. Terminal output only. |
 | `Ramp.java` | create-a-new-op | ops | **Y** | --- | Renamed file to `RampOp.java`. | **Y** | Calls AWT UI. |
 | `RandomBlobs.java` | create-a-new-op | ops | **Y** | --- | Renamed file to `RandomBlobsOp.java` | **Y** |Calls AWT UI. |
-| `Animal.java` | create-a-new-plugin-type | plugins > create | **N** | --- | --- | **Y** | Dependency for `CreateANewPluginType.java`. |
-| `AnimalService.java` | create-a-new-plugin-type | plugins > create | **N** | --- | --- | **Y** | Dependency for `CreateANewPluginType.java` |
-| `Bear.java` | create-a-new-plugin-type | plugins > create | **N** | --- | --- | **Y** | Dependency for `CreateANewPluginType.java` |
+| `Animal.java` | create-a-new-plugin-type | plugins > create | --- | --- | --- | **Y** | Dependency for `CreateANewPluginType.java`. |
+| `AnimalService.java` | create-a-new-plugin-type | plugins > create | --- | --- | --- | **Y** | Dependency for `CreateANewPluginType.java` |
+| `Bear.java` | create-a-new-plugin-type | plugins > create | --- | --- | --- | **Y** | Dependency for `CreateANewPluginType.java` |
 | `CreateANewPluginType.java` | create-a-new-plugin-type | plugins > create | **Y** | --- | --- | **Y** | No UI. Terminal output only. |
-| `Lion.java` | create-a-new-plugin-type | plugins > create | **N** | --- | --- | **Y** | Dependency for `CreateANewPluginType.java` |
-| `Tiger.java` | create-a-new-plugin-type | plugins > create | **N** | --- | --- | **Y** | Dependency for `CreateANewPluginType.java` | 
+| `Lion.java` | create-a-new-plugin-type | plugins > create | --- | --- | --- | **Y** | Dependency for `CreateANewPluginType.java` |
+| `Tiger.java` | create-a-new-plugin-type | plugins > create | --- | --- | --- | **Y** | Dependency for `CreateANewPluginType.java` | 
 | `CommandWithPreview.java` |commands-with-preview | ui > preview | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `PreviewCheckbox.java` | commands-with-preview | ui > preview | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `TrollPreprocessor.java` | custom-preprocessor-plugin | --- | **Y** | Runs for each command for all `.java` files calling UI. Annoying! | --- | **N** | Calls AWT UI. |
@@ -64,8 +64,8 @@ ImageJ maven-projects > howto migration notes
 | `DisplayInfo.java` | displays | **Y** | --- | --- | Displays dialog box only. |
 | `DisplayWarning.java` | displays | **Y** | --- | --- | Displays dialog box only. |
 | `CommandThatChecksImageType.java` | extensions | **Y** | --- | --- | Calls AWT UI. |
-| `ExampleCommand.java` | extensions | **N** | --- | --- | Dependency for `RunExampleCommand.java` and `GetExampleCommandResults.java`. |
-| `ExampleDynamicCommand.java` | extensions | **N** | --- | --- | Dependency for `ModifyCommand.java`. |
+| `ExampleCommand.java` | extensions | --- | --- | --- | Dependency for `RunExampleCommand.java` and `GetExampleCommandResults.java`. |
+| `ExampleDynamicCommand.java` | extensions | --- | --- | --- | Dependency for `ModifyCommand.java`. |
 | `GetExampleCommandResults.java` | extensions | **Y** | --- | --- | No UI. Terminal output only. |
 | `ListAllCommands.java` | extensions | **Y** | --- | --- | No UI. Terminal output only. |
 | `ModifyCommand.java` | extensions | **Y** | --- | --- | Calls AWT UI. |
