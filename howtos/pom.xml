@@ -71,6 +71,7 @@
 		<license.licenseName>unlicense</license.licenseName>
 		<license.copyrightOwners>N/A</license.copyrightOwners>
 		<license.projectName>ImageJ software for multidimensional image processing and analysis.</license.projectName>
+		<imglib2.version>5.9.0</imglib2.version>
 	</properties>
 
 	<repositories>
