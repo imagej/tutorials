@@ -1,0 +1,12 @@
+// {type:deployment}
+// {generate:true}
+
+[maven-projects]-[dynamic-commands]
+[maven-projects]-[swing-example]
+[maven-projects]-[listen-to-events]
+[maven-projects]-[simple-commands]
+[maven-projects]-[custom-preprocessor-plugin]
+[maven-projects]-[working-with-modules]
+[maven-projects]-[execute-commands]
+[maven-projects]-[add-two-datasets]
+[maven-projects]-[ij2-image-plus]

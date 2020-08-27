@@ -11,14 +11,17 @@ package howto.images;
 import io.scif.config.SCIFIOConfig;
 import io.scif.formats.TIFFFormat;
 import io.scif.services.DatasetIOService;
+
+import java.io.IOException;
+import java.nio.file.Files;
+
 import net.imagej.Dataset;
 import net.imagej.DefaultDataset;
 import net.imagej.ImageJ;
 import net.imagej.ImgPlus;
 import net.imglib2.img.Img;
 
-import java.io.IOException;
-import java.nio.file.Files;
+import org.scijava.io.location.FileLocation;
 
 /**
  * How to save an image as LZW compressed TIFF
@@ -35,7 +38,7 @@ public class SaveImageCompressed {
 		Img img = (Img) ij.io().open(Object.class.getResource("/blobs.png").getPath());
 
 		// create temporary path to save image to
-		String dest = Files.createTempFile("img", ".tif").toString();
+		FileLocation dest = new FileLocation(Files.createTempFile("img", ".tif").toFile());
 		System.out.println("Saving image to " + dest);
 
 		// create SCIFIO config to set compression algorithm
@@ -48,7 +51,7 @@ public class SaveImageCompressed {
 		ij.get(DatasetIOService.class).save(dataset, dest, config);
 
 		// load and show saved image
-		Object savedImg = ij.io().open(dest);
+		Object savedImg = ij.io().open(dest.getFile().getAbsolutePath());
 		ij.ui().show("saved image", savedImg);
 	}
 

@@ -10,7 +10,6 @@ package howto.app;
 
 import net.imagej.ImageJ;
 import org.scijava.command.CommandModule;
-import org.scijava.plugins.commands.debug.SystemInformation;
 
 import java.util.concurrent.ExecutionException;
 
@@ -26,7 +25,7 @@ public class GetSystemInformation {
 	 */
 	private static void run() throws ExecutionException, InterruptedException {
 		ImageJ ij = new ImageJ();
-		CommandModule module = ij.command().run(SystemInformation.class, true).get();
+		CommandModule module = ij.command().run("org.scijava.plugins.commands.debug.SystemInformation", true).get();
 		String result = (String) module.getOutput("info");
 		System.out.println(result);
 	}

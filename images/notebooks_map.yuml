@@ -1,0 +1,18 @@
+// {type:deployment}
+// {generate:true}
+
+[notebooks]-[5-ImageJ-Core-Libraries]
+[notebooks]-[4-Using-Ops]
+[4-Using-Ops]-[examples]
+[examples]-[threshold]
+[examples]-[misc]
+[examples]-[morphology]
+[examples]-[segment]
+[examples]-[labeling]
+[examples]-[filtering]
+[examples]-[stats]
+[examples]-[copy]
+[examples]-[transform]
+[notebooks]-[2-ImageJ-Basics]
+[notebooks]-[1-Introduction]
+[notebooks]-[3-Extending-ImageJ]

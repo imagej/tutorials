@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>org.scijava</groupId>
 		<artifactId>pom-scijava</artifactId>
-		<version>26.0.0</version>
+		<version>29.2.1</version>
 		<relativePath />
 	</parent>
 
@@ -96,25 +96,14 @@
 
 	<modules>
 		<module>howtos</module>
-		<module>maven-projects/add-rois</module>
 		<module>maven-projects/add-two-datasets</module>
-		<module>maven-projects/call-modern-from-legacy</module>
-		<module>maven-projects/commands-with-preview</module>
-		<module>maven-projects/create-a-new-op</module>
-		<module>maven-projects/create-a-new-plugin-type</module>
 		<module>maven-projects/custom-preprocessor-plugin</module>
 		<module>maven-projects/dynamic-commands</module>
 		<module>maven-projects/execute-commands</module>
 		<module>maven-projects/ij2-image-plus</module>
-		<module>maven-projects/intro-to-imagej-api</module>
 		<module>maven-projects/listen-to-events</module>
-		<module>maven-projects/load-and-display-dataset</module>
-		<module>maven-projects/low-pass-filter</module>
-		<module>maven-projects/mixed-world-command</module>
 		<module>maven-projects/simple-commands</module>
-		<module>maven-projects/tables</module>
-		<module>maven-projects/using-ops</module>
-		<module>maven-projects/widget-demo</module>
+		<module>maven-projects/swing-example</module>
 		<module>maven-projects/working-with-modules</module>
 	</modules>
 
