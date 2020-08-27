@@ -28,4 +28,5 @@ public class DisposeImageJ {
 		ij.context().dispose();
 	}
 
+	public static void main(String...args) { run(); }
 }
