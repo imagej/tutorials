@@ -95,7 +95,8 @@ public class WorkingWithModules {
 		// It may sometimes be the case that even with preprocessing, your module
 		// still requires additional input values. In such situations, you can pass
 		// the map of such input values explicitly as follows:
-		final Map<String, Object> myInputs = new HashMap<String, Object>();
+		final Map<String, Object> myInputs = new HashMap<>();
+		/*
 		myInputs.put("requiredStringInput", "requiredStringValue");
 		myInputs.put("requiredDoubleInput", 5.6);
 		// etc.
@@ -105,6 +106,7 @@ public class WorkingWithModules {
 		ij.module().run(myInfo, true,
 			"requiredStringInput", "requiredStringValue",
 			"requiredDoubleInput", 5.6);
+		*/
 
 		// If you desire more control over pre- and postprocessing, you can instead
 		// invoke the module with the process flag set to false.
@@ -117,7 +119,7 @@ public class WorkingWithModules {
 		// pre- and postprocessing, you can also pass an explicit list of module
 		// pre- and postprocessors.
 
-		final List<ModulePreprocessor> pre = new ArrayList<ModulePreprocessor>();
+		final List<ModulePreprocessor> pre = new ArrayList<>();
 
 		// The validity preprocessor ensures the module does not break the rules.
 		final ValidityPreprocessor validPre = new ValidityPreprocessor();

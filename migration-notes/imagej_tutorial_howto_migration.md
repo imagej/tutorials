@@ -25,13 +25,13 @@ ImageJ maven-projects > howto migration notes
 | `DynamicCallbacks.java` | dynamic-commands | --- | **Y** | Opens UI. Selecting options either returns input letter (a, b or c) or returns only the first item in the `kindOfThing` list. | --- | **N** | Calls AWT UI. |
 | `DynamicInitialization.java` | dynamic-commands | commands > dynamic | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `DynamicNumberOfParameters.java` | dynamic-commands | commands > dynamic | **Y** | --- | --- | **Y** | Calls AWT UI. |
-| `ExecuteCommands.java` | execute-commands | --- | **N** | Broken import of `org.scijava.plugins.commands.io.OpenFile` | --- | **N** | --- |
+| `ExecuteCommands.java` | execute-commands | --- | **Y** | --- | --- | **N** | --- |
 | `DatasetWrapping.java` | ij2-image-plus | --- | **Y** | Doesn't seem to do anything, opens blank image. | --- | **N** | Calls AWT UI. |
 | `IntroToImageJAPI.java` | intro-to-imagej-api | adv | **Y** | --- | --- | **Y** | No UI. Opens imagej.net webpage and terminal output. |
 | `ListenToEvents.java` | listen-to-events | --- | **Y** | AWT image window does not output events to the terminal, swing image window does. | Possible action: Request swing UI by calling `ij.ui().showUI("swing")`. | **N** | Calls AWT UI (image window only). |
 | `LoadAndDisplayDataset.java` | load-and-display-dataset | datasets | **Y** | Input image drawn incorrectly (legacy bug). | --- | **Y** | Calls AWT UI (image window only). |
 | `LowPassFilter.java` | low-pass-filter | images > filtering | **Y** | Input image drawn incorrectly (legacy bug). | --- | **Y** |Calls AWT UI. |
-| `GetMetadata.java` | metadata | metadata | **Y** | Input image drawn incorrectly (legacy bug) | --- | **Y** | Calls AWT UI. |
+| `GetMetadata.java` | metadata | metadata | **Y** | --- | --- | **Y** | --- |
 | `CopyLabels.java` | mixed-world-command | commands > simple | **Y** | --- | --- | **Y** | Calls AWT UI. |.
 | `GradientImage.java` | simple-commands | commands > simple | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `HelloWorld.java` | simple-commands | commands > simple | **Y** | --- | --- | **Y** | Calls AWT UI. |

@@ -25,7 +25,7 @@ public class DisposeImageJ {
 		// do something with ImageJ
 
 		// dispose ImageJ
-		ij.context().dispose();
+		ij.dispose();
 	}
 
 	public static void main(String...args) { run(); }

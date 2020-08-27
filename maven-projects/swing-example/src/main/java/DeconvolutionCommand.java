@@ -66,7 +66,8 @@ public class DeconvolutionCommand implements Command {
 		}
 
 		log.info("starting deconvolution");
-		deconvolved = ops.deconvolve().richardsonLucy(imgFloat, psf, numIterations);
+		final Img<FloatType> deconvolved = ops.create().img(imgFloat);
+		ops.deconvolve().richardsonLucy(deconvolved, imgFloat, psf, numIterations);
 		log.info("finished deconvolution");
 
 	}

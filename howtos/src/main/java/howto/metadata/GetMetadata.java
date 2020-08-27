@@ -7,22 +7,19 @@
  */
 package howto.metadata;
 
-import java.io.IOException;
-
-import io.scif.services.FormatService;
-import io.scif.Format;
-import io.scif.FormatException;
-import io.scif.Metadata;
 import io.scif.FieldPrinter;
+import io.scif.Format;
+import io.scif.Metadata;
+import io.scif.services.FormatService;
 
-import net.imagej.ImageJ;
 import net.imagej.Dataset;
+import net.imagej.ImageJ;
 
 import org.scijava.ItemIO;
-import org.scijava.command.Command;
+import org.scijava.io.location.Location;
+import org.scijava.io.location.LocationService;
 import org.scijava.log.LogService;
 import org.scijava.plugin.Parameter;
-import org.scijava.plugin.Plugin;
 
 /**
  * This example illustrates how to access and display image metadata using the {@link FormatService} and
@@ -35,8 +32,7 @@ import org.scijava.plugin.Plugin;
  * An optional {@code formatMetadata} method is included to (hopefully) make the text more readable.
  * </p>
  */
-@Plugin(type = Command.class, menuPath = "Image>Show Metadata")
-public class GetMetadata implements Command {
+public class GetMetadata {
 
     // -- Needed services --
 
@@ -44,44 +40,46 @@ public class GetMetadata implements Command {
     @Parameter
     private FormatService formatService;
 
+    @Parameter
+    private LocationService locationService;
+
     // for logging errors
     @Parameter
     private LogService log;
 
     // -- Inputs and outputs to the command --
 
-    // input image
-    @Parameter
-    private Dataset img;
-
     // output metadata string
     @Parameter(label = "Metadata", type = ItemIO.OUTPUT)
     private String mString;
 
-    @Override
-    public void run() {
-        // we need the file path to determine the file format
-        final String filePath = img.getSource();
+    public static void run() throws Exception {
+      ImageJ ij = new ImageJ();
 
-        // catch any Format or IO exceptions
-        try {
+      // open a sample image
+      final Dataset img = ij.scifio().datasetIO().open("http://imagej.net/images/FluorescentCells.jpg");
 
-            // determine the Format based on the extension and, if necessary, the source data
-            Format format = formatService.getFormat(filePath);
+      // we need the file path to determine the file format
+      Location source = ij.get(LocationService.class).resolve(img.getSource());
 
-            // create an instance of the associated Parser and parse metadata from the image file
-            Metadata metadata = format.createParser().parse(filePath);
+      // catch any Format or IO exceptions
+      // determine the Format based on the extension and, if necessary, the source data
+      Format format = ij.scifio().format().getFormat(source);
 
-            // use FieldPrinter to traverse metadata tree and return as a String
-            String metadataTree = new FieldPrinter(metadata).toString();
+      // create an instance of the associated Parser and parse metadata from the image file
+      Metadata metadata = format.createParser().parse(source);
 
-            // (optional) remove some of the tree formatting to make the metadata easier to read
-            mString = formatMetadata(metadataTree);
-        }
-        catch (final FormatException | IOException e) {
-            log.error(e);
-        }
+      // use FieldPrinter to traverse metadata tree and return as a String
+      String metadataTree = new FieldPrinter(metadata).toString();
 
+      // (optional) remove some of the tree formatting to make the metadata easier to read
+      String mString = formatMetadata(metadataTree);
+
+      // print out our precious metadata!
+      ij.log().info(mString);
+
+      // close out our ImageJ
+      ij.dispose();
     }
 
     /**
@@ -89,7 +87,7 @@ public class GetMetadata implements Command {
      * @param metadataTree raw metadata string returned by FieldPrinter().toString()
      * @return formatted version of metadataTree
      */
-    private String formatMetadata(String metadataTree) {
+    private static String formatMetadata(String metadataTree) {
 
         // remove ending braces | replace ", " between OME fields
         String tmp = metadataTree.replaceAll("(\\t+}\\n)|(,\\s)", "\n");
@@ -98,28 +96,5 @@ public class GetMetadata implements Command {
         return tmp.replaceAll("(\\t+\\{\\n)|(\\t+)", "");
     }
 
-    /**
-     * This main function serves for development purposes.
-     * It allows you to run the plugin immediately out of
-     * your integrated development environment (IDE).
-     *
-     * @param args unused
-     * @throws Exception
-     */
-    public static void main(final String... args) throws Exception {
-        // create the ImageJ application context with all available services
-        final ImageJ ij = new ImageJ();
-        ij.launch(args);
-
-        // open a sample image
-        final Dataset img = ij.scifio().datasetIO().open("http://imagej.net/images/FluorescentCells.jpg");
-
-        // show the image
-        ij.ui().show(img);
-
-        // invoke the plugin
-        ij.command().run(GetMetadata.class, true);
-
-    }
-
+    public static void main(String...args) throws Exception { run(); }
 }

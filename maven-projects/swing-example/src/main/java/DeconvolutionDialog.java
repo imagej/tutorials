@@ -14,19 +14,19 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import net.imagej.ops.OpService;
 import net.imglib2.RandomAccessibleInterval;
 import net.imglib2.img.Img;
 import net.imglib2.img.display.imagej.ImageJFunctions;
-import net.imglib2.type.numeric.RealType;
 import net.imglib2.type.numeric.real.FloatType;
 
+import org.scijava.Context;
 import org.scijava.app.StatusService;
 import org.scijava.command.CommandService;
 import org.scijava.log.LogService;
+import org.scijava.plugin.Parameter;
 import org.scijava.thread.ThreadService;
 import org.scijava.ui.UIService;
 
@@ -35,33 +35,31 @@ import ij.ImagePlus;
 
 public class DeconvolutionDialog extends JDialog {
 
+	@Parameter
 	private OpService ops;
+
+	@Parameter
 	private LogService log;
+
+	@Parameter
 	private StatusService status;
+
+	@Parameter
 	private CommandService cmd;
+
+	@Parameter
 	private ThreadService thread;
+
+	@Parameter
 	private UIService ui;
 
 	private final JPanel contentPanel = new JPanel();
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(final String[] args) {
-		try {
-			final DeconvolutionDialog dialog = new DeconvolutionDialog();
-			dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		}
-		catch (final Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Create the dialog.
 	 */
-	public DeconvolutionDialog() {
+	public DeconvolutionDialog(final Context ctx) {
+		ctx.inject(this);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
@@ -75,10 +73,7 @@ public class DeconvolutionDialog extends JDialog {
 				public void actionPerformed(final ActionEvent arg0) {
 
 					// start deconvolution with the scijava ThreadService
-					thread.run(() -> {
-						deconvolve();
-					});
-
+					thread.run(() -> deconvolve());
 				}
 			});
 			contentPanel.add(btnDeconvolve);
@@ -95,28 +90,12 @@ public class DeconvolutionDialog extends JDialog {
 			});
 			contentPanel.add(btnDeconvolveViaCommand);
 		}
-		{
-			final JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				final JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				final JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
-		}
 	}
 
 	/**
 	 * Perform deconvolution
 	 */
-	public <T extends RealType<T>> void deconvolve() {
+	public void deconvolve() {
 		final ImagePlus imp = IJ.getImage();
 
 		final Img img = ImageJFunctions.wrap(imp);
@@ -133,8 +112,8 @@ public class DeconvolutionDialog extends JDialog {
 		}
 
 		log.info("starting deconvolution with thread service");
-		final RandomAccessibleInterval<T> deconvolved = ops.deconvolve()
-			.richardsonLucy(imgFloat, psf, 50);
+		final Img<FloatType> deconvolved = ops.create().img(imgFloat);
+		ops.deconvolve().richardsonLucy(deconvolved, imgFloat, psf, 50);
 		log.info("finished deconvolution");
 
 		ui.show(deconvolved);
@@ -144,61 +123,10 @@ public class DeconvolutionDialog extends JDialog {
 	 * perform deconvolution by calling a command
 	 */
 	public void deconvolveViaCommand() {
-
 		final ImagePlus imp = IJ.getImage();
 		final Img img = ImageJFunctions.wrap(imp);
 
 		cmd.run(DeconvolutionCommand.class, true, "img", img, "sxy", 3, "sz", 7,
 			"numIterations", 50);
-
 	}
-
-	public OpService getOps() {
-		return ops;
-	}
-
-	public void setOps(final OpService ops) {
-		this.ops = ops;
-	}
-
-	public LogService getLog() {
-		return log;
-	}
-
-	public void setLog(final LogService log) {
-		this.log = log;
-	}
-
-	public StatusService getStatus() {
-		return status;
-	}
-
-	public void setStatus(final StatusService status) {
-		this.status = status;
-	}
-
-	public CommandService getCommand() {
-		return cmd;
-	}
-
-	public void setCommand(final CommandService command) {
-		this.cmd = command;
-	}
-
-	public ThreadService getThread() {
-		return thread;
-	}
-
-	public void setThread(final ThreadService thread) {
-		this.thread = thread;
-	}
-
-	public UIService getUi() {
-		return ui;
-	}
-
-	public void setUi(final UIService ui) {
-		this.ui = ui;
-	}
-
 }

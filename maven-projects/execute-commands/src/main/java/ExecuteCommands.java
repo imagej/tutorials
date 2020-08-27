@@ -158,7 +158,7 @@ public class ExecuteCommands {
 	 */
 	public static Dataset invokeWithMap(final ImageJ ij) {
 		// populate the map of input parameters
-		final Map<String, Object> inputMap = new HashMap<String, Object>();
+		final Map<String, Object> inputMap = new HashMap<>();
 		inputMap.put("inputFile", new File("sample-image.fake"));
 		// execute asynchronously using the command service
 		final Future<CommandModule> future =
