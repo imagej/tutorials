@@ -7,15 +7,21 @@
  */
 package howto.ui;
 
+import java.awt.BorderLayout;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import org.scijava.Priority;
 import org.scijava.plugin.Plugin;
 import org.scijava.ui.swing.widget.SwingInputWidget;
 import org.scijava.widget.ChoiceWidget;
 import org.scijava.widget.InputWidget;
 import org.scijava.widget.WidgetModel;
-
-import javax.swing.*;
-import java.awt.*;
 
 @Plugin(type = InputWidget.class, priority = Priority.HIGH)
 public class CustomWidget extends SwingInputWidget<String> implements ChoiceWidget<JPanel> {
@@ -60,9 +66,9 @@ public class CustomWidget extends SwingInputWidget<String> implements ChoiceWidg
 
         JPanel container = new JPanel();
 
-        container.setLayout(new GridLayout(2, 1));
-        container.add(addButton);
-        container.add(listComponent);
+        container.setLayout(new BorderLayout());
+        container.add(listComponent, BorderLayout.CENTER);
+        container.add(addButton, BorderLayout.EAST);
 
         component.add(container);
 
