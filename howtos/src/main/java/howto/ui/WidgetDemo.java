@@ -209,6 +209,10 @@ public class WidgetDemo implements Command, Previewable {
 			"Really liked", "Liked", "Disliked", "Really disliked" })
 	private String choiceRadioV;
 
+	@Parameter(label = "custom widget",
+			style = CustomWidget.CUSTOM_STYLE, choices = {"Badger"})
+	private String customString;
+
 	// This section demonstrates how to use callbacks. A "callback" is a
 	// method that is executed whenever a specific parameter value changes.
 	// They can be used for many purposes; in our case, we use them to keep
