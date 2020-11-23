@@ -96,4 +96,4 @@
 [notebooks]-[1-Introduction]
 [1-Introduction]-[note: Intro-to-Jupyter.ipynb\nImageJ-Tutorials-and-Demo.ipynb\n{bg:wheat}]
 [notebooks]-[3-Extending-ImageJ]
-[3-Extending-ImageJ]-[note: 5-Tools.ipynb\n3-Commands.ipynb\n1-Scripting.ipynb\n2-Input-Output.ipynb\n6-ImageJ-with-Python-Kernel.ipynb\n{bg:wheat}]
+[3-Extending-ImageJ]-[note: 5-Tools.ipynb\n3-Commands.ipynb\n1-Scripting.ipynb\n2-Input-Output.ipynb\n{bg:wheat}]
