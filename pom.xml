@@ -118,8 +118,8 @@
 		<url>http://github.com/imagej/tutorials/issues</url>
 	</issueManagement>
 	<ciManagement>
-		<system>Travis CI</system>
-		<url>https://travis-ci.org/imagej/tutorials</url>
+		<system>GitHub Actions</system>
+		<url>https://github.com/imagej/tutorials/actions</url>
 	</ciManagement>
 
 	<properties>
