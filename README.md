@@ -1,4 +1,4 @@
-[![](https://travis-ci.org/imagej/tutorials.svg?branch=master)](https://travis-ci.org/imagej/tutorials)
+[![](https://github.com/imagej/tutorials/actions/workflows/build-main.yml/badge.svg)](https://github.com/imagej/tutorials/actions/workflows/build-main.yml)
 
 This project contains example code for working with
 [ImageJ](https://imagej.net/ImageJ) and [SciJava](https://imagej.net/SciJava).
