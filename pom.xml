@@ -108,7 +108,7 @@
 	</modules>
 
 	<scm>
-		<connection>scm:git:git://github.com/imagej/tutorials</connection>
+		<connection>scm:git:https://github.com/imagej/tutorials</connection>
 		<developerConnection>scm:git:git@github.com:imagej/tutorials</developerConnection>
 		<tag>HEAD</tag>
 		<url>https://github.com/imagej/tutorials</url>
