@@ -6,6 +6,17 @@ This project contains example code for working with
 
 JUPYTER NOTEBOOKS
 -----------------
+There are multiple ways to [run the Jupyter Notebooks](https://jupyter.org/install):
+## (Recommended) Miniconda Approach
+1. Install [Miniconda](https://conda.io/miniconda.html).
+2. Clone this `imagej/tutorials` repository.
+3. Open a console and `cd` to your cloned working copy.
+4. `conda env create -f environment.yml` to create a conda environment with the
+   dependencies these notebooks need.
+5. `conda activate scijava` to activate the environment.
+6. `jupyter notebook` to launch Jupyter Notebook in a web browser window.
+7. In the browser, click into `notebooks`, then click on the
+   `ImageJ-Tutorials-and-Demo.ipynb` notebook to open it.
 
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/imagej/tutorials/master)
 
@@ -27,15 +38,6 @@ enabling use of ImageJ from Python programs.
 There is [more than one way to install Jupyter](https://jupyter.org/install),
 but here is the procedure we recommend to get started quickly:
 
-1. Install [Miniconda](https://conda.io/miniconda.html).
-2. Clone this `imagej/tutorials` repository.
-3. Open a console and `cd` to your cloned working copy.
-4. `conda env create -f environment.yml` to create a conda environment with the
-   dependencies these notebooks need.
-5. `conda activate scijava` to activate the environment.
-6. `jupyter notebook` to launch Jupyter Notebook in a web browser window.
-7. In the browser, click into `notebooks`, then click on the
-   `ImageJ-Tutorials-and-Demo.ipynb` notebook to open it.
 
 Learn more about Jupyter Notebook on [its web site](https://jupyter.org).
 
