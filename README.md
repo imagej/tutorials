@@ -7,7 +7,7 @@ This project contains example code for working with
 JUPYTER NOTEBOOKS
 -----------------
 There are multiple ways to [run the Jupyter Notebooks](https://jupyter.org/install):
-## (Recommended) Miniconda Approach
+### (Recommended) Miniconda Approach
 1. Install [Miniconda](https://conda.io/miniconda.html).
 2. Clone this `imagej/tutorials` repository.
 3. Open a console and `cd` to your cloned working copy.
@@ -18,15 +18,17 @@ There are multiple ways to [run the Jupyter Notebooks](https://jupyter.org/insta
 7. In the browser, click into `notebooks`, then click on the
    `ImageJ-Tutorials-and-Demo.ipynb` notebook to open it.
 
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/imagej/tutorials/master)
-
+### (Easiest) Using this Repository
 The easiest way to get started with the ImageJ and SciJava APIs is via the
 [ImageJ Jupyter notebooks](https://imagej.github.io/tutorials),
 located in the `notebooks` subfolder of this repository.
 
+### Using Binder
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/imagej/tutorials/master)
 Use the "launch binder" badge above to try the Jupyter notebooks on the cloud
 using [Binder](https://mybinder.org), with no local installation necessary.
 
+### Using BeakerX
 The introductory notebooks use the Groovy kernel from
 [BeakerX](https://beakerx.com). Several other JVM-based kernels
 are usable as well, including Clojure, Java, Kotlin and Scala.
@@ -35,10 +37,7 @@ There are also notebooks using the standard Python kernel plus
 the [pyimagej](https://pypi.org/project/pyimagej) package,
 enabling use of ImageJ from Python programs.
 
-There is [more than one way to install Jupyter](https://jupyter.org/install),
-but here is the procedure we recommend to get started quickly:
-
-
+### More Information on Jupyter Notebooks
 Learn more about Jupyter Notebook on [its web site](https://jupyter.org).
 
 JAVA PROJECTS
