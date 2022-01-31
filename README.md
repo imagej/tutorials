@@ -31,7 +31,7 @@ using [Binder](https://mybinder.org), with no local installation necessary.
 
 ### Using BeakerX
 The introductory notebooks use the Groovy kernel from
-[BeakerX](https://beakerx.com). Several other JVM-based kernels
+[BeakerX](http://beakerx.com). Several other JVM-based kernels
 are usable as well, including Clojure, Java, Kotlin and Scala.
 
 There are also notebooks using the standard Python kernel plus
