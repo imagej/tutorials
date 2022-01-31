@@ -25,6 +25,7 @@ located in the `notebooks` subfolder of this repository.
 
 ### Using Binder
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/imagej/tutorials/master)
+
 Use the "launch binder" badge above to try the Jupyter notebooks on the cloud
 using [Binder](https://mybinder.org), with no local installation necessary.
 
