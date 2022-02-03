@@ -44,7 +44,7 @@ public class CreateImage {
 	}
 
 	/**
-	 * .. this will create an {@link Img<IntType>} with the dimensions of an existing {@link Img<DoubleType>}
+	 * .. this will create a {@code Img<IntType>} with the dimensions of an existing {@code Img<DoubleType>}
 	 */
 	public static void createImgFromExistingDimensions() {
 		ImageJ ij = new ImageJ();
