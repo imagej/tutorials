@@ -7,6 +7,14 @@ This project contains example code for working with
 JUPYTER NOTEBOOKS
 -----------------
 There are multiple ways to [run the Jupyter Notebooks](https://jupyter.org/install):
+
+| Method | Pros | Cons | Running Live? |
+| --- | --- | --- | --- |
+| [Binder](#using-binder) |	Run code on the cloud, no local installation. | 	Slow to spin up the web container. | Yes | 		
+| [Local <BR> Environment](#recommended-miniconda-approach) | Run code locally on your machine. | Must install developer tools. | Yes |
+| [On GitHub](#easiest-using-this-repository) | View notebooks quickly on GitHub's website. | Code does not run live; rendering is less <BR>complete & correct than on nbviewer. | No |
+| Nbviewer | View notebooks nicely rendered on nbviewer.org. | Code does not run live;<BR> not integrated with GitHub. | No |
+
 ### (Recommended) Miniconda Approach
 1. Install [Miniconda](https://conda.io/miniconda.html).
 2. Clone this `imagej/tutorials` repository.
