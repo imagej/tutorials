@@ -39,7 +39,7 @@ using [Binder](https://mybinder.org), with no local installation necessary.
 
 Note: Binder startup may take a minute
 
-### Using BeakerX
+### Notebook Technologies
 The introductory notebooks use the Groovy kernel from
 [BeakerX](http://beakerx.com). Several other JVM-based kernels
 are usable as well, including Clojure, Java, Kotlin and Scala.
@@ -48,7 +48,6 @@ There are also notebooks using the standard Python kernel plus
 the [pyimagej](https://pypi.org/project/pyimagej) package,
 enabling use of ImageJ from Python programs.
 
-### More Information on Jupyter Notebooks
 Learn more about Jupyter Notebook on [its web site](https://jupyter.org).
 
 JAVA PROJECTS
