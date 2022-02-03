@@ -37,6 +37,8 @@ located in the `notebooks` subfolder of this repository.
 Use the "launch binder" badge above to try the Jupyter notebooks on the cloud
 using [Binder](https://mybinder.org), with no local installation necessary.
 
+Note: Binder startup may take a minute
+
 ### Using BeakerX
 The introductory notebooks use the Groovy kernel from
 [BeakerX](http://beakerx.com). Several other JVM-based kernels
