@@ -10,9 +10,9 @@ There are multiple ways to [run the Jupyter Notebooks](https://jupyter.org/insta
 
 | Method | Pros | Cons | Running Live? |
 | --- | --- | --- | --- |
-| [Binder](#binder) |	Run code on the cloud, no local installation. | 	Slow to spin up the web container. | Yes | 		
 | [Local <BR> Environment](#recommended-local-environment) | Run code locally on your machine. | Must install developer tools. | Yes |
 | [On GitHub](#on-github) | View notebooks quickly on GitHub's website. | Code does not run live; rendering is less <BR>complete & correct than on nbviewer. | No |
+| [Binder](#binder) |	Run code on the cloud, no local installation. | 	Slow to spin up the web container. | Yes | 		
 | Nbviewer | View notebooks nicely rendered on nbviewer.org. | Code does not run live;<BR> not integrated with GitHub. | No |
 
 ### (Recommended) Local Environment
