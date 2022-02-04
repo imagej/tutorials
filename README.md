@@ -28,8 +28,7 @@ There are multiple ways to [run the Jupyter Notebooks](https://jupyter.org/insta
 
 ### On GitHub
 The easiest way to get started with the ImageJ and SciJava APIs is via the
-[ImageJ Jupyter notebooks](https://imagej.github.io/tutorials/notebooks),
-located in the `notebooks` subfolder of this repository.
+ImageJ Jupyter notebooks, located in the `notebooks` subfolder of this repository.
 
 ### Binder
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/imagej/tutorials/master)
