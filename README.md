@@ -10,12 +10,12 @@ There are multiple ways to [run the Jupyter Notebooks](https://jupyter.org/insta
 
 | Method | Pros | Cons | Running Live? |
 | --- | --- | --- | --- |
-| [Binder](#using-binder) |	Run code on the cloud, no local installation. | 	Slow to spin up the web container. | Yes | 		
-| [Local <BR> Environment](#recommended-miniconda-approach) | Run code locally on your machine. | Must install developer tools. | Yes |
-| [On GitHub](#easiest-using-this-repository) | View notebooks quickly on GitHub's website. | Code does not run live; rendering is less <BR>complete & correct than on nbviewer. | No |
+| [Binder](#binder) |	Run code on the cloud, no local installation. | 	Slow to spin up the web container. | Yes | 		
+| [Local <BR> Environment](#recommended-local-environment) | Run code locally on your machine. | Must install developer tools. | Yes |
+| [On GitHub](#on-github) | View notebooks quickly on GitHub's website. | Code does not run live; rendering is less <BR>complete & correct than on nbviewer. | No |
 | Nbviewer | View notebooks nicely rendered on nbviewer.org. | Code does not run live;<BR> not integrated with GitHub. | No |
 
-### (Recommended) Miniconda Approach
+### (Recommended) Local Environment
 1. Install [Miniconda](https://conda.io/miniconda.html).
 2. Clone this `imagej/tutorials` repository.
 3. Open a console and `cd` to your cloned working copy.
@@ -26,12 +26,12 @@ There are multiple ways to [run the Jupyter Notebooks](https://jupyter.org/insta
 7. In the browser, click into `notebooks`, then click on the
    `ImageJ-Tutorials-and-Demo.ipynb` notebook to open it.
 
-### (Easiest) Using this Repository
+### On GitHub
 The easiest way to get started with the ImageJ and SciJava APIs is via the
 [ImageJ Jupyter notebooks](https://imagej.github.io/tutorials/notebooks),
 located in the `notebooks` subfolder of this repository.
 
-### Using Binder
+### Binder
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/imagej/tutorials/master)
 
 Use the "launch binder" badge above to try the Jupyter notebooks on the cloud
