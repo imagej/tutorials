@@ -38,7 +38,7 @@ using [Binder](https://mybinder.org), with no local installation necessary.
 
 Note: Binder startup may take a minute
 
-### Notebook Technologies
+## Notebook Technologies
 The introductory notebooks use the Groovy kernel from
 [BeakerX](http://beakerx.com). Several other JVM-based kernels
 are usable as well, including Clojure, Java, Kotlin and Scala.
