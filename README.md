@@ -41,7 +41,7 @@ Note: Binder startup may take a minute
 ### Nbviewer
 [![Nbviewer](https://camo.githubusercontent.com/a2b8b49ec63c501c07f7f5d73ced6fdee58a337609d4a6962d6ec5b4fbd3fec9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f72656e6465722d6e627669657765722d6f72616e67652e737667)](https://nbviewer.org/github/imagej/tutorials/tree/master/)
 
-Use the render nbviewer badge above to access the Jupyter Notebooks on your machine through nbviewer.
+Use the "render nbviewer" badge above to access the Jupyter Notebooks on your machine through nbviewer.
 
 ## Notebook Technologies
 The introductory notebooks use the Groovy kernel from
