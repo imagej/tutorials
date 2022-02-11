@@ -3,9 +3,13 @@
 This project contains example code for working with
 [ImageJ](https://imagej.net/ImageJ) and [SciJava](https://imagej.net/SciJava).
 
+WHY JUPYTER NOTEBOOKS
+---------------------
+Jupyter notebooks is the platform used to access and run the tutorials for ImageJ.
 
-JUPYTER NOTEBOOKS
------------------
+RUNNING JUPYTER NOTEBOOKS
+-------------------------
+
 There are multiple ways to [run the Jupyter Notebooks](https://jupyter.org/install):
 
 | Method | Pros | Cons | Running Live? |
