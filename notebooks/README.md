@@ -53,3 +53,17 @@ are usable as well, including Clojure, Java, Kotlin and Scala.
 There are also notebooks using the standard Python kernel plus
 the [pyimagej](https://pypi.org/project/pyimagej) package,
 enabling use of ImageJ from Python programs.
+
+LICENSING
+---------
+
+To the extent possible under law, the ImageJ developers have waived
+all copyright and related or neighboring rights to this tutorial code.
+
+See [unlicense.org](https://unlicense.org/) for details.
+
+
+SEE ALSO
+--------
+
+* The [ImageJ Tutorials](https://imagej.net/Tutorials) and [Development](https://imagej.net/Development) sections of the ImageJ wiki.
