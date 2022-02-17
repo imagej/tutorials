@@ -1,5 +1,7 @@
 [![](https://github.com/imagej/tutorials/actions/workflows/build-main.yml/badge.svg)](https://github.com/imagej/tutorials/actions/workflows/build-main.yml)
 
+#### If you are looking to learn to use ImageJ, then visit the [ImageJ Tutorials for Users](https://imagej.net/tutorials.)
+
 This project contains example code for working with
 [ImageJ](https://imagej.net/ImageJ) and [SciJava](https://imagej.net/SciJava).
 
