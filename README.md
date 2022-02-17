@@ -7,13 +7,13 @@ This project contains example code for working with
 
 OVERVIEW
 ---------------------
-This repository is broken down into two main functional parts: Notebooks and Java.
+This repository is broken down into two main functional parts: [Notebooks](#notebooks) and [Java](#java).
 
-## [Notebooks](notebooks/)
-The purpose of the notebooks is to give a "guided tour" for teaching ImageJ2.
+## Notebooks
+The purpose of the [notebooks](notebooks/) is to give a "guided tour" for teaching ImageJ2.
 
-## [Java](java/)
-The purpose of the java section of this repository is to give a collection of examples and howtos for different use cases.
+## Java
+The purpose of the [java](java/) section of this repository is to give a collection of examples and howtos for different use cases.
 
 LICENSING
 ---------
