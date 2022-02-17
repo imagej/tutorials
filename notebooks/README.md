@@ -3,7 +3,7 @@ This project contains example code for working with
 
 WHY JUPYTER NOTEBOOKS
 ---------------------
-[Jupyter Notebooks](https://jupyter.org/) are a great outreach tool to demonstrate how programs work interactively in real time. We use Jupyter for teaching ImageJ2 so that you can try and change the code yourself easily. See the [Intro to Jupyter notebook](notebooks/Intro-to-Jupyter.ipynb) if you have never used Jupyter notebook before.
+[Jupyter Notebooks](https://jupyter.org/) are a great outreach tool to demonstrate how programs work interactively in real time. We use Jupyter for teaching ImageJ2 so that you can try and change the code yourself easily. See the [Intro to Jupyter notebook](Intro-to-Jupyter.ipynb) if you have never used Jupyter notebook before.
 
 RUNNING JUPYTER NOTEBOOKS
 -------------------------
