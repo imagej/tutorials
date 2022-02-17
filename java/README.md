@@ -45,4 +45,3 @@ SEE ALSO
 * The [ImageJ Tutorials](https://imagej.net/Tutorials) and [Development](https://imagej.net/Development) sections of the ImageJ wiki.
 
 
-![Maven-projects directory map](../images/maven-projects_map.png)
