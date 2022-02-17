@@ -95,16 +95,16 @@
 	</mailingLists>
 
 	<modules>
-		<module>howtos</module>
-		<module>maven-projects/add-two-datasets</module>
-		<module>maven-projects/custom-preprocessor-plugin</module>
-		<module>maven-projects/dynamic-commands</module>
-		<module>maven-projects/execute-commands</module>
-		<module>maven-projects/ij2-image-plus</module>
-		<module>maven-projects/listen-to-events</module>
-		<module>maven-projects/simple-commands</module>
-		<module>maven-projects/swing-example</module>
-		<module>maven-projects/working-with-modules</module>
+		<module>java/howtos</module>
+		<module>java/add-two-datasets</module>
+		<module>java/custom-preprocessor-plugin</module>
+		<module>java/dynamic-commands</module>
+		<module>java/execute-commands</module>
+		<module>java/ij2-image-plus</module>
+		<module>java/listen-to-events</module>
+		<module>java/simple-commands</module>
+		<module>java/swing-example</module>
+		<module>java/working-with-modules</module>
 	</modules>
 
 	<scm>

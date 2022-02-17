@@ -12,7 +12,7 @@ JAVA PROJECTS
 For the
 [type-safety-inclined](https://softwareengineering.stackexchange.com/a/38257),
 this repository also contains Maven projects written in Java, located in the
-`maven-projects` subfolder of this repository.
+`java` subfolder of this repository.
 
 Use the "Open in Gitpod" button above to run the (non-GUI) Java projects on the
 cloud using [Gitpod](https://gitpod.io), with no local installation necessary.
@@ -26,7 +26,7 @@ You can import these projects into your favorite IDE:
 Or build and run from the command line:
 
     mvn
-    cd maven-projects/simple-commands
+    cd java/simple-commands
     mvn -Pexec -Dmain-class=GradientImage
 
 
