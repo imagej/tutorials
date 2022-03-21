@@ -66,4 +66,4 @@ See [unlicense.org](https://unlicense.org/) for details.
 SEE ALSO
 --------
 
-* The [ImageJ Tutorials](https://imagej.net/Tutorials) and [Development](https://imagej.net/Development) sections of the ImageJ wiki.
+* The [Tutorials](https://imagej.net/tutorials) and [Development](https://imagej.net/develop) sections of the ImageJ wiki.
