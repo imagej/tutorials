@@ -6,7 +6,8 @@ This project contains example code for working with
 [ImageJ](https://imagej.net/ImageJ) and [SciJava](https://imagej.net/SciJava).
 
 OVERVIEW
----------------------
+--------
+
 This repository is broken down into two main functional parts: [Notebooks](#notebooks) and [Java](#java).
 
 ## Notebooks
