@@ -1,7 +1,7 @@
 [![](https://travis-ci.org/imagej/tutorials.svg?branch=master)](https://travis-ci.org/imagej/tutorials)
 
 This project contains example code for working with
-[ImageJ](https://imagej.net/ImageJ) and [SciJava](https://imagej.net/SciJava).
+[ImageJ2](https://imagej.net/software/imagej2) and [SciJava](https://imagej.net/libs/scijava).
 
 
 JAVA PROJECTS
@@ -42,7 +42,4 @@ See the [CC0 1.0 Universal license](https://creativecommons.org/publicdomain/zer
 SEE ALSO
 --------
 
-* The [ImageJ Tutorials](https://imagej.net/Tutorials) and [Development](https://imagej.net/Development) sections of the ImageJ wiki.
-
-
-![Maven-projects directory map](../images/maven-projects_map.png)
+* The [Tutorials](https://imagej.net/tutorials) and [Development](https://imagej.net/develop) sections of the ImageJ wiki.
