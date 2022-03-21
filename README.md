@@ -11,10 +11,10 @@ OVERVIEW
 This repository is broken down into two main functional parts: [Notebooks](#notebooks) and [Java](#java).
 
 ## Notebooks
-The purpose of the [notebooks](notebooks/) is to give a "guided tour" for teaching ImageJ2.
+The purpose of the [notebooks](notebooks) is to give a "guided tour" for teaching ImageJ2.
 
 ## Java
-The purpose of the [java](java/) section of this repository is to give a collection of examples and howtos for different use cases.
+The purpose of the [java](java) section of this repository is to give a collection of examples and howtos for different use cases.
 
 LICENSING
 ---------
