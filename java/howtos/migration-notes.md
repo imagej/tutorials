@@ -22,7 +22,7 @@ ImageJ maven-projects > howto migration notes
 | `CommandWithPreview.java` |commands-with-preview | ui > preview | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `PreviewCheckbox.java` | commands-with-preview | ui > preview | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `TrollPreprocessor.java` | custom-preprocessor-plugin | --- | **Y** | Runs for each command for all `.java` files calling UI. Annoying! | --- | **N** | Calls AWT UI. |
-| `DynamicCallbacks.java` | dynamic-commands | --- | **Y** | Opens UI. Selecting options either returns input letter (a, b or c) or returns only the first item in the `kindOfThing` list. | --- | **N** | Calls AWT UI. |
+| `DynamicCallbacks.java` | dynamic-commands | commands > dynamic | **Y** | Opens UI. Selecting options either returns input letter (a, b or c) or returns only the first item in the `kindOfThing` list. | --- | **Y** | Calls AWT UI. |
 | `DynamicInitialization.java` | dynamic-commands | commands > dynamic | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `DynamicNumberOfParameters.java` | dynamic-commands | commands > dynamic | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `ExecuteCommands.java` | execute-commands | --- | **Y** | --- | --- | **N** | --- |

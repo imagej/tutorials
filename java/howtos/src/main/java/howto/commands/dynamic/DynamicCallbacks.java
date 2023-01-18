@@ -5,6 +5,7 @@
  * See the Unlicense for details:
  *     https://unlicense.org/
  */
+package howto.commands.dynamic;
 
 import java.util.Arrays;
 
