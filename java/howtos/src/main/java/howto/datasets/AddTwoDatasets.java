@@ -6,6 +6,8 @@
  *     https://unlicense.org/
  */
 
+package howto.datasets;
+
 import io.scif.services.DatasetIOService;
 
 import java.io.File;

@@ -96,7 +96,6 @@
 
 	<modules>
 		<module>java/howtos</module>
-		<module>java/add-two-datasets</module>
 		<module>java/custom-preprocessor-plugin</module>
 		<module>java/dynamic-commands</module>
 		<module>java/execute-commands</module>
