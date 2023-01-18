@@ -102,7 +102,6 @@
 		<module>java/execute-commands</module>
 		<module>java/ij2-image-plus</module>
 		<module>java/listen-to-events</module>
-		<module>java/simple-commands</module>
 		<module>java/swing-example</module>
 		<module>java/working-with-modules</module>
 	</modules>
