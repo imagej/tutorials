@@ -1,6 +1,6 @@
 [![](https://travis-ci.org/imagej/tutorials.svg?branch=master)](https://travis-ci.org/imagej/tutorials)
 
-This project contains example code for working with
+This directory contains example Maven projects with Java code for working with
 [ImageJ2](https://imagej.net/software/imagej2) and [SciJava](https://imagej.net/libs/scijava).
 
 
@@ -9,26 +9,21 @@ JAVA PROJECTS
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/imagej/tutorials)
 
-For the
-[type-safety-inclined](https://softwareengineering.stackexchange.com/a/38257),
-this repository also contains Maven projects written in Java, located in the
-`java` subfolder of this repository.
-
 Use the "Open in Gitpod" button above to run the (non-GUI) Java projects on the
 cloud using [Gitpod](https://gitpod.io), with no local installation necessary.
 
-You can import these projects into your favorite IDE:
+Additionally, you can import these projects into your favorite IDE. The Java files in these tutorials have main methods that can be directly ran inside of your IDE. 
 
-  * Eclipse: File > Import > Existing Maven Projectsnotebooks
+  * Eclipse: File > Import > Existing Maven Projects > tutorials > java
   * NetBeans: File > Open Project
-  * IDEA: File > Open Project... (select pom.xml)
+  * IntelliJ IDEA: File > Open > tutorials > pom.xml > Open as Project
 
-Or build and run from the command line:
 
-    mvn
-    cd java/simple-commands
-    mvn -Pexec -Dmain-class=GradientImage
+We are in the process of migrating projects into the `howtos` project. As such, that will be an excellent entry point to become familiar with ImageJ2 and SciJava.  
 
+`HelloWorld.Java` and `OpenImage.java` inside of `howtos.commands.simple` are good starting points to see the annotation syntax for creating plugins. From there, you can go to the project that best fits your needs.  
+
+If you would like to learn more about plugin development, see [Writing ImageJ2 plugins](https://imagej.net/develop/plugins).
 
 LICENSING
 ---------
