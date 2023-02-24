@@ -6,6 +6,8 @@
  *     https://unlicense.org/
  */
 
+package howto.modules;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -133,6 +135,9 @@ public class WorkingWithModules {
 
 		// Finally, we invoke the module service with our preprocessors:
 		ij.module().run(myInfo, pre, null, myInputs);
+		
+		// Launch ImageJ as usual with AboutImageJ images.
+		ij.launch(args);
 	}
 
 }

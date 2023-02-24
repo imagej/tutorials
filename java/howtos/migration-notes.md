@@ -48,7 +48,7 @@ ImageJ maven-projects > howto migration notes
 | `UsingOpsLabeling.java` | using-ops | ops | **Y** | Input image drawn incorrectly (legacy bug). | --- | **Y** | Calls AWT UI. |
 | `UsingSpecialOps.java` | using-ops |ops | **Y** | --- | --- | **Y** | Has commented out code block. Remove? |
 | `WidgetDemo.java` | widget-demo | ui | **Y** | --- | --- | **Y** | Calls AWT UI. |
-| `WorkingWithModules.java` | working-with-modules | --- | **N** | Missing `images/about` path and throws exception | --- | **N** | --- |
+| `WorkingWithModules.java` | working-with-modules | modules | **Y** | --- | Added images/about/ directory | **Y** | AboutImageJ in imagej-common does not work well outside of FIJI |
 
 
 ### **Testing howto java files:**
