@@ -5,6 +5,7 @@
  * See the Unlicense for details:
  *     https://unlicense.org/
  */
+package howto.commands.dynamic;
 
 import java.util.Arrays;
 
@@ -12,10 +13,10 @@ import net.imagej.Dataset;
 import net.imagej.ImageJ;
 import net.imagej.axis.Axes;
 import net.imagej.axis.AxisType;
-import net.imagej.ops.Initializable;
 
 import org.scijava.command.Command;
 import org.scijava.command.DynamicCommand;
+import org.scijava.Initializable;
 import org.scijava.module.MutableModuleItem;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;

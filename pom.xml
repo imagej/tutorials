@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>org.scijava</groupId>
 		<artifactId>pom-scijava</artifactId>
-		<version>29.2.1</version>
+		<version>34.1.0</version>
 		<relativePath />
 	</parent>
 
@@ -96,15 +96,11 @@
 
 	<modules>
 		<module>java/howtos</module>
-		<module>java/add-two-datasets</module>
 		<module>java/custom-preprocessor-plugin</module>
-		<module>java/dynamic-commands</module>
 		<module>java/execute-commands</module>
 		<module>java/ij2-image-plus</module>
 		<module>java/listen-to-events</module>
-		<module>java/simple-commands</module>
 		<module>java/swing-example</module>
-		<module>java/working-with-modules</module>
 	</modules>
 
 	<scm>

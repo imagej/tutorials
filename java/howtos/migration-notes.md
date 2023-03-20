@@ -8,7 +8,7 @@ ImageJ maven-projects > howto migration notes
 | File name | Moved from (maven-projects) | Moved to (howto) | Runs (Y/N) | Issues | Action taken | Migrated (Y/N) |Notes |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | `AddROIs.java` | add-rois | images | **Y** | ROIs do not display on image until interacted with. | --- | **Y** | Calls swing UI. |
-| `AddTwoDatasets.java` | add-two-datasets | --- | **Y** | Module throws exception if images are not extactly the same `java.lang.IllegalArgumentException: No matching 'net.imagej.ops.Ops$Math$Add' op`. | --- | **N** | Calls AWT UI. Outputs 1 of 2 datasets as a composite image. Likely not what its supposed to do. |
+| `AddTwoDatasets.java` | add-two-datasets | datasets | **Y** | Module throws exception if images are not extactly the same `java.lang.IllegalArgumentException: No matching 'net.imagej.ops.Ops$Math$Add' op`. | --- | **Y** | Calls AWT UI. Outputs 1 of 2 datasets as a composite image. Likely not what its supposed to do. |
 | `DisplayATable.java` | call-modern-from-legacy | adv | **Y** | --- | Renamed class to `ModernFromLegacy` and file name to `ModernFromLegacy.java` | **Y** | Calls AWT UI. Opens swing table. |
 | `CreateANewOp.java` | create-a-new-op | ops | **Y** | --- | --- | **Y** | No UI. Terminal output only. |
 | `Ramp.java` | create-a-new-op | ops | **Y** | --- | Renamed file to `RampOp.java`. | **Y** | Calls AWT UI. |
@@ -22,7 +22,7 @@ ImageJ maven-projects > howto migration notes
 | `CommandWithPreview.java` |commands-with-preview | ui > preview | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `PreviewCheckbox.java` | commands-with-preview | ui > preview | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `TrollPreprocessor.java` | custom-preprocessor-plugin | --- | **Y** | Runs for each command for all `.java` files calling UI. Annoying! | --- | **N** | Calls AWT UI. |
-| `DynamicCallbacks.java` | dynamic-commands | --- | **Y** | Opens UI. Selecting options either returns input letter (a, b or c) or returns only the first item in the `kindOfThing` list. | --- | **N** | Calls AWT UI. |
+| `DynamicCallbacks.java` | dynamic-commands | commands > dynamic | **Y** | Opens UI. Selecting options either returns input letter (a, b or c) or returns only the first item in the `kindOfThing` list. | --- | **Y** | Calls AWT UI. |
 | `DynamicInitialization.java` | dynamic-commands | commands > dynamic | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `DynamicNumberOfParameters.java` | dynamic-commands | commands > dynamic | **Y** | --- | --- | **Y** | Calls AWT UI. |
 | `ExecuteCommands.java` | execute-commands | --- | **Y** | --- | --- | **N** | --- |
@@ -48,7 +48,7 @@ ImageJ maven-projects > howto migration notes
 | `UsingOpsLabeling.java` | using-ops | ops | **Y** | Input image drawn incorrectly (legacy bug). | --- | **Y** | Calls AWT UI. |
 | `UsingSpecialOps.java` | using-ops |ops | **Y** | --- | --- | **Y** | Has commented out code block. Remove? |
 | `WidgetDemo.java` | widget-demo | ui | **Y** | --- | --- | **Y** | Calls AWT UI. |
-| `WorkingWithModules.java` | working-with-modules | --- | **N** | Missing `images/about` path and throws exception | --- | **N** | --- |
+| `WorkingWithModules.java` | working-with-modules | modules | **Y** | --- | Added images/about/ directory | **Y** | AboutImageJ in imagej-common does not work well outside of FIJI |
 
 
 ### **Testing howto java files:**

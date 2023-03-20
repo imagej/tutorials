@@ -46,7 +46,7 @@ public class OpenAndShowImage {
 	private static void runStatic() {
 
 		// open image statically
-		Img img = IO.openImgs(Object.class.getResource("/blobs.png").getPath()).get(0);
+		Img img = IO.openAll(Object.class.getResource("/blobs.png").getPath()).get(0);
 
 		// display image statically
 		ImageJFunctions.show(img);
